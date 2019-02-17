@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
 import com.amath.spacetrader.entity.Game;
+import com.amath.spacetrader.model.ConfigurationInteractor;
 import com.amath.spacetrader.model.Model;
 
 public class ConfigurationViewModel extends AndroidViewModel {
@@ -17,13 +18,6 @@ public class ConfigurationViewModel extends AndroidViewModel {
     }
 
     public void newGame(Game game) {
-        interactor.
-    }
-    public void updateStudent(Student student ) {
-        interactor.updateStudent(student);
-    }
-
-    public void addStudent(Student student) {
-        interactor.addStudent(student);
+        interactor.newGame(game);
     }
 }

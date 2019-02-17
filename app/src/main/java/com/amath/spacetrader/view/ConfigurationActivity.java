@@ -1,5 +1,6 @@
 package com.amath.spacetrader.view;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -57,6 +58,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         ArrayAdapter<GameDifficulty> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, GameDifficulty.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gameDifficultySpinner.setAdapter(adapter);
+
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
     /**
@@ -90,7 +93,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
         viewModel.newGame(game);
-        finish();
+
     }
     /**
      * Button handler for cancel - just call back pressed
