@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.MainActivity"
+    android:background="@color/backgroundColor">
 
     <Button
         android:id="@+id/start_button"
@@ -15,6 +16,9 @@
         android:layout_marginEnd="8dp"
         android:onClick="onOkayPressed"
         android:text="Start"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

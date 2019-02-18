@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
 
     <TextView
         android:id="@+id/player_name_header"
@@ -14,6 +15,8 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:text="Player Name"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +29,11 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Name"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/textColorHint"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player_name_header" />
@@ -39,8 +45,11 @@
         android:layout_marginTop="168dp"
         android:layout_marginEnd="108dp"
         android:ems="10"
+        android:hint="0"
+        android:textColorHint="@color/textColorHint"
         android:inputType="number"
-        android:text="0"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,8 +60,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="108dp"
         android:ems="10"
+        android:hint="0"
+        android:textColorHint="@color/textColorHint"
         android:inputType="number"
-        android:text="0"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pilot_points_input" />
 
@@ -60,11 +72,14 @@
         android:id="@+id/trader_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="108dp"
         android:ems="10"
+        android:hint="0"
+        android:textColorHint="@color/textColorHint"
         android:inputType="number"
-        android:text="0"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fighter_points_input" />
 
@@ -72,11 +87,14 @@
         android:id="@+id/engineer_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="108dp"
         android:ems="10"
+        android:hint="0"
+        android:textColorHint="@color/textColorHint"
         android:inputType="number"
-        android:text="0"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_input" />
 
@@ -87,6 +105,8 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="192dp"
         android:text="Pilot Points"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,6 +117,8 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="32dp"
         android:text="Fighter Points"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pilot_points_header" />
 
@@ -107,6 +129,8 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="32dp"
         android:text="Trader Points"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fighter_points_header" />
 
@@ -117,6 +141,8 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="32dp"
         android:text="Engineer Points"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_header" />
 
@@ -128,6 +154,9 @@
         android:layout_marginBottom="8dp"
         android:onClick="onOkayPressed"
         android:text="Okay"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimaryDark"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -139,6 +168,9 @@
         android:layout_marginBottom="8dp"
         android:onClick="onCancelPressed"
         android:text="Cancel"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/okay_button" />
 
@@ -149,6 +181,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="460dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -161,6 +196,8 @@
         android:layout_marginTop="420dp"
         android:layout_marginEnd="8dp"
         android:text="Game Difficulty"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
