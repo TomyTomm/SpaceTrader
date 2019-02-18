@@ -1,5 +1,6 @@
 package com.amath.spacetrader.view;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Game;
@@ -71,29 +73,49 @@ public class ConfigurationActivity extends AppCompatActivity {
         Log.d("Config", "Okay button pressed");
 
         //check to see if the data is legal
-        if (nameField.getText().toString().length() == 0
-                || Integer.parseInt(pilotPoints.getText().toString()) < 0
-                || Integer.parseInt(fighterPoints.getText().toString()) < 0
-                || Integer.parseInt(traderPoints.getText().toString()) < 0
-                || Integer.parseInt(engineerPoints.getText().toString()) < 0
-                || Integer.parseInt(pilotPoints.getText().toString()) +
-                Integer.parseInt(fighterPoints.getText().toString()) +
-                Integer.parseInt(traderPoints.getText().toString()) +
-                Integer.parseInt(engineerPoints.getText().toString()) > 16) {
-            Log.d("Config", "data passed in is NOT valid");
-            throw new IllegalArgumentException("data passed in is NOT valid");
+//        if (nameField.getText().toString().length() == 0
+//                || Integer.parseInt(pilotPoints.getText().toString()) < 0
+//                || Integer.parseInt(fighterPoints.getText().toString()) < 0
+//                || Integer.parseInt(traderPoints.getText().toString()) < 0
+//                || Integer.parseInt(engineerPoints.getText().toString()) < 0
+//                || Integer.parseInt(pilotPoints.getText().toString()) +
+//                Integer.parseInt(fighterPoints.getText().toString()) +
+//                Integer.parseInt(traderPoints.getText().toString()) +
+//                Integer.parseInt(engineerPoints.getText().toString()) > 16) {
+//            Log.d("Config", "data passed in is NOT valid");
+//            throw new IllegalArgumentException("data passed in is NOT valid");
+//        }
+        String name = nameField.getText().toString();
+
+        int pilotPts;
+        int traderPts;
+        int engineerPts;
+        int fighterPts;
+
+        try {
+            pilotPts = Integer.parseInt(pilotPoints.getText().toString());
+            traderPts = Integer.parseInt(traderPoints.getText().toString());
+            engineerPts = Integer.parseInt(engineerPoints.getText().toString());
+            fighterPts = Integer.parseInt(fighterPoints.getText().toString());
+        } catch (Exception e) {
+            Toast.makeText(this, "Please enter a value for each point type", Toast.LENGTH_LONG).show();
+            return;
         }
 
         //the data passed in is legal
-        Log.d("Config", "data passed in is valid");
-        player = new Player(nameField.getText().toString(), Integer.parseInt(pilotPoints.getText().toString()),
-                            Integer.parseInt(fighterPoints.getText().toString()),
-                            Integer.parseInt(traderPoints.getText().toString()),
-                            Integer.parseInt(engineerPoints.getText().toString()));
-        game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
+        Log.d("testing123", "data passed in is valid: " + name);
+//        player = new Player(nameField.getText().toString(), Integer.parseInt(pilotPoints.getText().toString()),
+//                            Integer.parseInt(fighterPoints.getText().toString()),
+//                            Integer.parseInt(traderPoints.getText().toString()),
+//                            Integer.parseInt(engineerPoints.getText().toString()));
+//        game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
-        viewModel.newGame(game);
+        viewModel.loadDifficulty((GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
+        String result = viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
+        if (result != null) {
+            Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+        }
     }
     /**
      * Button handler for cancel - just call back pressed

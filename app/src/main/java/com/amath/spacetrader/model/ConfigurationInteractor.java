@@ -1,6 +1,9 @@
 package com.amath.spacetrader.model;
 
+import android.util.Log;
+
 import com.amath.spacetrader.entity.Game;
+import com.amath.spacetrader.entity.Player;
 
 import java.util.List;
 
@@ -13,7 +16,11 @@ public class ConfigurationInteractor extends Interactor {
         getRepository().newGame(game);
     }
 
-    public List<Game> getAllGames() {
-        return getRepository().getAllGames();
+//    public Game getGame() {
+//        return getRepository().getGame();
+//    }
+
+    public void loadPlayer(Player player) {
+        Model.loadPlayer(player);
     }
 }

@@ -10,9 +10,11 @@
         android:id="@+id/player_name_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
         android:text="Player Name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,11 +22,13 @@
         android:id="@+id/player_name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player_name_header" />
 
@@ -32,52 +36,52 @@
         android:id="@+id/pilot_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="108dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/fighter_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="108dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pilot_points_input" />
 
     <EditText
         android:id="@+id/trader_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="108dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fighter_points_input" />
 
     <EditText
         android:id="@+id/engineer_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="108dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_input" />
 
     <TextView
         android:id="@+id/pilot_points_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="192dp"
         android:text="Pilot Points"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -85,9 +89,9 @@
     <TextView
         android:id="@+id/fighter_points_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="36dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="32dp"
         android:text="Fighter Points"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pilot_points_header" />
@@ -96,8 +100,8 @@
         android:id="@+id/trader_points_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="32dp"
         android:text="Trader Points"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fighter_points_header" />
@@ -106,8 +110,8 @@
         android:id="@+id/engineer_points_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="32dp"
         android:text="Engineer Points"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_header" />
@@ -138,8 +142,10 @@
         android:id="@+id/game_difficulty_spinner"
         android:layout_width="289dp"
         android:layout_height="32dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="460dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -147,9 +153,11 @@
         android:id="@+id/game_difficulty_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="424dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="420dp"
+        android:layout_marginEnd="8dp"
         android:text="Game Difficulty"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
