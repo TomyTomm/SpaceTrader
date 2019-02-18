@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "836351693210",
+    "firebase_url": "https://spacetrader-8c3ae.firebaseio.com",
+    "project_id": "spacetrader-8c3ae",
+    "storage_bucket": "spacetrader-8c3ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836351693210:android:d4ff795b0ee1194a",
+        "android_client_info": {
+          "package_name": "com.amath.spacetrader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836351693210-afgieain8rtb13cdpqfuh8oellgluqdg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amath.spacetrader",
+            "certificate_hash": "18b9fe8f0e83c351ab06801c28ae18308160dfd0"
+          }
+        },
+        {
+          "client_id": "836351693210-puf58v143drakdjupkj8smpaqm4or0gm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD48i01geaE0Z9vXtInZoi0N_GBWCauekE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836351693210-puf58v143drakdjupkj8smpaqm4or0gm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
