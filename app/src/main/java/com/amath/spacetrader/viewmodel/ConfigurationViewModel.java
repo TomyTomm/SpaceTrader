@@ -31,7 +31,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
             return "Engineer points must be greater than 0 and less than 16";
         } else if (fighterPts < 0 || fighterPts > 16) {
             return "Fighter points must be greater than 0 and less than 16";
-        } else if (pilotPts + traderPts + engineerPts + fighterPts > 16) {
+        } else if (pilotPts + traderPts + engineerPts + fighterPts != 16) {
             return "Points must total equal to or less than 16";
         }
 //        return "";//interactor.getGame().toString();
