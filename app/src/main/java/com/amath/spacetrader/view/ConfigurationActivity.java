@@ -103,7 +103,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
 
         //the data passed in is legal
-        Log.d("testing123", "data passed in is valid: " + name);
+        //Log.d("testing123", "data passed in is valid: " + name);
 //        player = new Player(nameField.getText().toString(), Integer.parseInt(pilotPoints.getText().toString()),
 //                            Integer.parseInt(fighterPoints.getText().toString()),
 //                            Integer.parseInt(traderPoints.getText().toString()),

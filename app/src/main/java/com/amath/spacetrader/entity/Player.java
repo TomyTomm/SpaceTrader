@@ -20,4 +20,9 @@ public class Player {
         this.fighterPts = fighterPts;
         credits = 1000;
     }
+
+    public String toString() {
+        return name + " " + pilotPts + " " + traderPts + " " + engineerPts + " " + fighterPts + " "
+                + credits;
+    }
 }
