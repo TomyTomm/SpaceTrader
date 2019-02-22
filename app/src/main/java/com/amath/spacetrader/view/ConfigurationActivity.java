@@ -1,6 +1,5 @@
 package com.amath.spacetrader.view;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,9 +25,9 @@ public class ConfigurationActivity extends AppCompatActivity {
     //widgets that will be getting information
     private EditText nameField;
     private EditText pilotPoints;
-    private EditText fighterPoints;
     private EditText traderPoints;
     private EditText engineerPoints;
+    private EditText fighterPoints;
     private Spinner gameDifficultySpinner;
 
     //data for player being configured
@@ -47,9 +46,9 @@ public class ConfigurationActivity extends AppCompatActivity {
          */
         nameField = findViewById(R.id.player_name_input);
         pilotPoints = findViewById(R.id.pilot_points_input);
-        fighterPoints = findViewById(R.id.fighter_points_input);
         traderPoints = findViewById(R.id.trader_points_input);
         engineerPoints = findViewById(R.id.engineer_points_input);
+        fighterPoints = findViewById(R.id.fighter_points_input);
         gameDifficultySpinner = findViewById(R.id.game_difficulty_spinner);
         Button okayButton = findViewById(R.id.okay_button);
         Button cancelButton = findViewById(R.id.cancel_button);
@@ -71,20 +70,6 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     public void onOkayPressed(View view) {
         Log.d("Config", "Okay button pressed");
-
-        //check to see if the data is legal
-//        if (nameField.getText().toString().length() == 0
-//                || Integer.parseInt(pilotPoints.getText().toString()) < 0
-//                || Integer.parseInt(fighterPoints.getText().toString()) < 0
-//                || Integer.parseInt(traderPoints.getText().toString()) < 0
-//                || Integer.parseInt(engineerPoints.getText().toString()) < 0
-//                || Integer.parseInt(pilotPoints.getText().toString()) +
-//                Integer.parseInt(fighterPoints.getText().toString()) +
-//                Integer.parseInt(traderPoints.getText().toString()) +
-//                Integer.parseInt(engineerPoints.getText().toString()) > 16) {
-//            Log.d("Config", "data passed in is NOT valid");
-//            throw new IllegalArgumentException("data passed in is NOT valid");
-//        }
         String name = nameField.getText().toString();
 
         int pilotPts;

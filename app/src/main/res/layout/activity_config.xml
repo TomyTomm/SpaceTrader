@@ -54,21 +54,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/fighter_points_input"
-        android:layout_width="88dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="108dp"
-        android:ems="10"
-        android:hint="0"
-        android:textColorHint="@color/textColorHint"
-        android:inputType="number"
-        android:textColor="@color/textColor"
-        android:typeface="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pilot_points_input" />
-
-    <EditText
         android:id="@+id/trader_points_input"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
@@ -81,7 +66,7 @@
         android:textColor="@color/textColor"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fighter_points_input" />
+        app:layout_constraintTop_toBottomOf="@+id/pilot_points_input" />
 
     <EditText
         android:id="@+id/engineer_points_input"
@@ -98,6 +83,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_input" />
 
+    <EditText
+        android:id="@+id/fighter_points_input"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="108dp"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="number"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/textColorHint"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/engineer_points_input" />
+
     <TextView
         android:id="@+id/pilot_points_header"
         android:layout_width="wrap_content"
@@ -111,28 +111,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fighter_points_header"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="32dp"
-        android:text="Fighter Points"
-        android:textColor="@color/textColor"
-        android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pilot_points_header" />
-
-    <TextView
         android:id="@+id/trader_points_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_marginStart="88dp"
         android:layout_marginTop="32dp"
         android:text="Trader Points"
         android:textColor="@color/textColor"
         android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fighter_points_header" />
+        app:layout_constraintTop_toBottomOf="@+id/pilot_points_header" />
 
     <TextView
         android:id="@+id/engineer_points_header"
@@ -145,6 +133,18 @@
         android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_header" />
+
+    <TextView
+        android:id="@+id/fighter_points_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="32dp"
+        android:text="Fighter Points"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/engineer_points_header" />
 
     <Button
         android:id="@+id/okay_button"
