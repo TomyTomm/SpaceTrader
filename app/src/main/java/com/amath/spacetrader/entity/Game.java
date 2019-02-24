@@ -3,14 +3,16 @@ package com.amath.spacetrader.entity;
 public class Game {
     private GameDifficulty gameDifficulty;
     private Player player;
+    private Universe universe;
 
     public Game() {
-        this.gameDifficulty = GameDifficulty.EASY;
+        this(null, GameDifficulty.EASY, new Universe());
     }
 
-    public Game(Player player, GameDifficulty gameDifficulty) {
+    public Game(Player player, GameDifficulty gameDifficulty, Universe universe) {
         this.player = player;
         this.gameDifficulty = gameDifficulty;
+        this.universe = universe;
     }
 
     /**
@@ -20,6 +22,15 @@ public class Game {
      */
     public void loadPlayer(Player player) {
         this.player = player;
+    }
+
+    /**
+     * Loads universe into game
+     *
+     * @param universe
+     */
+    public void loadUniverse(Universe universe) {
+        this.universe = universe;
     }
 
     /**
@@ -37,6 +48,14 @@ public class Game {
      * @param difficulty the new difficulty to set as
      */
     public void changeDifficulty(GameDifficulty difficulty) {
+        this.gameDifficulty = difficulty;
+    }
 
+    public GameDifficulty getGameDifficulty() {
+        return gameDifficulty;
+    }
+
+    public Universe getUniverse() {
+        return universe;
     }
 }

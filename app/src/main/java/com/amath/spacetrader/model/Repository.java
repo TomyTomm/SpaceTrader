@@ -3,6 +3,7 @@ package com.amath.spacetrader.model;
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Player;
+import com.amath.spacetrader.entity.Universe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,8 @@ public class Repository {
     public Game getGame() {
         return this.game;
     }
+
+    public Universe getUniverse() { return this.game.getUniverse(); }
 
     public Player getPlayer() {
         return game.getPlayer();

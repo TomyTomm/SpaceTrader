@@ -1,6 +1,7 @@
 package com.amath.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Player;
+import com.amath.spacetrader.entity.SolarSystem;
+import com.amath.spacetrader.model.Model;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 
 public class ConfigurationActivity extends AppCompatActivity {
@@ -96,10 +99,11 @@ public class ConfigurationActivity extends AppCompatActivity {
 //        game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
         viewModel.loadDifficulty((GameDifficulty) gameDifficultySpinner.getSelectedItem());
-
         String result = viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
         if (result != null) {
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, UniverseActivity.class);
+            startActivity(intent);
         }
     }
     /**

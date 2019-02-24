@@ -18,7 +18,7 @@ public class Player {
         this.traderPts = traderPts;
         this.engineerPts = engineerPts;
         this.fighterPts = fighterPts;
-        credits = 1000;
+        credits = STARTING_CREDITS;
     }
 
     public String toString() {
