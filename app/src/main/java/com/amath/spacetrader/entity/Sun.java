@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Sun {
     private int size;
-    private static final int MAX_SIZE = 30;
+    private static final int MAX_SIZE = 15;
     public Sun() {
-        this((int) (10 + Math.random() * 30));
+        this((int) (10 + Math.random() * MAX_SIZE));
     }
     public Sun(int size) {
         this.size = size;

@@ -21,13 +21,14 @@ public class Universe {
         Log.d("initialization", "Initializing solar systems");
         double random = Math.random() * 5 + 10;
         Log.d("initialization", String.valueOf(random));
-        for (int i = 0; i < (int)random; i++) {
+        for (int i = 0; i < (int) random; i++) {
             Log.d("initialization", String.format("making solarsystem:\t%d", solarSystems.size()));
-            solarSystems.add(new SolarSystem(String.format("%d", i)));
+            solarSystems.add(new SolarSystem(String.format("%d", i), this.getSolarSystems()));
         }
     }
 
     public Set<SolarSystem> getSolarSystems() {
         return solarSystems;
     }
+
 }

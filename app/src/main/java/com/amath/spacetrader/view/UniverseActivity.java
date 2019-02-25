@@ -29,9 +29,10 @@ public class UniverseActivity extends AppCompatActivity {
         Universe universe = viewModel.getUniverse();
         Log.d("universe", String.valueOf(universe.getSolarSystems().size()));
         for (SolarSystem system: universe.getSolarSystems()) {
-            for (Planet planet: system.getPlanets()) {
-                Log.d("universe", planet.toString());
-            }
+//            for (Planet planet: system.getPlanets()) {
+//                Log.d("universe", planet.toString());
+//            }
+            Log.d("universe", "\n" + system.toString());
         }
     }
 }

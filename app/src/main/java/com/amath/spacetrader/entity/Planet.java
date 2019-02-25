@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class Planet {
-    private String name;
-    private Coordinate location;
+public class Planet extends SpaceBody{
+
     private TechLevel techLevel;
     private ResourceLevel resourceLevel;
 
@@ -20,12 +19,12 @@ public class Planet {
 
     public Planet() {
 
-        this(0);
+        this(0, new HashSet<Planet>());
 
 
     }
 
-    public Planet(int sunSize) {
+    public Planet(int sunSize, Set<Planet> planets) {
 
         // Get name from the list of available planet names. This was randomized on start up, so everything should be ok.
         // Removes a name from the list to ensure that AVAILABLE_PLANET_NAMES will never have anything from USED_PLANET_NAMES.
@@ -48,10 +47,26 @@ public class Planet {
         // Makes a completely random coordinate with respect to Solar system size.
 
         Random rand = new Random();
+        radius = Math.random() * 8;
+        while (location == null) {
+            double x = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
+            double y = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
+//            location = new Coordinate(x, y);
 
-        double x = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
-        double y = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
-        location = new Coordinate(x, y);
+            Coordinate temp = new Coordinate(x, y);
+            boolean overlapping = false;
+            for (Planet planet: planets) {
+                if (overlap(temp, planet)) {
+                    overlapping = true;
+                    break;
+                }
+            }
+            if (!overlapping) this.location = temp;
+            else if (radius > 1) {
+                radius *= 0.9;      //decrease size of radius to decrease future chance of overlapping.
+            }
+        }
+
 
         techLevel = TechLevel.values()[(int) Math.random() * 12];
 
@@ -91,6 +106,8 @@ public class Planet {
         return resourceLevel;
     }
 
+    public double getRadius() { return this.radius; }
+
     /**
      * Called at startup by Model. Initalizes the LinkedList
      * with a randomized list of possible names.
@@ -119,9 +136,10 @@ public class Planet {
     public String toString() {
         return String.format("Planet %s:\n" +
                 "Location with respect to sun: (%f, %f)\n" +
+                "Radius:\t\t%f%n" +
                 "Technology level:%s\n" +
                 "Resources:%s",
-                name, location.getX(), location.getY(),
+                name, location.getX(), location.getY(), this.getRadius(),
                 techLevel.toString(), resourceLevel.toString());
     }
 }
