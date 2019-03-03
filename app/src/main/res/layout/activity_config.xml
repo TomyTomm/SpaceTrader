@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:text="Player Name"
         android:textColor="@color/textColor"
@@ -46,9 +45,9 @@
         android:layout_marginEnd="108dp"
         android:ems="10"
         android:hint="0"
-        android:textColorHint="@color/textColorHint"
         android:inputType="number"
         android:textColor="@color/textColor"
+        android:textColorHint="@color/textColorHint"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,9 +60,9 @@
         android:layout_marginEnd="108dp"
         android:ems="10"
         android:hint="0"
-        android:textColorHint="@color/textColorHint"
         android:inputType="number"
         android:textColor="@color/textColor"
+        android:textColorHint="@color/textColorHint"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pilot_points_input" />
@@ -76,9 +75,9 @@
         android:layout_marginEnd="108dp"
         android:ems="10"
         android:hint="0"
-        android:textColorHint="@color/textColorHint"
         android:inputType="number"
         android:textColor="@color/textColor"
+        android:textColorHint="@color/textColorHint"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trader_points_input" />
@@ -146,16 +145,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/engineer_points_header" />
 
+    <TextView
+        android:id="@+id/points_remaining"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="88dp"
+        android:text="Skill Points: 16"
+        android:textColor="@color/textColorHint"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/player_name_input"/>
     <Button
         android:id="@+id/okay_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimaryDark"
         android:onClick="onOkayPressed"
         android:text="Okay"
         android:textColor="@color/textColor"
-        android:background="@color/colorPrimaryDark"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -164,36 +174,22 @@
         android:id="@+id/cancel_button"
         android:layout_width="93dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimaryDark"
         android:onClick="onCancelPressed"
         android:text="Cancel"
         android:textColor="@color/textColor"
         android:typeface="monospace"
-        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/okay_button" />
-
-    <Spinner
-        android:id="@+id/game_difficulty_spinner"
-        android:layout_width="289dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="460dp"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/textColor"
-        android:typeface="monospace"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/game_difficulty_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="8dp"
         android:text="Game Difficulty"
         android:textColor="@color/textColor"
@@ -201,4 +197,71 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/easy_button"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="EASY"
+        android:textColor="@color/toggle_color"
+        android:textOff="EASY"
+        android:textOn="EASY"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_difficulty_header" />
+
+    <ToggleButton
+        android:id="@+id/normal_button"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="NORMAL"
+        android:textColor="@color/toggle_color"
+        android:textOff="NORMAL"
+        android:textOn="NORMAL"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/easy_button" />
+
+    <ToggleButton
+        android:id="@+id/hard_button"
+        android:layout_width="83dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="HARD"
+        android:textColor="@color/toggle_color"
+        android:textOff="HARD"
+        android:textOn="HARD"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/normal_button" />
+
+    <ToggleButton
+        android:id="@+id/insane_button"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="INSANE"
+        android:textColor="@color/toggle_color"
+        android:textOff="INSANE"
+        android:textOn="INSANE"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hard_button" />
+
+    <android.support.constraint.Constraints
+        android:id="@+id/constraints3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </android.support.constraint.ConstraintLayout>
