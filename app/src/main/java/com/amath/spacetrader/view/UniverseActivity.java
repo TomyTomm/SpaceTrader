@@ -1,9 +1,12 @@
 package com.amath.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
@@ -23,6 +26,8 @@ public class UniverseActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         printNames();
+
+        Button marketButton = findViewById(R.id.market_button);
     }
 
     public void printNames() {
@@ -34,5 +39,15 @@ public class UniverseActivity extends AppCompatActivity {
 //            }
             Log.d("universe", "\n" + system.toString());
         }
+    }
+
+    /**
+     * Button handler for the market button
+     *
+     * @param view the button that was pressed
+     */
+    public void onMarketPressed(View view) {
+        Intent intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
     }
 }
