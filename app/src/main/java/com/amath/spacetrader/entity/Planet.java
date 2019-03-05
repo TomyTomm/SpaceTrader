@@ -3,6 +3,7 @@ package com.amath.spacetrader.entity;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class Planet extends SpaceBody{
         this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel]);
     }
 
-    public Planet(String name, Coordinate location, TechLevel tech, ResourceLevel resource) {
+    public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel) {
 
         USED_PLANET_NAMES.add(name);
 
@@ -146,6 +147,8 @@ public class Planet extends SpaceBody{
     }
 
     public boolean generateTradingPost() {
+//        System.out.println(techLevel);
+        Log.d("debugLOLZ", Arrays.toString(TechLevel.values()));
         if (techLevel.getLevel() * Math.random() < 0.25) {
             return false;
         } else {

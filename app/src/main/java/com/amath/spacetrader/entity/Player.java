@@ -3,6 +3,7 @@ package com.amath.spacetrader.entity;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Player {
     private String name;
@@ -21,7 +22,7 @@ public class Player {
     private final Coordinate playerStartingLocation = new Coordinate(0.0,0.0);
 
     private Ship ownedShip;
-    private ArrayList<Good> inventory;
+    private List<Good> inventory;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
         this.name = name;
@@ -32,7 +33,7 @@ public class Player {
         credits = STARTING_CREDITS;
         currentPlanet = new Planet("Genesis", new Coordinate(0,0), 5,5);
         playerLocation = currentPlanet.getLocation();
-        inventory.add(new Good("credits", 1000));
+        inventory = new ArrayList<>();
         ownedShip = new Ship(ShipType.GNAT);
     }
 
@@ -45,11 +46,11 @@ public class Player {
         inventory = movingIn;
     }
 
-    public ArrayList<Good> getInventory() {
+    public List<Good> getInventory() {
         return inventory;
     }
 
-    public void updateInventory(ArrayList<Good> newInventory) {
+    public void updateInventory(List<Good> newInventory) {
         inventory = newInventory;
     }
 
@@ -70,7 +71,8 @@ public class Player {
     }
 
     public String toString() {
-        return name + " " + pilotPts + " " + traderPts + " " + engineerPts + " " + fighterPts + " "
-                + credits;
+        return String.format("Name: %s. Pilot points: %d. Trader points: %d. Engineer Points: %d." +
+                " Fighter points: %d. Credits: %d", name,
+                pilotPts, traderPts, engineerPts, fighterPts, credits);
     }
 }

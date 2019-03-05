@@ -33,7 +33,7 @@ public class MarketViewModel extends AndroidViewModel {
     }
 
     public String processTransactions(HashMap<Good, Integer> trades) {
-        ArrayList<Good> pI = player.getInventory();
+        List<Good> pI = player.getInventory();
         Good[] tradedGoods = (Good[]) trades.keySet().toArray();
         Integer[] prices = (Integer[]) trades.values().toArray();
         int sizeIncrease = 0;
