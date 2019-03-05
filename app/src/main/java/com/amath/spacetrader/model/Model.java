@@ -4,12 +4,16 @@ import android.util.Log;
 
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
+import com.amath.spacetrader.entity.Good;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.Player;
+import com.amath.spacetrader.entity.TradingPost;
 import com.amath.spacetrader.entity.Universe;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +88,7 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Game", new ConfigurationInteractor(myRepository));
         interactorMap.put("Universe", new UniverseInteractor(myRepository));
+        interactorMap.put("Market", new MarketInteractor(myRepository));
     }
 
     public ConfigurationInteractor getConfigurationInteractor() {
@@ -92,6 +97,10 @@ public class Model {
 
     public UniverseInteractor getUniverseInteractor() {
         return (UniverseInteractor) interactorMap.get("Universe");
+    }
+
+    public MarketInteractor getMarketInteractor() {
+        return (MarketInteractor) interactorMap.get("Market");
     }
 
     private void initializeAvailablePlanetNames() {
@@ -225,6 +234,58 @@ public class Model {
         java.util.Collections.shuffle(namesAsList);
         Planet.setAvailablePlanetNames(namesAsList);
     }
+    // returns hashmap with price mapped to good key, with
+    // player inventory values contained within good
+    public static HashMap<Good, Integer> inventoryTradePostMerger(Player player, Planet planet) {
+        TradingPost tradePost = new TradingPost(planet);
+        Map<Good, Integer> marketPrices = tradePost.generateMarket();
+        Good[] marketItems = (Good[]) marketPrices.keySet().toArray();
+        Collection<Integer> prices = marketPrices.values();
+        ArrayList<Good> playerInventory = player.getInventory();
+        HashMap<Good, Integer> ret = new HashMap<>();
+        String[] goodsList = (String[]) marketPrices.keySet().toArray();
+        for (int i = 0; i <= goodsList.length; i++) {
+            if (playerInventory.contains(marketItems[i])) {
+                marketItems[i].buy(playerInventory
+                        .get(playerInventory.indexOf(marketItems[i]))
+                        .getQuantity());
+            }
+            ret.put(marketItems[i], marketPrices.get(marketItems[i]));
+        }
+        return ret;
+    }
 
+    public static void updatePlayerInventory(Good tradedGood, Player player) {
+        int availableSpace = player.getOwnedShip().getHoldSize() - player.getInventory().size();
+        if (tradedGood.getQuantity() > 0) {
+            if (!player.getInventory().contains(tradedGood)) {
+                player.getInventory().add(tradedGood);
+            } else {
+                player.getInventory()
+                        .get(player.getInventory()
+                                .lastIndexOf(tradedGood))
+                        .buy(tradedGood.getQuantity());
+            }
+        } else {
+            if (tradedGood.getQuantity() == player.getInventory()
+                    .get(player.getInventory()
+                            .lastIndexOf(tradedGood))
+                    .getQuantity()) {
+                player.getInventory().remove(tradedGood);
+            } else {
+                player.getInventory()
+                        .get(player.getInventory()
+                                .lastIndexOf(tradedGood))
+                        .sell(tradedGood.getQuantity());
+            }
+        }
+    }
 
+    public static void updateCredits(int amount) {
+        instance.game.getPlayer().updateCredits(amount);
+    }
+
+    public Game getGame() {
+        return game;
+    }
 }

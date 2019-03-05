@@ -178,6 +178,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     /**
      * Button handler for cancel - just call back pressed
      *

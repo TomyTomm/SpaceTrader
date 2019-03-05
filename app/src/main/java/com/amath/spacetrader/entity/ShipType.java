@@ -1,8 +1,14 @@
 package com.amath.spacetrader.entity;
 
 public enum ShipType {
-    GNAT;
+    GNAT(15);
 
-    ShipType() {
+    private int cargoCapacity;
+    ShipType(int holdSize) {
+        cargoCapacity = holdSize;
+    }
+
+    public int getCargoCapacity() {
+        return cargoCapacity;
     }
 }

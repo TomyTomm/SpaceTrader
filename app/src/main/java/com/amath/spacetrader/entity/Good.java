@@ -1,11 +1,27 @@
 package com.amath.spacetrader.entity;
 
 public class Good {
-    private double price;
     private int quantity;
+    private String type;
 
-    public Good(double price, int quantity) {
-        this.price = price;
+    public Good(String type, int quantity) {
+        this.type = type;
         this.quantity = quantity;
+    }
+
+    public void buy(int amount) {
+        quantity += amount;
+    }
+
+    public void sell(int amount) {
+        quantity -= amount;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

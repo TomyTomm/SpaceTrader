@@ -13,6 +13,7 @@ public class Planet extends SpaceBody{
 
     private TechLevel techLevel;
     private ResourceLevel resourceLevel;
+    boolean marketAvailable;
 
     private static LinkedList<String> AVAILABLE_PLANET_NAMES;
     private static Set<String> USED_PLANET_NAMES = new HashSet<>();
@@ -87,6 +88,7 @@ public class Planet extends SpaceBody{
         this.location = location;
         this.techLevel = techLevel;
         this.resourceLevel = resourceLevel;
+        marketAvailable = generateTradingPost();
 
     }
 
@@ -141,5 +143,18 @@ public class Planet extends SpaceBody{
                 "Resources:%s",
                 name, location.getX(), location.getY(), this.getRadius(),
                 techLevel.toString(), resourceLevel.toString());
+    }
+
+    public boolean generateTradingPost() {
+        if (techLevel.getLevel() * Math.random() < 0.25) {
+            return false;
+        } else {
+            // maybe do something more?
+            return true;
+        }
+    }
+
+    public boolean isMarketAvailable() {
+        return marketAvailable;
     }
 }
