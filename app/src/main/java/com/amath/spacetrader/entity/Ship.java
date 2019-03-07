@@ -1,9 +1,9 @@
 package com.amath.spacetrader.entity;
 
 public class Ship {
-    ShipType shipType;
-    int holdSize;
-    Coordinate location;
+    private ShipType shipType;
+    private int holdSize;
+    private Coordinate location;    // Do we need to have a coordinate location for our ships? I don't think so
 
     public Ship(ShipType ship) {
         shipType = ship;
@@ -16,5 +16,9 @@ public class Ship {
 
     public ShipType getShipType() {
         return shipType;
+    }
+
+    public Coordinate getLocation() {
+        return location;
     }
 }

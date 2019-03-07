@@ -8,4 +8,6 @@ public class UniverseInteractor extends Interactor {
     }
 
     public Universe getUniverse() { return getRepository().getUniverse(); }
+
+    public void setCurrentPlanet() { }
 }

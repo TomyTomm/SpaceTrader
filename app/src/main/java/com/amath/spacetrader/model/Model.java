@@ -68,7 +68,11 @@ public class Model {
 
     /** end Singleton Pattern */
 
-    public static void loadPlayer(Player player) {
+    public static void setCurrentPlanet(Planet planet) {
+        instance.game.setCurrentPlanet(planet);
+    }
+
+    public void loadPlayer(Player player) {
         instance.game.loadPlayer(player);
         instance.myRepository.update();
     }

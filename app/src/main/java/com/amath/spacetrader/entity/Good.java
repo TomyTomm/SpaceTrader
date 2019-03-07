@@ -2,9 +2,9 @@ package com.amath.spacetrader.entity;
 
 public class Good {
     private int quantity;
-    private String type;
+    private GoodType type;
 
-    public Good(String type, int quantity) {
+    public Good(GoodType type, int quantity) {
         this.type = type;
         this.quantity = quantity;
     }
@@ -17,11 +17,15 @@ public class Good {
         quantity -= amount;
     }
 
-    public String getType() {
+    public GoodType getType() {
         return type;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public int calculatePrice(TechLevel minT) {
+        return 0;
     }
 }

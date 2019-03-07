@@ -13,15 +13,15 @@ public class Player {
     private int engineerPts;
     private int fighterPts;
 
-    private int credits;
     private final int STARTING_CREDITS = 1000;
+    private int credits = STARTING_CREDITS;
 
     private Planet currentPlanet;
     private Coordinate playerLocation;
 
     private final Coordinate playerStartingLocation = new Coordinate(0.0,0.0);
 
-    private Ship ownedShip;
+    private Ship ship;
     private List<Good> inventory;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
@@ -30,15 +30,13 @@ public class Player {
         this.traderPts = traderPts;
         this.engineerPts = engineerPts;
         this.fighterPts = fighterPts;
-        credits = STARTING_CREDITS;
-        currentPlanet = new Planet("Genesis", new Coordinate(0,0), 5,5);
-        playerLocation = currentPlanet.getLocation();
-        inventory = new ArrayList<>();
-        ownedShip = new Ship(ShipType.GNAT);
+//        inventory = new ArrayList<>();
+//        ship = new Ship(ShipType.GNAT);
+        acquireShip(ShipType.GNAT);
     }
 
     public void acquireShip(ShipType newShip) {
-        ownedShip = new Ship(newShip);
+        ship = new Ship(newShip);
         ArrayList<Good> movingIn = new ArrayList<>(newShip.getCargoCapacity());
         for (int i = 0; i < inventory.size(); i++) {
             movingIn.add(inventory.get(i));
@@ -55,7 +53,7 @@ public class Player {
     }
 
     public Ship getOwnedShip() {
-        return ownedShip;
+        return ship;
     }
 
     public Planet getCurrentPlanet() {
@@ -63,7 +61,7 @@ public class Player {
     }
 
     public void updateCredits(int amount) {
-        credits += amount;
+        credits = amount;
     }
 
     public int getCredits() {

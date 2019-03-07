@@ -69,7 +69,7 @@ public class MarketViewModel extends AndroidViewModel {
         } else {
             for (int i = 0; i < trades.size(); i++) {
                 interactor.tradeGood(player, tradedGoods[i]);
-                interactor.updateCredits(tradeSize);
+                interactor.updateCredits(player.getCredits() + tradeSize);
             }
         }
         return "Trade completed for " + tradeSize + " credits.";

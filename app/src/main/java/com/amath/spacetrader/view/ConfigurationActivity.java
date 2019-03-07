@@ -67,7 +67,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         Button cancelButton = findViewById(R.id.cancel_button);
         pointsRemaining = findViewById(R.id.points_remaining);
         /* Default value setters */
-
         selectedGameDifficulty = GameDifficulty.NORMAL;
         normalButton.setChecked(true);
 
@@ -163,12 +162,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
 
         //the data passed in is legal
-        //Log.d("testing123", "data passed in is valid: " + name);
-//        player = new Player(nameField.getText().toString(), Integer.parseInt(pilotPoints.getText().toString()),
-//                            Integer.parseInt(fighterPoints.getText().toString()),
-//                            Integer.parseInt(traderPoints.getText().toString()),
-//                            Integer.parseInt(engineerPoints.getText().toString()));
-//        game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
         viewModel.loadDifficulty((GameDifficulty) selectedGameDifficulty);
         String result = viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
