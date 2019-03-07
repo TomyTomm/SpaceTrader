@@ -3,6 +3,7 @@ package com.amath.spacetrader.entity;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Player {
     private String name;
@@ -12,16 +13,16 @@ public class Player {
     private int engineerPts;
     private int fighterPts;
 
-    private int credits;
     private final int STARTING_CREDITS = 1000;
+    private int credits = STARTING_CREDITS;
 
     private Planet currentPlanet;
     private Coordinate playerLocation;
 
     private final Coordinate playerStartingLocation = new Coordinate(0.0,0.0);
 
-    private Ship ownedShip;
-    private ArrayList<Good> inventory;
+    private Ship ship;
+    private List<Good> inventory;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
         this.name = name;
@@ -29,15 +30,13 @@ public class Player {
         this.traderPts = traderPts;
         this.engineerPts = engineerPts;
         this.fighterPts = fighterPts;
-        credits = STARTING_CREDITS;
-        currentPlanet = new Planet("Genesis", new Coordinate(0,0), 5,5);
-        playerLocation = currentPlanet.getLocation();
-        inventory.add(new Good("credits", 1000));
-        ownedShip = new Ship(ShipType.GNAT);
+//        inventory = new ArrayList<>();
+//        ship = new Ship(ShipType.GNAT);
+        acquireShip(ShipType.GNAT);
     }
 
     public void acquireShip(ShipType newShip) {
-        ownedShip = new Ship(newShip);
+        ship = new Ship(newShip);
         ArrayList<Good> movingIn = new ArrayList<>(newShip.getCargoCapacity());
         for (int i = 0; i < inventory.size(); i++) {
             movingIn.add(inventory.get(i));
@@ -45,16 +44,16 @@ public class Player {
         inventory = movingIn;
     }
 
-    public ArrayList<Good> getInventory() {
+    public List<Good> getInventory() {
         return inventory;
     }
 
-    public void updateInventory(ArrayList<Good> newInventory) {
+    public void updateInventory(List<Good> newInventory) {
         inventory = newInventory;
     }
 
     public Ship getOwnedShip() {
-        return ownedShip;
+        return ship;
     }
 
     public Planet getCurrentPlanet() {
@@ -62,7 +61,7 @@ public class Player {
     }
 
     public void updateCredits(int amount) {
-        credits += amount;
+        credits = amount;
     }
 
     public int getCredits() {
@@ -70,7 +69,8 @@ public class Player {
     }
 
     public String toString() {
-        return name + " " + pilotPts + " " + traderPts + " " + engineerPts + " " + fighterPts + " "
-                + credits;
+        return String.format("Name: %s. Pilot points: %d. Trader points: %d. Engineer Points: %d." +
+                " Fighter points: %d. Credits: %d", name,
+                pilotPts, traderPts, engineerPts, fighterPts, credits);
     }
 }

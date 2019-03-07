@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ConfigurationInteractor extends Interactor {
+
+    private Model model = Model.getInstance();
+
     public ConfigurationInteractor(Repository repo) {
         super(repo);
     }
@@ -25,6 +28,6 @@ public class ConfigurationInteractor extends Interactor {
 
 
     public void loadPlayer(Player player) {
-        Model.loadPlayer(player);
+        model.loadPlayer(player);
     }
 }

@@ -33,7 +33,7 @@ public class MarketViewModel extends AndroidViewModel {
     }
 
     public String processTransactions(HashMap<Good, Integer> trades) {
-        ArrayList<Good> pI = player.getInventory();
+        List<Good> pI = player.getInventory();
         Good[] tradedGoods = (Good[]) trades.keySet().toArray();
         Integer[] prices = (Integer[]) trades.values().toArray();
         int sizeIncrease = 0;
@@ -69,7 +69,7 @@ public class MarketViewModel extends AndroidViewModel {
         } else {
             for (int i = 0; i < trades.size(); i++) {
                 interactor.tradeGood(player, tradedGoods[i]);
-                interactor.updateCredits(tradeSize);
+                interactor.updateCredits(player.getCredits() + tradeSize);
             }
         }
         return "Trade completed for " + tradeSize + " credits.";

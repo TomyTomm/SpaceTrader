@@ -68,7 +68,11 @@ public class Model {
 
     /** end Singleton Pattern */
 
-    public static void loadPlayer(Player player) {
+    public static void setCurrentPlanet(Planet planet) {
+        instance.game.setCurrentPlanet(planet);
+    }
+
+    public void loadPlayer(Player player) {
         instance.game.loadPlayer(player);
         instance.myRepository.update();
     }
@@ -234,14 +238,22 @@ public class Model {
         java.util.Collections.shuffle(namesAsList);
         Planet.setAvailablePlanetNames(namesAsList);
     }
-    // returns hashmap with price mapped to good key, with
-    // player inventory values contained within good
+
+
+    /**
+     * returns hashmap with price mapped to good key, with
+     * player inventory values contained within good
+     * @param player
+     * @param planet
+     * @return
+     */
+
     public static HashMap<Good, Integer> inventoryTradePostMerger(Player player, Planet planet) {
         TradingPost tradePost = new TradingPost(planet);
         Map<Good, Integer> marketPrices = tradePost.generateMarket();
         Good[] marketItems = (Good[]) marketPrices.keySet().toArray();
         Collection<Integer> prices = marketPrices.values();
-        ArrayList<Good> playerInventory = player.getInventory();
+        List<Good> playerInventory = player.getInventory();
         HashMap<Good, Integer> ret = new HashMap<>();
         String[] goodsList = (String[]) marketPrices.keySet().toArray();
         for (int i = 0; i <= goodsList.length; i++) {

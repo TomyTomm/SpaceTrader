@@ -3,6 +3,7 @@ package com.amath.spacetrader.entity;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,22 +15,21 @@ public class Planet extends SpaceBody{
     private TechLevel techLevel;
     private ResourceLevel resourceLevel;
     boolean marketAvailable;
+    private double radius;
+
+    private SolarSystem solarSystem;
 
     private static LinkedList<String> AVAILABLE_PLANET_NAMES;
     private static Set<String> USED_PLANET_NAMES = new HashSet<>();
 
-    public Planet() {
-
-        this(0, new HashSet<Planet>());
-
-
-    }
-
     public Planet(int sunSize, Set<Planet> planets) {
+        this(sunSize, planets, null);
+    }
+    public Planet(int sunSize, Set<Planet> planets, SolarSystem solarSystem) {
 
         // Get name from the list of available planet names. This was randomized on start up, so everything should be ok.
         // Removes a name from the list to ensure that AVAILABLE_PLANET_NAMES will never have anything from USED_PLANET_NAMES.
-
+        this.solarSystem = solarSystem;
         name = null;
         while (name == null) {
             Log.d("pnames", String.valueOf(AVAILABLE_PLANET_NAMES.size()));
@@ -76,11 +76,18 @@ public class Planet extends SpaceBody{
         Log.d("initialization", "making planets: inside Planet()");
     }
 
-    public Planet(String name, Coordinate location, int techLevel, int resourceLevel) {
-        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel]);
+    public Planet(String name, Coordinate location, int techLevel, int resourceLevel, double radius) {
+        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel], radius);
+    }
+    public Planet(String name, Coordinate location, int techLevel, int resourceLevel, double radius, SolarSystem solarSystem) {
+        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel], radius, solarSystem);
     }
 
-    public Planet(String name, Coordinate location, TechLevel tech, ResourceLevel resource) {
+    public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel, double radius) {
+        this(name, location, techLevel, resourceLevel, radius, null);
+    }
+
+    public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel, double radius, SolarSystem solarSystem) {
 
         USED_PLANET_NAMES.add(name);
 
@@ -88,6 +95,8 @@ public class Planet extends SpaceBody{
         this.location = location;
         this.techLevel = techLevel;
         this.resourceLevel = resourceLevel;
+        this.radius = radius;
+        this.solarSystem = solarSystem;
         marketAvailable = generateTradingPost();
 
     }
@@ -146,11 +155,24 @@ public class Planet extends SpaceBody{
     }
 
     public boolean generateTradingPost() {
+//        System.out.println(techLevel);
+        Log.d("debugLOLZ", Arrays.toString(TechLevel.values()));
         if (techLevel.getLevel() * Math.random() < 0.25) {
             return false;
         } else {
             // maybe do something more?
             return true;
+        }
+    }
+
+    public SolarSystem getSolarSystem() {
+        return solarSystem;
+    }
+
+    public void setSolarSystem(SolarSystem solarSystem) {
+        if (this.solarSystem == null) this.solarSystem = solarSystem;
+        else {
+            throw new IllegalArgumentException("Cannot set the solar system of a planet if it already exists in one");
         }
     }
 
