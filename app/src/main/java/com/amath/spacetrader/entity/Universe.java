@@ -13,7 +13,7 @@ public class Universe {
     private Set<SolarSystem> solarSystems;
 
     public static final Coordinate BOUNDS = new Coordinate(150, 100);
-    private static Planet currentPlanet;
+    private Planet currentPlanet;
 
     public Universe() {
         solarSystems = new HashSet<>();
@@ -58,8 +58,8 @@ public class Universe {
         return currentPlanet;
     }
 
-    public static void setCurrentPlanet(Planet currentPlanet) {
-        Universe.currentPlanet = currentPlanet;
+    public void setCurrentPlanet(Planet currentPlanet) {
+        this.currentPlanet = currentPlanet;
     }
 
     public Set<SolarSystem> getSolarSystems() {

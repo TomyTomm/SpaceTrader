@@ -16,8 +16,10 @@ public class MarketActivity extends AppCompatActivity {
     /*
     IMPORTANT!!!!
 
-    THINGS WE NEED TO FIGURE OUT BEFORE THIS PAGE CAN BE EDITED.
-    - We need to see ship Inventory AND
+    THINGS WE NEED TO FIGURE OUT BEFORE THIS CLASS CAN BE EDITED.
+    - We need to be able to see ship Inventory and also the planet's inventory
+    - Need to be able to select how much you buy or sell
+    -
      */
 
     @Override

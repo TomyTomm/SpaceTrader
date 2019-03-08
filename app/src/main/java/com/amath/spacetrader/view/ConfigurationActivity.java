@@ -99,7 +99,12 @@ public class ConfigurationActivity extends AppCompatActivity {
 //        game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
         viewModel.loadDifficulty((GameDifficulty) gameDifficultySpinner.getSelectedItem());
-        String result = viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
+        String result = null;
+        try {
+            result =viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         if (result != null) {
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, UniverseActivity.class);

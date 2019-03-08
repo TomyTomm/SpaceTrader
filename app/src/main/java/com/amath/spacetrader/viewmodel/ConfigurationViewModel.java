@@ -15,31 +15,37 @@ public class ConfigurationViewModel extends AndroidViewModel {
 
     private ConfigurationInteractor interactor;
 
+    private class IllegalPlayerInformationException extends Exception {
+        public IllegalPlayerInformationException(String message) {
+            super(message);
+        }
+    }
+
     public ConfigurationViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getConfigurationInteractor();
     }
 
-    public String loadPlayer(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
+    public String loadPlayer(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) throws IllegalPlayerInformationException {
         if (name.length() == 0 || name.length() > 32) {
-            return "Couldn't create character: name must be between 0 and 32 characters"; // 1 means name not valid
+            throw new IllegalPlayerInformationException("Couldn't create character: name must be between 0 and 32 characters"); // 1 means name not valid
         } else if (pilotPts < 0 || pilotPts > 16) {
-            return "Pilot points must be greater than 0 and less than 16";
+            throw new IllegalPlayerInformationException("Pilot points must be greater than 0 and less than 16");
         } else if (traderPts < 0 || traderPts > 16) {
-            return "Trader points must be greater than 0 and less than 16";
+            throw new IllegalPlayerInformationException("Trader points must be greater than 0 and less than 16");
         } else if (engineerPts < 0 || engineerPts > 16) {
-            return "Engineer points must be greater than 0 and less than 16";
+            throw new IllegalPlayerInformationException("Engineer points must be greater than 0 and less than 16");
         } else if (fighterPts < 0 || fighterPts > 16) {
-            return "Fighter points must be greater than 0 and less than 16";
+            throw new IllegalPlayerInformationException("Fighter points must be greater than 0 and less than 16");
         } else if (pilotPts + traderPts + engineerPts + fighterPts != 16) {
-            return "Points must total to 16";
+            throw new IllegalPlayerInformationException("Points must total to 16");
         }
 //        return "";//interactor.getGame().toString();
         Player p = new Player(name, pilotPts, traderPts, engineerPts, fighterPts);
         interactor.loadPlayer(p);
 
 //        return p.toString(); Used for toast, but makes an illegal Player object
-        return null;
+        return p.toString();
     }
 
     public void loadDifficulty(GameDifficulty difficulty) {

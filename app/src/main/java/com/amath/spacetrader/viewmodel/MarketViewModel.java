@@ -19,6 +19,18 @@ public class MarketViewModel extends AndroidViewModel {
     private MarketInteractor interactor;
     private Map<Good, Integer> market;
 
+
+    /**
+     * Please use this exception class. Look at ConfigurationViewModel
+     * as an example
+     *
+     */
+    private class IllegalTradeException extends Exception {
+        public IllegalTradeException(String message) {
+            super(message);
+        }
+    }
+
     public MarketViewModel(@NonNull Application application) {
         super(application);
         Model model = Model.getInstance();
@@ -49,11 +61,12 @@ public class MarketViewModel extends AndroidViewModel {
      *
      * PLEASE READ IMPLEMENTATION OF MarketInteractor.java
      *
+     * @throws IllegalArgumentException
      * @param good
      * @param amount
      * @return A string error message, null if there is no error
      */
-    public String verifyBuy(Good good, int amount) {
+    public String verifyBuy(Good good, int amount) throws IllegalTradeException {
 //        List<Good> pI = player.getInventory();
 //        Good[] tradedGoods = (Good[]) trades.keySet().toArray();
 //        Integer[] prices = (Integer[]) trades.values().toArray();
@@ -104,11 +117,12 @@ public class MarketViewModel extends AndroidViewModel {
      *
      * PLEASE READ IMPLEMENTATION OF MarketInteractor.java
      *
+     * @throws IllegalTradeException
      * @param good
      * @param amount
      * @return A string error message, null if there is no error
      */
-    public String verifySell(Good good, int amount) {
+    public String verifySell(Good good, int amount) throws IllegalTradeException {
         return null;
     }
 
