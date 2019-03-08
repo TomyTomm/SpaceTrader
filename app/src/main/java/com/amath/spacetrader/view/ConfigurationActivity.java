@@ -8,10 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amath.spacetrader.R;
@@ -33,12 +31,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private EditText traderPoints;
     private EditText engineerPoints;
     private EditText fighterPoints;
-    private TextView pointsRemaining;
-    private CompoundButton easyButton;
-    private CompoundButton normalButton;
-    private CompoundButton hardButton;
-    private CompoundButton insaneButton;
-    private GameDifficulty selectedGameDifficulty;
+    private Spinner gameDifficultySpinner;
 
     //data for player being configured
     private Player player;
@@ -59,76 +52,17 @@ public class ConfigurationActivity extends AppCompatActivity {
         traderPoints = findViewById(R.id.trader_points_input);
         engineerPoints = findViewById(R.id.engineer_points_input);
         fighterPoints = findViewById(R.id.fighter_points_input);
-        easyButton = findViewById(R.id.easy_button);
-        normalButton = findViewById(R.id.normal_button);
-        hardButton = findViewById(R.id.hard_button);
-        insaneButton = findViewById(R.id.insane_button);
+        gameDifficultySpinner = findViewById(R.id.game_difficulty_spinner);
         Button okayButton = findViewById(R.id.okay_button);
         Button cancelButton = findViewById(R.id.cancel_button);
-        pointsRemaining = findViewById(R.id.points_remaining);
-        /* Default value setters */
-        selectedGameDifficulty = GameDifficulty.NORMAL;
-        normalButton.setChecked(true);
-
-        /* wiring up game difficulty buttons */
-        easyButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    selectedGameDifficulty = GameDifficulty.EASY;
-                    normalButton.setChecked(false);
-                    hardButton.setChecked(false);
-                    insaneButton.setChecked(false);
-                }
-            }
-        });
-
-        normalButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    selectedGameDifficulty = GameDifficulty.NORMAL;
-                    easyButton.setChecked(false);
-                    hardButton.setChecked(false);
-                    insaneButton.setChecked(false);
-                }
-            }
-        });
-
-        hardButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    selectedGameDifficulty = GameDifficulty.DIFFICULT;
-                    easyButton.setChecked(false);
-                    normalButton.setChecked(false);
-                    insaneButton.setChecked(false);
-                }
-            }
-        });
-
-        insaneButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    selectedGameDifficulty = GameDifficulty.IMPOSSIBLE;
-                    easyButton.setChecked(false);
-                    normalButton.setChecked(false);
-                    hardButton.setChecked(false);
-                }
-            }
-        });
-
-
 
         /*
           Set up the adapter to display the allowable majors in the spinner
          */
-        /*
         ArrayAdapter<GameDifficulty> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, GameDifficulty.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gameDifficultySpinner.setAdapter(adapter);
-        */
+
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
@@ -145,12 +79,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         int traderPts;
         int engineerPts;
         int fighterPts;
-        if (!easyButton.isChecked()
-                && !normalButton.isChecked()
-                && !hardButton.isChecked()
-                && !insaneButton.isChecked()) {
-            selectedGameDifficulty = GameDifficulty.NORMAL;
-        }
+
         try {
             pilotPts = Integer.parseInt(pilotPoints.getText().toString());
             traderPts = Integer.parseInt(traderPoints.getText().toString());
@@ -162,8 +91,14 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
 
         //the data passed in is legal
+        //Log.d("testing123", "data passed in is valid: " + name);
+//        player = new Player(nameField.getText().toString(), Integer.parseInt(pilotPoints.getText().toString()),
+//                            Integer.parseInt(fighterPoints.getText().toString()),
+//                            Integer.parseInt(traderPoints.getText().toString()),
+//                            Integer.parseInt(engineerPoints.getText().toString()));
+//        game = new Game(player, (GameDifficulty) gameDifficultySpinner.getSelectedItem());
 
-        viewModel.loadDifficulty((GameDifficulty) selectedGameDifficulty);
+        viewModel.loadDifficulty((GameDifficulty) gameDifficultySpinner.getSelectedItem());
         String result = viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
         if (result != null) {
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
@@ -171,7 +106,6 @@ public class ConfigurationActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
     /**
      * Button handler for cancel - just call back pressed
      *

@@ -13,6 +13,7 @@ public class Universe {
     private Set<SolarSystem> solarSystems;
 
     public static final Coordinate BOUNDS = new Coordinate(150, 100);
+    private static Planet currentPlanet;
 
     public Universe() {
         solarSystems = new HashSet<>();
@@ -38,7 +39,7 @@ public class Universe {
 
         solarSystems.add(beginning);
 
-        Model.setCurrentPlanet(genesis);
+        this.currentPlanet = genesis;
 
         initializeSolarSystems();
     }
@@ -51,6 +52,14 @@ public class Universe {
             Log.d("initialization", String.format("making solarsystem:\t%d", solarSystems.size()));
             solarSystems.add(new SolarSystem(String.format("%d", i), this.getSolarSystems()));
         }
+    }
+
+    public Planet getCurrentPlanet() {
+        return currentPlanet;
+    }
+
+    public static void setCurrentPlanet(Planet currentPlanet) {
+        Universe.currentPlanet = currentPlanet;
     }
 
     public Set<SolarSystem> getSolarSystems() {

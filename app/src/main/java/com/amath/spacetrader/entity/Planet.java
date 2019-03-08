@@ -4,9 +4,11 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -16,6 +18,9 @@ public class Planet extends SpaceBody{
     private ResourceLevel resourceLevel;
     boolean marketAvailable;
     private double radius;
+    private Event status;
+    private Map<Good, Integer> inventory = new HashMap<>();
+
 
     private SolarSystem solarSystem;
 
@@ -72,21 +77,20 @@ public class Planet extends SpaceBody{
         techLevel = TechLevel.values()[(int) Math.random() * 12];
 
         resourceLevel = ResourceLevel.values()[(int) (Math.random() * 12)];
+        initializeInventory();
+
 
         Log.d("initialization", "making planets: inside Planet()");
     }
-
     public Planet(String name, Coordinate location, int techLevel, int resourceLevel, double radius) {
         this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel], radius);
     }
     public Planet(String name, Coordinate location, int techLevel, int resourceLevel, double radius, SolarSystem solarSystem) {
         this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel], radius, solarSystem);
     }
-
     public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel, double radius) {
         this(name, location, techLevel, resourceLevel, radius, null);
     }
-
     public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel, double radius, SolarSystem solarSystem) {
 
         USED_PLANET_NAMES.add(name);
@@ -97,7 +101,7 @@ public class Planet extends SpaceBody{
         this.resourceLevel = resourceLevel;
         this.radius = radius;
         this.solarSystem = solarSystem;
-        marketAvailable = generateTradingPost();
+        initializeInventory();
 
     }
 
@@ -146,22 +150,27 @@ public class Planet extends SpaceBody{
     @Override
     public String toString() {
         return String.format("Planet %s:\n" +
-                "Location with respect to sun: (%f, %f)\n" +
-                "Radius:\t\t%f%n" +
-                "Technology level:%s\n" +
-                "Resources:%s",
+                        "Location with respect to sun: (%f, %f)\n" +
+                        "Radius:\t\t%f%n" +
+                        "Technology level:%s\n" +
+                        "Resources:%s",
                 name, location.getX(), location.getY(), this.getRadius(),
                 techLevel.toString(), resourceLevel.toString());
     }
 
-    public boolean generateTradingPost() {
-//        System.out.println(techLevel);
+
+    /**
+     * Initialize the inventory for the planet
+     * Right now the algo for each good is:
+     *
+     * Minimum = 1 (rarely 0): Maximum = 5 * techLevel
+     *
+     */
+    public void initializeInventory() {
         Log.d("debugLOLZ", Arrays.toString(TechLevel.values()));
-        if (techLevel.getLevel() * Math.random() < 0.25) {
-            return false;
-        } else {
-            // maybe do something more?
-            return true;
+        for (Good good: Good.values()) {
+            int value = (int) Math.ceil(Math.random() * this.techLevel.getLevel() * 5); //
+            this.inventory.put(good, value);
         }
     }
 
@@ -176,7 +185,4 @@ public class Planet extends SpaceBody{
         }
     }
 
-    public boolean isMarketAvailable() {
-        return marketAvailable;
-    }
 }

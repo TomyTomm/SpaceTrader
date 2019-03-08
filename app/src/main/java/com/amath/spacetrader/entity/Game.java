@@ -5,8 +5,6 @@ public class Game {
     private Player player;
     private Universe universe;
 
-    private static Planet currentPlanet;
-
     public Game() {
         this(null, GameDifficulty.EASY, new Universe());
     }
@@ -63,11 +61,11 @@ public class Game {
         return universe;
     }
 
-    public static Planet getCurrentPlanet() {
-        return currentPlanet;
+    public Planet getCurrentPlanet() {
+        return universe.getCurrentPlanet();
     }
 
-    public static void setCurrentPlanet(Planet currentPlanet) {
-        Game.currentPlanet = currentPlanet;
+    public void setCurrentPlanet(Planet currentPlanet) {
+        universe.setCurrentPlanet(currentPlanet);
     }
 }

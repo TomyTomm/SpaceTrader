@@ -3,17 +3,11 @@ package com.amath.spacetrader.model;
 import android.util.Log;
 
 import com.amath.spacetrader.entity.Game;
-import com.amath.spacetrader.entity.Good;
-import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.Player;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ConfigurationInteractor extends Interactor {
-
-    private Model model = Model.getInstance();
-
     public ConfigurationInteractor(Repository repo) {
         super(repo);
     }
@@ -25,7 +19,6 @@ public class ConfigurationInteractor extends Interactor {
 //    public Game getGame() {
 //        return getRepository().getGame();
 //    }
-
 
     public void loadPlayer(Player player) {
         model.loadPlayer(player);

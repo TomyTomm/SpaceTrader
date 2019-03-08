@@ -50,8 +50,13 @@ public class SolarSystem extends SpaceBody {
     }
 
     private void addPlanet() {
-        Log.d("initialization", String.format("making planets (inside addPlanet()):\t%d", planets.size()));
+//        Log.d("initialization", String.format("making planets (inside addPlanet()):\t%d", planets.size()));
         planets.add(new Planet(sun.getSize(), this.planets, this));
+    }
+
+    private void addPlanet(Set<Planet> planets) {
+        Log.d("initialization", String.format("making planets (inside addPlanet()):\t%d", planets.size()));
+        planets.add(new Planet(sun.getSize(), planets, this));
     }
 
     public int getSunSize() { return sun.getSize(); }
@@ -62,7 +67,7 @@ public class SolarSystem extends SpaceBody {
         Set<Planet> planets = new HashSet<>();
         Log.d("initialization", String.format("making planets:\t%d", planets.size()));
         for (int i = 0; i < (int)(Math.random() * 5 + 5); i++) {
-            addPlanet();
+            addPlanet(planets);
             Log.d("initialization", String.format("making planets:\t%d", planets.size()));
         }
         return planets;
@@ -95,8 +100,8 @@ public class SolarSystem extends SpaceBody {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append(String.format("Solar System:\t\t%s\n" +
-                "Location:(%f, %f)\n" +
-                "Radius:\t\t\t%f\n",
+                        "Location:(%f, %f)\n" +
+                        "Radius:\t\t\t%f\n",
                 name, location.getX(),
                 location.getY(), radius));
         for (Planet planet: this.getPlanets()) {

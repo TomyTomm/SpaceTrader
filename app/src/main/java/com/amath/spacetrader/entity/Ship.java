@@ -5,9 +5,9 @@ public class Ship {
     private int holdSize;
     private Coordinate location;    // Do we need to have a coordinate location for our ships? I don't think so
 
-    public Ship(ShipType ship) {
-        shipType = ship;
-        holdSize = ship.getCargoCapacity();
+    public Ship(ShipType shipType) {
+        shipType = shipType;
+        holdSize = shipType.getCargoCapacity();
     }
 
     public int getHoldSize() {

@@ -1,31 +1,103 @@
 package com.amath.spacetrader.entity;
 
-public class Good {
-    private int quantity;
-    private GoodType type;
+import static java.lang.Math.random;
 
-    public Good(GoodType type, int quantity) {
-        this.type = type;
-        this.quantity = quantity;
+public enum Good {
+
+    WATER(0, 0, 2, 30, 3, 4, Event.DROUGHT, ResourceLevel.LOTSOFWATER, ResourceLevel.DESERT, 30, 50),
+    FURS(0, 0, 0, 250, 10, 10, Event.COLD, ResourceLevel.RICHFAUNA, ResourceLevel.LIFELESS, 230, 280),
+    FOOD(1, 0, 1, 100, 5, 5, Event.CROPFAIL, ResourceLevel.RICHSOIL, ResourceLevel.POORSOIL, 90, 160),
+    ORE(2,2,3,350,20,10,Event.WAR,ResourceLevel.MINERALRICH,ResourceLevel.MINERALPOOR,350,420),
+    GAMES(3, 1, 6, 250, -10, 5, Event.BOREDOM, ResourceLevel.ARTISTIC, null, 160, 270),
+    FIREARMS(3, 1, 5, 1250, -75, 100, Event.WAR, ResourceLevel.WARLIKE, null, 600, 1100),
+    MEDICINE(4, 1, 6, 650, -20, 10,Event.PLAGUE, ResourceLevel.LOTSOFHERBS, null, 400, 700),
+    MACHINES(4, 3, 5, 900, -30, 5, Event.LACKOFWORKERS, null, null, 600, 800),
+    NARCOTICS(5, 0, 5, 3500, -125, 150, Event.BOREDOM, ResourceLevel.WEIRDMUSHROOMS, null, 2000, 3000),
+    ROBOTS(6, 4, 7, 5000, -150, 100, Event.LACKOFWORKERS, null, null, 3500, 5000);
+
+    private int mtlp;
+    private int mtlu;
+    private int ttp;
+    private int basePrice;
+    private int ipl;
+    private int variance;
+    private Event ie;
+    private ResourceLevel cheapCond;
+    private ResourceLevel expensiveCond;
+    private int mtl;
+    private int mth;
+
+    Good(int mtlp, int mtlu, int ttp, int basePrice, int ipl, int variance, Event ie,
+             ResourceLevel cheapCond, ResourceLevel expensiveCond, int mtl, int mth) {
+        this.mtlp = mtlp;
+        this.mtlu = mtlu;
+        this.ttp = ttp;
+        this.basePrice = basePrice;
+        this.ipl = ipl;
+        this.variance = variance;
+        this.ie = ie;
+        this.cheapCond = cheapCond;
+        this.expensiveCond = expensiveCond;
+        this.mtl = mtl;
+        this.mth = mth;
     }
 
-    public void buy(int amount) {
-        quantity += amount;
+    public int getMtlp() {
+        return mtlp;
     }
 
-    public void sell(int amount) {
-        quantity -= amount;
+    public int getMtlu() {
+        return mtlu;
     }
 
-    public GoodType getType() {
-        return type;
+    public int getTtp() {
+        return ttp;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getBasePrice() {
+        return basePrice;
     }
 
-    public int calculatePrice(TechLevel minT) {
-        return 0;
+    public int getIpl() {
+        return ipl;
     }
+
+    public int getVariance() {
+        return variance;
+    }
+
+    public Event getIe() {
+        return ie;
+    }
+
+    public ResourceLevel getCheapCond() {
+        return cheapCond;
+    }
+
+    public ResourceLevel getExpensiveCond() {
+        return expensiveCond;
+    }
+
+    public int getMtl() {
+        return mtl;
+    }
+
+    public int getMth() {
+        return mth;
+    }
+
+
+    public int calculatePrice(TechLevel tech) {
+        int minT = this.getMtlp();
+        int basePrice = this.getBasePrice();
+        int ipl = this.getIpl();
+        int variance = this.getVariance();
+        int planetTechLevel = tech.ordinal();
+
+        int price = basePrice + ipl * (planetTechLevel - minT);
+        int priceVar = (int)(basePrice * 0.01 * variance * (random() - random()));
+
+        return price + priceVar;
+    }
+
 }

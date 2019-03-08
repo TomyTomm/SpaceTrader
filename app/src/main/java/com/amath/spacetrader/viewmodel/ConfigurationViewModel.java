@@ -38,7 +38,8 @@ public class ConfigurationViewModel extends AndroidViewModel {
         Player p = new Player(name, pilotPts, traderPts, engineerPts, fighterPts);
         interactor.loadPlayer(p);
 
-        return p.toString();
+//        return p.toString(); Used for toast, but makes an illegal Player object
+        return null;
     }
 
     public void loadDifficulty(GameDifficulty difficulty) {

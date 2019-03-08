@@ -1,9 +1,8 @@
 package com.amath.spacetrader.entity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 public class Player {
     private String name;
@@ -16,13 +15,15 @@ public class Player {
     private final int STARTING_CREDITS = 1000;
     private int credits = STARTING_CREDITS;
 
-    private Planet currentPlanet;
-    private Coordinate playerLocation;
-
-    private final Coordinate playerStartingLocation = new Coordinate(0.0,0.0);
+    // I don't know if the player needs a location, can't we just use the location of the planet
+    // it's on?
+//    private Coordinate playerLocation;
+//    private static final Coordinate playerStartingLocation = new Coordinate(0.0,0.0);
 
     private Ship ship;
-    private List<Good> inventory;
+
+    private Map<Good, Integer> inventory = new HashMap<>();
+    private int inventorySize = 0;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
         this.name = name;
@@ -30,47 +31,47 @@ public class Player {
         this.traderPts = traderPts;
         this.engineerPts = engineerPts;
         this.fighterPts = fighterPts;
-//        inventory = new ArrayList<>();
-//        ship = new Ship(ShipType.GNAT);
-        acquireShip(ShipType.GNAT);
+        for (Good good: Good.values()) {
+            inventory.put(good, 0);
+        }
     }
 
     public void acquireShip(ShipType newShip) {
-        ship = new Ship(newShip);
-        ArrayList<Good> movingIn = new ArrayList<>(newShip.getCargoCapacity());
-        for (int i = 0; i < inventory.size(); i++) {
-            movingIn.add(inventory.get(i));
+        if (inventorySize < newShip.getCargoCapacity()) {
+            throw new IllegalArgumentException("Cannot move to this ship, it has too small of an inventory");
         }
-        inventory = movingIn;
+        this.ship = new Ship(newShip);
     }
 
-    public List<Good> getInventory() {
+    public String toString() {
+        return String.format("Name: %s. Pilot points: %d. Trader points: %d. Engineer Points: %d." +
+                        " Fighter points: %d. Credits: %d", name,
+                pilotPts, traderPts, engineerPts, fighterPts, credits);
+    }
+
+    public int getInventorySize() {
+        return inventorySize;
+    }
+
+    public Map<Good, Integer> getInventory() {
         return inventory;
     }
 
-    public void updateInventory(List<Good> newInventory) {
-        inventory = newInventory;
+    public void addGood(Good good, int amount) {
+        this.inventory.put(good, this.inventory.get(good) + amount);
+        inventorySize++;
     }
 
-    public Ship getOwnedShip() {
-        return ship;
-    }
-
-    public Planet getCurrentPlanet() {
-        return currentPlanet;
-    }
-
-    public void updateCredits(int amount) {
-        credits = amount;
+    public void removeGood(Good good, int amount) {
+        this.inventory.put(good, this.inventory.get(good) - amount);
+        inventorySize--;
     }
 
     public int getCredits() {
         return credits;
     }
 
-    public String toString() {
-        return String.format("Name: %s. Pilot points: %d. Trader points: %d. Engineer Points: %d." +
-                " Fighter points: %d. Credits: %d", name,
-                pilotPts, traderPts, engineerPts, fighterPts, credits);
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 }
