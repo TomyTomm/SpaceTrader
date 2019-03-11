@@ -96,6 +96,7 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Game", new ConfigurationInteractor(myRepository));
         interactorMap.put("Universe", new UniverseInteractor(myRepository));
+        interactorMap.put("Market", new MarketInteractor(myRepository));
     }
 
     public ConfigurationInteractor getConfigurationInteractor() {

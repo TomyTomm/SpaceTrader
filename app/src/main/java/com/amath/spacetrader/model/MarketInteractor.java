@@ -20,6 +20,7 @@ public class MarketInteractor extends Interactor {
      * @return market – A HashMap of prices on a planet
      */
     public Map<Good, Integer> loadMarket() {
+        Model model = Model.getInstance();
         Map<Good, Integer> market = new HashMap<>();
 
         for (Good good: Good.values()) {
@@ -39,6 +40,7 @@ public class MarketInteractor extends Interactor {
      * @param amount
      */
     public void buyGood(Good good, int amount) {
+        Model model = Model.getInstance();
 //        Model.updatePlayerInventory(good, player);
         Player player = model.getPlayer();
         player.addGood(good, amount);
@@ -52,6 +54,7 @@ public class MarketInteractor extends Interactor {
      * @param amount
      */
     public void sellGood(Good good, int amount) {
+        Model model = Model.getInstance();
 //        Model.updatePlayerInventory(good, player);
         Player player = model.getPlayer();
         player.removeGood(good, amount);
@@ -64,6 +67,7 @@ public class MarketInteractor extends Interactor {
      * @param change
      */
     public void updateCredits(int change) {
+        Model model = Model.getInstance();
         Player player = model.getPlayer();
         player.setCredits(player.getCredits() + change);
     }

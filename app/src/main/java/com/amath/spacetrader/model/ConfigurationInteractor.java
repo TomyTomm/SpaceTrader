@@ -21,6 +21,8 @@ public class ConfigurationInteractor extends Interactor {
 //    }
 
     public void loadPlayer(Player player) {
+        Model model = Model.getInstance();
+        Log.d("notgoodnews", String.valueOf(model));
         model.loadPlayer(player);
     }
 }

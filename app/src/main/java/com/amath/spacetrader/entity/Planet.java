@@ -45,6 +45,7 @@ public class Planet extends SpaceBody{
             String temp = AVAILABLE_PLANET_NAMES.pop();
             if (!USED_PLANET_NAMES.contains(temp)) {
                 name = temp;
+                USED_PLANET_NAMES.add(name);
                 break;
             }
         }
@@ -55,7 +56,7 @@ public class Planet extends SpaceBody{
         Random rand = new Random();
         radius = Math.random() * 8;
         while (location == null) {
-            double x = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
+            double x = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getX() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getX() / 2;
             double y = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
 //            location = new Coordinate(x, y);
 

@@ -1,6 +1,7 @@
 package com.amath.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -49,6 +50,9 @@ public class MarketActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void onBackPressed(View view) { }
+    public void onBackPressed(View view) {
+        Intent intent = new Intent(this, UniverseActivity.class);
+        startActivity(intent);
+    }
 
 }
