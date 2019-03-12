@@ -1,17 +1,30 @@
 package com.amath.spacetrader.view;
 
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.GameDifficulty;
+import com.amath.spacetrader.entity.Good;
+import com.amath.spacetrader.entity.TechLevel;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
+import com.amath.spacetrader.viewmodel.MarketViewModel;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MarketActivity extends AppCompatActivity {
 
@@ -24,10 +37,55 @@ public class MarketActivity extends AppCompatActivity {
     -
      */
 
+    Map<Good, Integer> PlanetInventory;
+    Map<Good, Integer> prices = new HashMap<>();
+    MarketViewModel viewModel;
+
+    TextView credits;
+    TextView planetName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
+
+        viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
+
+        credits = findViewById(R.id.player_credits_amount);
+        credits.setText("" + viewModel.getPlayerCredits());
+
+        planetName = findViewById(R.id.market_header_planet);
+        planetName.setText(viewModel.getPlanetName());
+
+        PlanetInventory = viewModel.loadMarket();
+        Good[] goods = Good.values();
+        TechLevel techLevel = viewModel.getTechLevel();
+
+        TableLayout table = findViewById(R.id.market_table);
+
+        int i = 0;
+        for (Good good: goods) {
+            View row = getRow();
+            prices.put(good, good.calculatePrice(techLevel));
+            table.addView(row);
+            TextView tv = row.findViewById(R.id.good_name);
+//            Log.d("testtesttest", tv.getText().toString());
+            tv.setId(tv.getId() + i++);
+            tv.setTag(good);
+            tv.setText(good.toString());
+
+            //Set tags for buy and sell buttons
+
+            Button buyButton = row.findViewById(R.id.buy);
+            Button sellButton = row.findViewById(R.id.sell);
+
+            buyButton.setTag(good);
+            sellButton.setTag(good);
+
+            row.setMinimumHeight(40);
+
+//            break;
+        }
 
 //        TableRow template = findViewById(R.id.good_name);
 //        for (int i = 0; i < tradeTable.size(); i++) {
@@ -81,7 +139,10 @@ public class MarketActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void onBuyPressed(View view) { }
+    public void onBuyPressed(View view) {
+        Good good = (Good) view.getTag();
+
+    }
 
     /**
      * Processes when the player wants to sell a good
@@ -89,7 +150,9 @@ public class MarketActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void onSellPressed(View view) { }
+    public void onSellPressed(View view) {
+        Good good = (Good) view.getTag();
+    }
 
     /**
      * Should use an Intent() and return to UniverseView
@@ -97,8 +160,15 @@ public class MarketActivity extends AppCompatActivity {
      * @param view
      */
     public void onBackPressed(View view) {
-        Intent intent = new Intent(this, UniverseActivity.class);
-        startActivity(intent);
+        onBackPressed();
+    }
+
+
+
+    public View getRow() {
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.good_row, null);
+        return view;
     }
 
 }

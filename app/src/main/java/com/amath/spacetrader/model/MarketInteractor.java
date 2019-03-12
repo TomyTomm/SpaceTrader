@@ -3,6 +3,7 @@ package com.amath.spacetrader.model;
 import com.amath.spacetrader.entity.Good;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.Player;
+import com.amath.spacetrader.entity.TechLevel;
 import com.amath.spacetrader.entity.Universe;
 
 import java.util.HashMap;
@@ -30,6 +31,21 @@ public class MarketInteractor extends Interactor {
 
         return market;
 
+    }
+
+    public TechLevel getTechLevel() {
+        Model model = Model.getInstance();
+        return model.getGame().getCurrentPlanet().getTechLevel();
+    }
+
+    public String getPlanetName() {
+        Model model = Model.getInstance();
+        return model.getGame().getCurrentPlanet().getName();
+    }
+
+    public int getPlayerCredits() {
+        Model model = Model.getInstance();
+        return model.getPlayer().getCredits();
     }
 
 

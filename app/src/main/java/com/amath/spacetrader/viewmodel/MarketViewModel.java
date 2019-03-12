@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.amath.spacetrader.entity.Good;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.Player;
+import com.amath.spacetrader.entity.TechLevel;
 import com.amath.spacetrader.entity.Universe;
 import com.amath.spacetrader.model.MarketInteractor;
 import com.amath.spacetrader.model.Model;
@@ -37,6 +38,18 @@ public class MarketViewModel extends AndroidViewModel {
 
         interactor = model.getMarketInteractor();
         market = loadMarket();
+    }
+
+    public TechLevel getTechLevel() {
+        return interactor.getTechLevel();
+    }
+
+    public String getPlanetName() {
+        return interactor.getPlanetName();
+    }
+
+    public int getPlayerCredits() {
+        return interactor.getPlayerCredits();
     }
 
     public Map<Good, Integer> loadMarket() {
