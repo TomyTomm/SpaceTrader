@@ -55,11 +55,13 @@ public class MarketInteractor extends Interactor {
      * @param good
      * @param amount
      */
-    public void buyGood(Good good, int amount) {
+    public void buyGood(Good good, int amount, int price, Map<Good, Integer> market) {
         Model model = Model.getInstance();
 //        Model.updatePlayerInventory(good, player);
         Player player = model.getPlayer();
         player.addGood(good, amount);
+        player.setCredits(player.getCredits() - amount * price);
+        market.put(good, market.get(good) - amount);
 
     }
 
@@ -69,11 +71,13 @@ public class MarketInteractor extends Interactor {
      * @param good
      * @param amount
      */
-    public void sellGood(Good good, int amount) {
+    public void sellGood(Good good, int amount, int price, Map<Good, Integer> market) {
         Model model = Model.getInstance();
 //        Model.updatePlayerInventory(good, player);
         Player player = model.getPlayer();
         player.removeGood(good, amount);
+        player.setCredits(player.getCredits() + amount * price);
+        market.put(good, market.get(good) + amount);
     }
 
     /**

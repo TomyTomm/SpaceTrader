@@ -26,8 +26,8 @@ public class MarketViewModel extends AndroidViewModel {
      * as an example
      *
      */
-    private class IllegalTradeException extends Exception {
-        public IllegalTradeException(String message) {
+    public class IllegalTradeException extends Exception {
+        private IllegalTradeException(String message) {
             super(message);
         }
     }
@@ -79,7 +79,7 @@ public class MarketViewModel extends AndroidViewModel {
      * @param amount
      * @return A string error message, null if there is no error
      */
-    public String verifyBuy(Good good, int amount) throws IllegalTradeException {
+    public boolean verifyBuy(Good good, int amount, int price, Map<Good, Integer> market) throws IllegalTradeException {
 //        List<Good> pI = player.getInventory();
 //        Good[] tradedGoods = (Good[]) trades.keySet().toArray();
 //        Integer[] prices = (Integer[]) trades.values().toArray();
@@ -120,7 +120,17 @@ public class MarketViewModel extends AndroidViewModel {
 //            }
 //        }
 //        return "Trade completed for " + tradeSize + " credits.";
-        return null;
+        Player player = Model.getInstance().getPlayer();
+        int credits = player.getCredits();
+        if (amount * price > credits) {
+            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough credits", amount, good.toString()));
+        } else if (amount + player.getInventorySize() > player.getInventoryCapacity()) {
+            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough capacity", amount, good.toString()));
+        } else if (amount > market.get(good)) {
+            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), planet does not have enough goods", amount, good.toString()));
+        }
+        interactor.buyGood(good, amount, price, market);
+        return true;
     }
 
     /**
@@ -135,8 +145,16 @@ public class MarketViewModel extends AndroidViewModel {
      * @param amount
      * @return A string error message, null if there is no error
      */
-    public String verifySell(Good good, int amount) throws IllegalTradeException {
-        return null;
+    public boolean verifySell(Good good, int amount, int price, Map<Good, Integer> market) throws IllegalTradeException {
+
+        Player player = Model.getInstance().getPlayer();
+        int playerAmount = player.getGoodAmount(good);
+
+        if (amount > playerAmount) {
+            throw new IllegalTradeException(String.format("You cannot sell %d %s(s), you do not have enough goods", amount, good.toString()));
+        }
+        interactor.sellGood(good, amount, price, market);
+        return true;
     }
 
 

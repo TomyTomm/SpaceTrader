@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.GameDifficulty;
@@ -52,7 +53,7 @@ public class MarketActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
 
         credits = findViewById(R.id.player_credits_amount);
-        credits.setText("" + viewModel.getPlayerCredits());
+        updateCredits();
 
         planetName = findViewById(R.id.market_header_planet);
         planetName.setText(viewModel.getPlanetName());
@@ -68,11 +69,15 @@ public class MarketActivity extends AppCompatActivity {
             View row = getRow();
             prices.put(good, good.calculatePrice(techLevel));
             table.addView(row);
-            TextView tv = row.findViewById(R.id.good_name);
+            TextView name = row.findViewById(R.id.good_name);
 //            Log.d("testtesttest", tv.getText().toString());
-            tv.setId(tv.getId() + i++);
-            tv.setTag(good);
-            tv.setText(good.toString());
+            name.setId(name.getId() + i++);
+            name.setTag(good);
+            name.setText(good.toString());
+
+            //Set text for price
+            TextView price = row.findViewById(R.id.price);
+            price.setText(String.format("$%d", prices.get(good)));
 
             //Set tags for buy and sell buttons
 
@@ -81,8 +86,8 @@ public class MarketActivity extends AppCompatActivity {
 
             buyButton.setTag(good);
             sellButton.setTag(good);
-
-            row.setMinimumHeight(40);
+//            row.getLayoutParams().height = 500;
+            row.setMinimumHeight(120);
 
 //            break;
         }
@@ -141,6 +146,14 @@ public class MarketActivity extends AppCompatActivity {
      */
     public void onBuyPressed(View view) {
         Good good = (Good) view.getTag();
+        try {
+            if (viewModel.verifyBuy(good, 1, prices.get(good), PlanetInventory)) {
+                Toast.makeText(this, String.format("Successfully bought %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
+                updateCredits();
+            }
+        } catch (MarketViewModel.IllegalTradeException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -148,10 +161,21 @@ public class MarketActivity extends AppCompatActivity {
      * Processes when the player wants to sell a good
      * Should call correlated method in MarketViewModel
      *
+     * Will use toasts for now, however, will want to use
+     * DialogFragments later
+     *
      * @param view
      */
     public void onSellPressed(View view) {
         Good good = (Good) view.getTag();
+        try {
+            if (viewModel.verifySell(good, 1, prices.get(good), PlanetInventory)) {
+                Toast.makeText(this, String.format("Successfully sold %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
+                updateCredits();
+            }
+        } catch (MarketViewModel.IllegalTradeException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -161,6 +185,10 @@ public class MarketActivity extends AppCompatActivity {
      */
     public void onBackPressed(View view) {
         onBackPressed();
+    }
+
+    private void updateCredits() {
+        credits.setText("$" + viewModel.getPlayerCredits());
     }
 
 

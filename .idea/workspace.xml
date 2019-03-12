@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="testt" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="goodType" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -19,6 +19,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MarketActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MarketActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/viewmodel/MarketViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/viewmodel/MarketViewModel.java" afterDir="false" />
@@ -111,30 +112,30 @@
     <session id="-315378494">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5463" />
-          <entry key="txt" value="611" />
-          <entry key="xml" value="601" />
+          <entry key="java" value="7451" />
+          <entry key="txt" value="693" />
+          <entry key="xml" value="766" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5463" />
-          <entry key="PLAIN_TEXT" value="611" />
-          <entry key="XML" value="601" />
+          <entry key="JAVA" value="7451" />
+          <entry key="PLAIN_TEXT" value="693" />
+          <entry key="XML" value="766" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="48" />
-          <entry key="xml" value="11" />
+          <entry key="java" value="51" />
+          <entry key="xml" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="48" />
-          <entry key="XML" value="11" />
+          <entry key="JAVA" value="51" />
+          <entry key="XML" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -151,37 +152,20 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/Model.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Planet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="117" column="7" selection-start-line="117" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
-              <folding>
-                <element signature="method#initializeAvailablePlanetNames#0;class#Model#0" />
-              </folding>
+            <state relative-caret-position="30">
+              <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_market.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
-              <folding>
-                <element signature="e#2161#2200#0" />
-                <element signature="e#3805#3806#0" expanded="true" />
-                <element signature="e#3829#3830#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="20" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -195,17 +179,40 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MarketActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="142" column="50" selection-start-line="142" selection-start-column="50" selection-end-line="142" selection-end-column="50" />
+            <state relative-caret-position="493">
+              <caret line="172" column="69" selection-start-line="172" selection-start-column="69" selection-end-line="172" selection-end-column="69" />
               <folding>
-                <element signature="e#5033#5034#0" expanded="true" />
-                <element signature="e#5056#5057#0" expanded="true" />
-                <element signature="e#3520#3521#0" expanded="true" />
-                <element signature="e#3551#3552#0" expanded="true" />
+                <element signature="e#932#991#0" />
+                <element signature="e#5857#5858#0" expanded="true" />
+                <element signature="e#5888#5889#0" expanded="true" />
+                <element signature="e#6291#6292#0" expanded="true" />
+                <element signature="e#6357#6358#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/ConfigurationActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="181" column="34" selection-start-line="179" selection-start-column="12" selection-end-line="181" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/good_row.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -213,8 +220,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/viewmodel/MarketViewModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="51" column="44" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+            <state relative-caret-position="651">
+              <caret line="155" column="57" selection-start-line="155" selection-start-column="57" selection-end-line="155" selection-end-column="57" />
               <folding>
                 <element signature="e#1211#1212#0" expanded="true" />
                 <element signature="e#1249#1250#0" expanded="true" />
@@ -229,10 +236,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="method#toString#0;class#Player#0" />
+                <element signature="e#2515#2516#0" expanded="true" />
+                <element signature="e#2557#2558#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+            <state relative-caret-position="486">
+              <caret line="77" column="40" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -243,8 +264,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Good.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-589">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state>
+              <caret column="33" selection-start-column="33" selection-end-column="33" />
               <folding>
                 <element signature="e#1846#1847#0" expanded="true" />
                 <element signature="e#1873#1874#0" expanded="true" />
@@ -268,20 +289,6 @@
                 <element signature="e#2426#2427#0" expanded="true" />
                 <element signature="e#2453#2454#0" expanded="true" />
                 <element signature="e#2479#2480#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/ConfigurationActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#7197#7198#0" expanded="true" />
-                <element signature="e#7228#7229#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -354,7 +361,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Sun.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/SpaceBody.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Ship.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Planet.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Coordinate.java" />
@@ -368,11 +374,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/ConfigurationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/Model.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_market.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/viewmodel/MarketViewModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/good_row.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MarketActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/viewmodel/MarketViewModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_market.xml" />
       </list>
     </option>
   </component>
@@ -718,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552366829218</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Completed table on MarketActivity. Set tags for Buy and Sell buttons">
+      <created>1552407475658</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1552407475661</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -726,15 +740,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.6008065" visible="true" weight="0.2869353" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.6002278" visible="true" weight="0.2869353" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Build Variants" order="4" sideWeight="0.39919356" side_tool="true" visible="true" weight="0.2869353" />
+      <window_info id="Build Variants" order="4" sideWeight="0.3997722" side_tool="true" visible="true" weight="0.2869353" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Messages" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="0" visible="true" weight="0.24081632" />
+      <window_info anchor="bottom" id="Run" order="0" visible="true" weight="0.10408163" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.32959184" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
@@ -748,7 +762,7 @@
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.37606838" />
+      <window_info active="true" anchor="right" id="Preview" order="4" visible="true" weight="0.37606838" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
   </component>
@@ -762,7 +776,8 @@
     <MESSAGE value="Made minor changes to activity_market.xml. Fixed minor bugs with Model and Planet. Moved final pieces of branch 'arnold' to 'master' from Configuration activity." />
     <MESSAGE value="Made minor changes to activity_market.xml. Fixed minor bugs with Model and Planet. Moved final pieces of branch 'arnold' to 'master' from Configuration activity. Actively working on MarketActivity.java" />
     <MESSAGE value="Made Game object Serializable. Created store and load game capabilities. Game can now be stored locally." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made Game object Serializable. Created store and load game capabilities. Game can now be stored locally." />
+    <MESSAGE value="Completed table on MarketActivity. Set tags for Buy and Sell buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed table on MarketActivity. Set tags for Buy and Sell buttons" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/color/toggle_color.xml" />
@@ -902,17 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Planet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
-          <folding>
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/SolarSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -924,16 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding>
-            <element signature="method#toString#0;class#Player#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1030,22 +1024,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/ConfigurationActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
+        <state relative-caret-position="342">
+          <caret line="117" column="7" selection-start-line="117" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7197#7198#0" expanded="true" />
-            <element signature="e#7228#7229#0" expanded="true" />
+            <element signature="method#initializeAvailablePlanetNames#0;class#Model#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+          <folding>
+            <element signature="e#2161#2200#0" />
+            <element signature="e#3805#3806#0" expanded="true" />
+            <element signature="e#3829#3830#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Good.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-589">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state>
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
           <folding>
             <element signature="e#1846#1847#0" expanded="true" />
             <element signature="e#1873#1874#0" expanded="true" />
@@ -1073,13 +1077,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/Model.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Planet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="117" column="7" selection-start-line="117" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
+        <state relative-caret-position="30">
+          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/ConfigurationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="181" column="34" selection-start-line="179" selection-start-column="12" selection-end-line="181" selection-end-column="34" />
           <folding>
-            <element signature="method#initializeAvailablePlanetNames#0;class#Model#0" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/good_row.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1090,20 +1109,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MarketActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+        <state relative-caret-position="493">
+          <caret line="172" column="69" selection-start-line="172" selection-start-column="69" selection-end-line="172" selection-end-column="69" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#932#991#0" />
+            <element signature="e#5857#5858#0" expanded="true" />
+            <element signature="e#5888#5889#0" expanded="true" />
+            <element signature="e#6291#6292#0" expanded="true" />
+            <element signature="e#6357#6358#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/viewmodel/MarketViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="51" column="44" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+        <state relative-caret-position="651">
+          <caret line="155" column="57" selection-start-line="155" selection-start-column="57" selection-end-line="155" selection-end-column="57" />
           <folding>
             <element signature="e#1211#1212#0" expanded="true" />
             <element signature="e#1249#1250#0" expanded="true" />
@@ -1116,44 +1139,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/good_row.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/model/MarketInteractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="486">
+          <caret line="77" column="40" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/entity/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="method#toString#0;class#Player#0" />
+            <element signature="e#2515#2516#0" expanded="true" />
+            <element signature="e#2557#2558#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_market.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
-          <folding>
-            <element signature="e#2161#2200#0" />
-            <element signature="e#3805#3806#0" expanded="true" />
-            <element signature="e#3829#3830#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/amath/spacetrader/view/MarketActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="142" column="50" selection-start-line="142" selection-start-column="50" selection-end-line="142" selection-end-column="50" />
-          <folding>
-            <element signature="e#5033#5034#0" expanded="true" />
-            <element signature="e#5056#5057#0" expanded="true" />
-            <element signature="e#3520#3521#0" expanded="true" />
-            <element signature="e#3551#3552#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="20" selection-end-column="56" />
         </state>
       </provider>
     </entry>

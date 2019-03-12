@@ -25,6 +25,8 @@ public class Player implements Serializable {
 
     private Map<Good, Integer> inventory = new HashMap<>();
     private int inventorySize = 0;
+    private int inventoryCapacity = 0;
+//    private int inventoryCapacitzy = 0;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
         this.name = name;
@@ -35,13 +37,15 @@ public class Player implements Serializable {
         for (Good good: Good.values()) {
             inventory.put(good, 0);
         }
+        acquireShip(ShipType.GNAT);
     }
 
     public void acquireShip(ShipType newShip) {
-        if (inventorySize < newShip.getCargoCapacity()) {
+        if (inventorySize > newShip.getCargoCapacity()) {
             throw new IllegalArgumentException("Cannot move to this ship, it has too small of an inventory");
         }
         this.ship = new Ship(newShip);
+        this.inventoryCapacity = this.ship.getHoldSize();
     }
 
     public String toString() {
@@ -60,12 +64,12 @@ public class Player implements Serializable {
 
     public void addGood(Good good, int amount) {
         this.inventory.put(good, this.inventory.get(good) + amount);
-        inventorySize++;
+        inventorySize += amount;
     }
 
     public void removeGood(Good good, int amount) {
         this.inventory.put(good, this.inventory.get(good) - amount);
-        inventorySize--;
+        inventorySize -= amount;
     }
 
     public int getCredits() {
@@ -74,5 +78,13 @@ public class Player implements Serializable {
 
     public void setCredits(int credits) {
         this.credits = credits;
+    }
+
+    public int getInventoryCapacity() {
+        return inventoryCapacity;
+    }
+
+    public int getGoodAmount(Good good) {
+        return inventory.get(good);
     }
 }
