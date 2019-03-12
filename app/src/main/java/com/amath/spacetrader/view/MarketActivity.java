@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TableRow;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.GameDifficulty;
@@ -27,6 +28,51 @@ public class MarketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
+
+//        TableRow template = findViewById(R.id.good_name);
+//        for (int i = 0; i < tradeTable.size(); i++) {
+//            newRows[i] = new TableRow(this);
+//            newRows[i].setId(i+1);
+//            newRows[i].setBackgroundColor(Color.CYAN);
+//            newRows[i].setLayoutParams(new TableLayout.LayoutParams(
+//                    TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+//
+//            goodLabels[i] = new TextView(this);
+//            goodLabels[i].setId(i+111);
+//            goodLabels[i].setText(goods[i].getType());
+//            goodLabels[i].setTextColor(Color.BLUE);
+//            newRows[i].addView(goodLabels[i]);
+//
+//            goodOwned[i] = new TextView(this);
+//            goodOwned[i].setId(i+1111);
+//            goodLabels[i].setTextColor(Color.BLUE);
+//            goodOwned[i].setText(goods[i].getQuantity());
+//            newRows[i].addView(goodOwned[i]);
+//
+//            goodPrice[i] = new TextView(this);
+//            goodOwned[i].setId(i+11111);
+//            goodLabels[i].setTextColor(Color.BLUE);
+//            goodPrice[i].setText(tradeTable.get(goods[i]));
+//            newRows[i].addView(goodPrice[i]);
+//
+//            buyAmount[i] = new EditText(this);
+//            buyAmount[i].setId(i*17+1111);
+//            buyAmount[i].setHint(0);
+//            buyAmount[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+//            buyAmount[i].setBackgroundColor(Color.WHITE);
+//            newRows[i].addView(buyAmount[i]);
+//
+//            sellAmount[i] = new EditText(this);
+//            sellAmount[i].setId(i*13+11);
+//            sellAmount[i].setHint(0);
+//            sellAmount[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+//            sellAmount[i].setBackgroundColor(Color.WHITE);
+//            newRows[i].addView(sellAmount[i]);
+//
+//            marketTable.addView(newRows[i], new TableLayout.LayoutParams(
+//                    TableLayout.LayoutParams.MATCH_PARENT,
+//                    TableLayout.LayoutParams.WRAP_CONTENT));
+//        }
     }
 
     /**
