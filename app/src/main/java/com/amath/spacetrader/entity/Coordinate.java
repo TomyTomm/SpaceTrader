@@ -1,6 +1,8 @@
 package com.amath.spacetrader.entity;
 
-public class Coordinate {
+import java.io.Serializable;
+
+public class Coordinate implements Serializable {
 
     private double x;
     private double y;

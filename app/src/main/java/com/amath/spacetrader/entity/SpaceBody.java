@@ -2,7 +2,9 @@ package com.amath.spacetrader.entity;
 
 import android.util.Log;
 
-public abstract class SpaceBody {
+import java.io.Serializable;
+
+public abstract class SpaceBody implements Serializable {
     protected String name;
     protected double radius;
     protected Coordinate location;

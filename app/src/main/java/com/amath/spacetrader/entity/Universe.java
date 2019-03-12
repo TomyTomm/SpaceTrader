@@ -4,11 +4,12 @@ import android.util.Log;
 
 import com.amath.spacetrader.model.Model;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 
-public class Universe {
+public class Universe implements Serializable {
 
     private Set<SolarSystem> solarSystems;
 

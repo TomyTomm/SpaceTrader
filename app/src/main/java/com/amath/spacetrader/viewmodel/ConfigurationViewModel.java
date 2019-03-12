@@ -11,6 +11,8 @@ import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.model.ConfigurationInteractor;
 import com.amath.spacetrader.model.Model;
 
+import java.io.File;
+
 public class ConfigurationViewModel extends AndroidViewModel {
 
     private ConfigurationInteractor interactor;
@@ -46,6 +48,10 @@ public class ConfigurationViewModel extends AndroidViewModel {
 
 //        return p.toString(); Used for toast, but makes an illegal Player object
         return p.toString();
+    }
+
+    public boolean saveGameLocally(File file) {
+        return interactor.saveLocalGame(file);
     }
 
     public void loadDifficulty(GameDifficulty difficulty) {

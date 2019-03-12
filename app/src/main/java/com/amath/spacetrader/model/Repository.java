@@ -1,10 +1,17 @@
 package com.amath.spacetrader.model;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.entity.Universe;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +40,27 @@ public class Repository {
      */
     public void update() {
 
+    }
+
+    public void loadGame(Game game) {
+        this.game = game;
+    }
+
+    public void loadPlayer(Player player) {
+        this.game.loadPlayer(player);
+    }
+
+    public boolean serialize(File file) {
+        boolean successful = true;
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(game);
+            out.close();
+        } catch (Exception e) {
+            Log.d("saveunsuccessful", "Could not serialize game");
+            successful = false;
+        }
+        return successful;
     }
 
 //    public void newGame(Game game) {

@@ -1,6 +1,8 @@
 package com.amath.spacetrader.entity;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
     private GameDifficulty gameDifficulty;
     private Player player;
     private Universe universe;

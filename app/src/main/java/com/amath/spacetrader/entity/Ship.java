@@ -1,6 +1,8 @@
 package com.amath.spacetrader.entity;
 
-public class Ship {
+import java.io.Serializable;
+
+public class Ship implements Serializable {
     private ShipType shipType;
     private int holdSize;
     private Coordinate location;    // Do we need to have a coordinate location for our ships? I don't think so

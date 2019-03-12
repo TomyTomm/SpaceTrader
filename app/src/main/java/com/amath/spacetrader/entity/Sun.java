@@ -1,6 +1,8 @@
 package com.amath.spacetrader.entity;
 
-public class Sun extends SpaceBody {
+import java.io.Serializable;
+
+public class Sun extends SpaceBody implements Serializable {
     private double radius;
     private static final int MAX_SIZE = 15;
     private static Coordinate location = new Coordinate(SolarSystem.BOUNDS.getX()/2, SolarSystem.BOUNDS.getY()/2);

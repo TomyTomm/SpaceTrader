@@ -2,11 +2,12 @@ package com.amath.spacetrader.entity;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class SolarSystem extends SpaceBody {
+public class SolarSystem extends SpaceBody implements Serializable {
 
     private Set<Planet> planets;
     private Sun sun = new Sun();

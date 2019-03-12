@@ -22,6 +22,8 @@ import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.model.Model;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 
+import java.io.File;
+
 public class ConfigurationActivity extends AppCompatActivity {
 
     //reference to the view model
@@ -163,7 +165,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         //the data passed in is legal
 
-        viewModel.loadDifficulty((GameDifficulty) selectedGameDifficulty);
+        viewModel.loadDifficulty(selectedGameDifficulty);
         String result = null;
         try {
             result =viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
@@ -171,6 +173,10 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         if (result != null) {
+            File file = new File(this.getFilesDir(), "game.txt");
+            if (viewModel.saveGameLocally(file)) {
+                Toast.makeText(this, "Saved game locally!", Toast.LENGTH_SHORT).show();
+            }
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, UniverseActivity.class);
             startActivity(intent);

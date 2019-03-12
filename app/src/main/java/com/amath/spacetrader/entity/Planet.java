@@ -2,6 +2,7 @@ package com.amath.spacetrader.entity;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class Planet extends SpaceBody{
+public class Planet extends SpaceBody implements Serializable {
 
     private TechLevel techLevel;
     private ResourceLevel resourceLevel;
