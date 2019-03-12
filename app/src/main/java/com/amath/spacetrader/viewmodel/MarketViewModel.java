@@ -12,6 +12,7 @@ import com.amath.spacetrader.entity.Universe;
 import com.amath.spacetrader.model.MarketInteractor;
 import com.amath.spacetrader.model.Model;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -155,6 +156,11 @@ public class MarketViewModel extends AndroidViewModel {
         }
         interactor.sellGood(good, amount, price, market);
         return true;
+    }
+
+
+    public boolean saveGameLocally(File file) {
+        return interactor.saveLocalGame(file);
     }
 
 

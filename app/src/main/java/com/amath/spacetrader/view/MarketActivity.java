@@ -23,6 +23,7 @@ import com.amath.spacetrader.entity.TechLevel;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 import com.amath.spacetrader.viewmodel.MarketViewModel;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,8 @@ public class MarketActivity extends AppCompatActivity {
     Map<Good, Integer> PlanetInventory;
     Map<Good, Integer> prices = new HashMap<>();
     MarketViewModel viewModel;
+
+    Map<Good, TextView> amountView = new HashMap<>();
 
     TextView credits;
     TextView planetName;
@@ -78,6 +81,11 @@ public class MarketActivity extends AppCompatActivity {
             //Set text for price
             TextView price = row.findViewById(R.id.price);
             price.setText(String.format("$%d", prices.get(good)));
+
+            //Set text for amount
+            TextView amount = row.findViewById(R.id.amount);
+            amount.setText(String.format("%d", PlanetInventory.get(good)));
+            amountView.put(good, amount);
 
             //Set tags for buy and sell buttons
 
@@ -150,6 +158,10 @@ public class MarketActivity extends AppCompatActivity {
             if (viewModel.verifyBuy(good, 1, prices.get(good), PlanetInventory)) {
                 Toast.makeText(this, String.format("Successfully bought %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
                 updateCredits();
+                amountView.get(good).setText(String.format("%d", PlanetInventory.get(good)));
+
+                File file = new File(this.getFilesDir(), "game.txt");
+                viewModel.saveGameLocally(file);
             }
         } catch (MarketViewModel.IllegalTradeException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -172,6 +184,10 @@ public class MarketActivity extends AppCompatActivity {
             if (viewModel.verifySell(good, 1, prices.get(good), PlanetInventory)) {
                 Toast.makeText(this, String.format("Successfully sold %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
                 updateCredits();
+                amountView.get(good).setText(String.format("%d", PlanetInventory.get(good)));
+
+                File file = new File(this.getFilesDir(), "game.txt");
+                viewModel.saveGameLocally(file);
             }
         } catch (MarketViewModel.IllegalTradeException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -189,6 +205,7 @@ public class MarketActivity extends AppCompatActivity {
 
     private void updateCredits() {
         credits.setText("$" + viewModel.getPlayerCredits());
+
     }
 
 
