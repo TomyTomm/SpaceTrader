@@ -24,13 +24,36 @@ public class MarketInteractor extends Interactor {
         Model model = Model.getInstance();
         Map<Good, Integer> market = new HashMap<>();
 
+        Planet currentPlanet = model.getGame().getCurrentPlanet();
         for (Good good: Good.values()) {
-            market.put(good, good.calculatePrice(model.getGame().getCurrentPlanet().getTechLevel()));
+            market.put(good, good.calculatePrice(currentPlanet.getTechLevel()));
             // ^^^^ breaks Law of Demeter
         }
 
         return market;
+    }
 
+    public Map<Good, Integer> loadPlanetInventory() {
+        Model model = Model.getInstance();
+        Map<Good, Integer> inventory = new HashMap<>();
+
+        Planet currentPlanet = model.getGame().getCurrentPlanet();
+        double ttpMultiplier = 1.0;
+        for (Good good: Good.values()) {
+            if (good.getMtlp() > currentPlanet.getTechLevel().ordinal()) {
+                inventory.put(good, 0);
+            } else {
+                if (good.getTtp() == currentPlanet.getTechLevel().ordinal()) {
+                    ttpMultiplier *= 2.4;
+                }
+                if (good.getIe() == currentPlanet.getStatus()) {
+                    ttpMultiplier *= 0.6;
+                }
+                int resourceLevel = (currentPlanet.getResourceLevel().ordinal() + 1) * 10;
+                inventory.put(good, (int)(resourceLevel * (Math.random()/3 + 0.5)*(ttpMultiplier)));
+            }
+        }
+        return inventory;
     }
 
     public TechLevel getTechLevel() {

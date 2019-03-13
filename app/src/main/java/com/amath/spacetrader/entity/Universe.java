@@ -22,7 +22,7 @@ public class Universe implements Serializable {
         // Create standard SolarSystem
         // Begin by making a set of planets
         Set<Planet> planets = new HashSet<>();
-        Planet genesis = new Planet("Genesis", new Coordinate(80, 12), 5, 5, 10);
+        Planet genesis = new Planet("Genesis", new Coordinate(80, 12), 4, 5, 10);
         Planet hera = new Planet("Hera", new Coordinate(20, 20), 2, 5, 5);
         Planet athena = new Planet("Athena", new Coordinate(50, 80), 4, 3, 5);
         Planet ares = new Planet("Ares", new Coordinate(80, 70), 1, 1, 8);

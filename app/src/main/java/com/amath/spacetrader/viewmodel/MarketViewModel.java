@@ -57,6 +57,10 @@ public class MarketViewModel extends AndroidViewModel {
         return interactor.loadMarket();
     }
 
+    public Map<Good, Integer> loadPlanetInventory() {
+        return interactor.loadPlanetInventory();
+    }
+
 //    public HashMap<Good, Integer> loadMarket() {
 //        Model model = Model.getInstance();
 //        Player player = model.getPlayer();
@@ -123,12 +127,13 @@ public class MarketViewModel extends AndroidViewModel {
 //        return "Trade completed for " + tradeSize + " credits.";
         Player player = Model.getInstance().getPlayer();
         int credits = player.getCredits();
-        if (amount * price > credits) {
-            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough credits", amount, good.toString()));
+
+        if (amount > market.get(good)) {
+            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), planet does not have enough goods", amount, good.toString()));
         } else if (amount + player.getInventorySize() > player.getInventoryCapacity()) {
             throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough capacity", amount, good.toString()));
-        } else if (amount > market.get(good)) {
-            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), planet does not have enough goods", amount, good.toString()));
+        } else if (amount * price > credits) {
+            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough credits", amount, good.toString()));
         }
         interactor.buyGood(good, amount, price, market);
         return true;

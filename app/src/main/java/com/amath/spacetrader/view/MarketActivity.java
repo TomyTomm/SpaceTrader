@@ -61,7 +61,10 @@ public class MarketActivity extends AppCompatActivity {
         planetName = findViewById(R.id.market_header_planet);
         planetName.setText(viewModel.getPlanetName());
 
-        PlanetInventory = viewModel.loadMarket();
+        PlanetInventory = viewModel.loadPlanetInventory();
+        prices = viewModel.loadMarket();
+
+
         Good[] goods = Good.values();
         TechLevel techLevel = viewModel.getTechLevel();
 
@@ -70,7 +73,6 @@ public class MarketActivity extends AppCompatActivity {
         int i = 0;
         for (Good good: goods) {
             View row = getRow();
-            prices.put(good, good.calculatePrice(techLevel));
             table.addView(row);
             TextView name = row.findViewById(R.id.good_name);
 //            Log.d("testtesttest", tv.getText().toString());
