@@ -80,98 +80,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/market_description"
-        android:layout_width="wrap_content"
-        android:layout_height="29dp"
+        android:id="@+id/textView"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="100dp"
-        android:text="The following goods are available for trade."
+        android:text="Amount available on Planet"
+        android:textAlignment="center"
         android:textColor="@color/textColor"
+        android:textSize="12dp"
         android:typeface="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<TableLayout-->
-        <!--android:id="@+id/market_table"-->
-        <!--android:layout_width="395dp"-->
-        <!--android:layout_height="444dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/execute_trades_button"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.5"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/market_description">-->
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        android:text="Amount available on ship"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
+        android:textSize="12dp"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!--<TableRow-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/market_good_header"-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:text="Good"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/textColor"-->
-                <!--android:typeface="monospace"-->
-                <!--tools:layout_editor_absoluteX="21dp"-->
-                <!--tools:layout_editor_absoluteY="154dp" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/market_price_header"-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:text="Price"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/textColor"-->
-                <!--android:typeface="monospace"-->
-                <!--tools:layout_editor_absoluteX="21dp"-->
-                <!--tools:layout_editor_absoluteY="154dp" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/market_owned_header"-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:text="Amount Owned"-->
-                <!--android:textColor="@color/textColor"-->
-                <!--android:typeface="monospace"-->
-                <!--tools:layout_editor_absoluteX="21dp"-->
-                <!--tools:layout_editor_absoluteY="154dp" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/buy_amount_header"-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:text="Buy Amount"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/textColor"-->
-                <!--android:typeface="monospace" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/sell_amount_header"-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:text="Sell Amount"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/textColor"-->
-                <!--android:typeface="monospace" />-->
-        <!--</TableRow>-->
-    <!--</TableLayout>-->
     <TableLayout
         android:id="@+id/market_table"
         android:layout_width="395dp"
-        android:layout_height="461dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/market_description">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
     </TableLayout>
 
