@@ -85,46 +85,6 @@ public class MarketViewModel extends AndroidViewModel {
      * @return A string error message, null if there is no error
      */
     public boolean verifyBuy(Good good, int amount, int price, Map<Good, Integer> market) throws IllegalTradeException {
-//        List<Good> pI = player.getInventory();
-//        Good[] tradedGoods = (Good[]) trades.keySet().toArray();
-//        Integer[] prices = (Integer[]) trades.values().toArray();
-//        int sizeIncrease = 0;
-//        int tradeSize = 0;
-//        for (int i = 0; i < tradedGoods.length; i++) {
-//            if (pI.contains(tradedGoods[i].getType())) {
-//                if ((pI.get(pI.lastIndexOf(tradedGoods[i])).getQuantity()
-//                        + tradedGoods[i].getQuantity()) < 0) {
-//                    return "Cannot sell more than you own.";
-//                } else {
-//                    if (player.getCredits()
-//                            < trades.get(tradedGoods[i])
-//                            *tradedGoods[i].getQuantity()) {
-//                        return "You're too poor to buy this much.";
-//                    } else {
-//                        tradeSize += trades.get(tradedGoods[i])
-//                                * tradedGoods[i].getQuantity();
-//                    }
-//                }
-//            } else {
-//                if (tradedGoods[i].getQuantity() < 0) {
-//                    return "You can't sell what you don't have.";
-//                } else {
-//                    sizeIncrease++;
-//                    tradeSize += trades.get(tradedGoods[i]) * tradedGoods[i].getQuantity();
-//                }
-//            }
-//        }
-//        if ((sizeIncrease + pI.size()) > player.getOwnedShip().getHoldSize()) {
-//            return "Not enough space.";
-//        } else if (player.getCredits() + tradeSize < 0) {
-//            return "Not enough credits.";
-//        } else {
-//            for (int i = 0; i < trades.size(); i++) {
-//                interactor.tradeGood(player, tradedGoods[i]);
-//                interactor.updateCredits(player.getCredits() + tradeSize);
-//            }
-//        }
-//        return "Trade completed for " + tradeSize + " credits.";
         Player player = Model.getInstance().getPlayer();
         int credits = player.getCredits();
 
@@ -153,8 +113,7 @@ public class MarketViewModel extends AndroidViewModel {
      */
     public boolean verifySell(Good good, int amount, int price, Map<Good, Integer> market) throws IllegalTradeException {
 
-        Player player = Model.getInstance().getPlayer();
-        int playerAmount = player.getGoodAmount(good);
+        int playerAmount = getGoodAmount(good);
 
         if (amount > playerAmount) {
             throw new IllegalTradeException(String.format("You cannot sell %d %s(s), you do not have enough goods", amount, good.toString()));
@@ -163,9 +122,19 @@ public class MarketViewModel extends AndroidViewModel {
         return true;
     }
 
+    public int getGoodAmount(Good good) { return interactor.getGoodAmount(good); }
+
 
     public boolean saveGameLocally(File file) {
         return interactor.saveLocalGame(file);
+    }
+
+    public int getInventorySize() {
+        return interactor.getInventorySize();
+    }
+
+    public int getCapacity() {
+        return interactor.getCapacity();
     }
 
 

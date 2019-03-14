@@ -71,6 +71,16 @@ public class MarketInteractor extends Interactor {
         return model.getPlayer().getCredits();
     }
 
+//    public Map<Good, Integer> getPlayerInventory() {
+//        Model model = Model.getInstance();
+//        return model.getPlayer().getInventory();
+//    }
+
+    public int getGoodAmount(Good good) {
+        Model model = Model.getInstance();
+        return model.getPlayer().getGoodAmount(good);
+    }
+
 
     /**
      * Adds (amount) # to (good) goods
@@ -113,5 +123,17 @@ public class MarketInteractor extends Interactor {
         Model model = Model.getInstance();
         Player player = model.getPlayer();
         player.setCredits(player.getCredits() + change);
+    }
+
+    public int getInventorySize() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+        return player.getInventorySize();
+    }
+
+    public int getCapacity() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+        return player.getInventoryCapacity();
     }
 }

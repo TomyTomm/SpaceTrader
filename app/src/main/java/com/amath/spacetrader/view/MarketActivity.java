@@ -1,31 +1,24 @@
 package com.amath.spacetrader.view;
 
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amath.spacetrader.R;
-import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Good;
 import com.amath.spacetrader.entity.TechLevel;
-import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 import com.amath.spacetrader.viewmodel.MarketViewModel;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MarketActivity extends AppCompatActivity {
@@ -43,10 +36,16 @@ public class MarketActivity extends AppCompatActivity {
     Map<Good, Integer> prices = new HashMap<>();
     MarketViewModel viewModel;
 
-    Map<Good, TextView> amountView = new HashMap<>();
+    Map<Good, TextView> planetInventoryView = new HashMap<>();
+    Map<Good, TextView> playerInventoryView = new HashMap<>();
+
+    Map<Good, Button> buyButtonViews = new HashMap<>();
+    Map<Good, Button> sellButtonViews = new HashMap<>();
 
     TextView credits;
     TextView planetName;
+
+    TextView capacity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,10 @@ public class MarketActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
 
         credits = findViewById(R.id.player_credits_amount);
-        updateCredits();
+        credits.setText("$" + viewModel.getPlayerCredits());
+
+        capacity = findViewById(R.id.capacity);
+        capacity.setText(String.format("%d/%d", viewModel.getInventorySize(), viewModel.getCapacity()));
 
         planetName = findViewById(R.id.market_header_planet);
         planetName.setText(viewModel.getPlanetName());
@@ -87,65 +89,33 @@ public class MarketActivity extends AppCompatActivity {
             //Set text for amount
             TextView amount = row.findViewById(R.id.amount);
             amount.setText(String.format("%d", PlanetInventory.get(good)));
-            amountView.put(good, amount);
+            planetInventoryView.put(good, amount);
+
+            // Set text for player inventory
+            TextView playerInventory = row.findViewById(R.id.inventory);
+            playerInventory.setText(String.format("%d", viewModel.getGoodAmount(good)));
+            playerInventoryView.put(good, playerInventory);
 
             //Set tags for buy and sell buttons
 
             Button buyButton = row.findViewById(R.id.buy);
             Button sellButton = row.findViewById(R.id.sell);
 
+            if (PlanetInventory.get(good) == 0 || viewModel.getPlayerCredits() < prices.get(good)) {
+                buyButton.setBackgroundColor(0);
+            }
+            if (viewModel.getGoodAmount(good) == 0) {
+                sellButton.setBackgroundColor(0);
+            }
+
             buyButton.setTag(good);
             sellButton.setTag(good);
-//            row.getLayoutParams().height = 500;
+
+            buyButtonViews.put(good, buyButton);
+            sellButtonViews.put(good, sellButton);
             row.setMinimumHeight(120);
 
-//            break;
         }
-
-//        TableRow template = findViewById(R.id.good_name);
-//        for (int i = 0; i < tradeTable.size(); i++) {
-//            newRows[i] = new TableRow(this);
-//            newRows[i].setId(i+1);
-//            newRows[i].setBackgroundColor(Color.CYAN);
-//            newRows[i].setLayoutParams(new TableLayout.LayoutParams(
-//                    TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-//
-//            goodLabels[i] = new TextView(this);
-//            goodLabels[i].setId(i+111);
-//            goodLabels[i].setText(goods[i].getType());
-//            goodLabels[i].setTextColor(Color.BLUE);
-//            newRows[i].addView(goodLabels[i]);
-//
-//            goodOwned[i] = new TextView(this);
-//            goodOwned[i].setId(i+1111);
-//            goodLabels[i].setTextColor(Color.BLUE);
-//            goodOwned[i].setText(goods[i].getQuantity());
-//            newRows[i].addView(goodOwned[i]);
-//
-//            goodPrice[i] = new TextView(this);
-//            goodOwned[i].setId(i+11111);
-//            goodLabels[i].setTextColor(Color.BLUE);
-//            goodPrice[i].setText(tradeTable.get(goods[i]));
-//            newRows[i].addView(goodPrice[i]);
-//
-//            buyAmount[i] = new EditText(this);
-//            buyAmount[i].setId(i*17+1111);
-//            buyAmount[i].setHint(0);
-//            buyAmount[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-//            buyAmount[i].setBackgroundColor(Color.WHITE);
-//            newRows[i].addView(buyAmount[i]);
-//
-//            sellAmount[i] = new EditText(this);
-//            sellAmount[i].setId(i*13+11);
-//            sellAmount[i].setHint(0);
-//            sellAmount[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-//            sellAmount[i].setBackgroundColor(Color.WHITE);
-//            newRows[i].addView(sellAmount[i]);
-//
-//            marketTable.addView(newRows[i], new TableLayout.LayoutParams(
-//                    TableLayout.LayoutParams.MATCH_PARENT,
-//                    TableLayout.LayoutParams.WRAP_CONTENT));
-//        }
     }
 
     /**
@@ -159,9 +129,7 @@ public class MarketActivity extends AppCompatActivity {
         try {
             if (viewModel.verifyBuy(good, 1, prices.get(good), PlanetInventory)) {
                 Toast.makeText(this, String.format("Successfully bought %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
-                updateCredits();
-                amountView.get(good).setText(String.format("%d", PlanetInventory.get(good)));
-
+                update(good);
                 File file = new File(this.getFilesDir(), "game.txt");
                 viewModel.saveGameLocally(file);
             }
@@ -185,11 +153,7 @@ public class MarketActivity extends AppCompatActivity {
         try {
             if (viewModel.verifySell(good, 1, prices.get(good), PlanetInventory)) {
                 Toast.makeText(this, String.format("Successfully sold %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
-                updateCredits();
-                amountView.get(good).setText(String.format("%d", PlanetInventory.get(good)));
-
-                File file = new File(this.getFilesDir(), "game.txt");
-                viewModel.saveGameLocally(file);
+                update(good);
             }
         } catch (MarketViewModel.IllegalTradeException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -197,7 +161,6 @@ public class MarketActivity extends AppCompatActivity {
     }
 
     /**
-     * Should use an Intent() and return to UniverseView
      *
      * @param view
      */
@@ -205,12 +168,41 @@ public class MarketActivity extends AppCompatActivity {
         onBackPressed();
     }
 
-    private void updateCredits() {
+
+
+    private void update(Good good) {
         credits.setText("$" + viewModel.getPlayerCredits());
+        planetInventoryView.get(good).setText(String.format("%d", PlanetInventory.get(good)));
+        playerInventoryView.get(good).setText(String.format("%d", viewModel.getGoodAmount(good)));
 
+        for (Good good1: Good.values()) {
+            Button buyButton = buyButtonViews.get(good1);
+            Button sellButton = sellButtonViews.get(good1);
+
+            if (viewModel.getPlayerCredits() < prices.get(good1)) {
+                buyButton.setBackgroundColor(0);
+            } else if (PlanetInventory.get(good1) == 0) {
+                buyButton.setBackgroundColor(0);
+            } else if (viewModel.getInventorySize() == viewModel.getCapacity()) {
+                buyButton.setBackgroundColor(0);
+            } else {
+                Log.d("button color", buyButton.getTag().toString());
+                buyButton.setBackgroundColor(getColor(R.color.colorPrimary));
+            }
+
+            if (viewModel.getGoodAmount(good1) == 0) {
+                sellButton.setBackgroundColor(0);
+            } else {
+                Log.d("button color", "Not here");
+                sellButton.setBackgroundColor(getColor(R.color.colorPrimary));
+            }
+        }
+
+        capacity.setText(String.format("%d/%d", viewModel.getInventorySize(), viewModel.getCapacity()));
+
+        File file = new File(this.getFilesDir(), "game.txt");
+        viewModel.saveGameLocally(file);
     }
-
-
 
     public View getRow() {
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
