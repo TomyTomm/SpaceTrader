@@ -1,6 +1,8 @@
 package com.amath.spacetrader.entity;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
     private GameDifficulty gameDifficulty;
     private Player player;
     private Universe universe;
@@ -42,6 +44,8 @@ public class Game {
         return player;
     }
 
+
+
     /**
      * Changes difficulty of the game
      *
@@ -57,5 +61,13 @@ public class Game {
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public Planet getCurrentPlanet() {
+        return universe.getCurrentPlanet();
+    }
+
+    public void setCurrentPlanet(Planet currentPlanet) {
+        universe.setCurrentPlanet(currentPlanet);
     }
 }
