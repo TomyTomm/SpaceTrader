@@ -8,6 +8,7 @@ import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.entity.Universe;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,8 +36,6 @@ public class Model {
 
     private Map<String, Object> interactorMap;
 
-    private Game game;
-
     /** Singleton Pattern Code
      *  this allows us to get access to this class
      *  anywhere, which will allow our View models to access
@@ -57,24 +56,36 @@ public class Model {
 
         myRepository = new Repository();
         interactorMap = new HashMap<>();
-        game = myRepository.getGame();
+        myRepository.getGame();
         registerInteractors();
         Log.d("initialization", String.valueOf(myRepository));
     }
 
     /** end Singleton Pattern */
 
-    public static void loadPlayer(Player player) {
-        instance.game.loadPlayer(player);
+    public static void setCurrentPlanet(Planet planet) {
+        instance.myRepository.getGame().setCurrentPlanet(planet);
+    }
+
+    public void loadPlayer(Player player) {
+        instance.myRepository.getGame().loadPlayer(player);
         instance.myRepository.update();
     }
 
+    public Player getPlayer() {
+        return instance.myRepository.getGame().getPlayer();
+    }
+
     public static void loadDifficulty(GameDifficulty difficulty) {
-        instance.game.changeDifficulty(difficulty);
+        instance.myRepository.getGame().changeDifficulty(difficulty);
+    }
+
+    public Game getGame() {
+        return instance.myRepository.getGame();
     }
 
     public static void loadUniverse(Universe universe) {
-        instance.game.loadUniverse(universe);
+        instance.myRepository.getGame().loadUniverse(universe);
     }
 
 
@@ -84,6 +95,8 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Game", new ConfigurationInteractor(myRepository));
         interactorMap.put("Universe", new UniverseInteractor(myRepository));
+        interactorMap.put("Market", new MarketInteractor(myRepository));
+        interactorMap.put("Main", new MainInteractor(myRepository));
     }
 
     public ConfigurationInteractor getConfigurationInteractor() {
@@ -93,6 +106,18 @@ public class Model {
     public UniverseInteractor getUniverseInteractor() {
         return (UniverseInteractor) interactorMap.get("Universe");
     }
+
+    public MarketInteractor getMarketInteractor() {
+        return (MarketInteractor) interactorMap.get("Market");
+    }
+
+    public MainInteractor getMainInteractor() {
+        return (MainInteractor) interactorMap.get("Main");
+    }
+
+//    public boolean save_locally(File file) {
+//        return myRepository.serialize(file);
+//    }
 
     private void initializeAvailablePlanetNames() {
         String[] names = {
@@ -224,6 +249,8 @@ public class Model {
         }
         java.util.Collections.shuffle(namesAsList);
         Planet.setAvailablePlanetNames(namesAsList);
+
+
     }
 
 

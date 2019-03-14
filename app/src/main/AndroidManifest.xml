@@ -20,6 +20,9 @@
             android:name=".view.ConfigurationActivity"
             android:parentActivityName=".view.MainActivity" />
         <activity
+            android:name=".view.MarketActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
             android:name=".view.UniverseActivity"
             android:parentActivityName=".view.MainActivity" />
     </application>
