@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="<<Planet Name Here>>"
+        android:text="Planet Name Here"
         android:textColor="@color/textColor"
         android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/currentPlanetHeaderSolar"
