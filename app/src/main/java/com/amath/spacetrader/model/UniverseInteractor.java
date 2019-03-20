@@ -21,7 +21,6 @@ public class UniverseInteractor extends Interactor {
         SolarSystem currentSolarSystem = model.getGame().getCurrentPlanet().getSolarSystem();
         Set<SolarSystem> solarSystems = model.getGame().getSolarSystems();
 
-
         for (SolarSystem solarSystem: solarSystems) {
             solarSystemsMap.put(solarSystem,
                                 calculateDistanceBetweenSolarSystems(currentSolarSystem, solarSystem));
