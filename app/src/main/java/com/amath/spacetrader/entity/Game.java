@@ -1,6 +1,7 @@
 package com.amath.spacetrader.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public class Game implements Serializable {
     private GameDifficulty gameDifficulty;
@@ -61,6 +62,10 @@ public class Game implements Serializable {
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public Set<SolarSystem> getSolarSystems() {
+        return universe.getSolarSystems();
     }
 
     public Planet getCurrentPlanet() {

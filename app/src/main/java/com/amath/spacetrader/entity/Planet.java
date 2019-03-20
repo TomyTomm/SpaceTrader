@@ -20,6 +20,7 @@ public class Planet extends SpaceBody implements Serializable {
     boolean marketAvailable;
     private double radius;
     private Event status;
+    private Coordinate location;
     private Map<Good, Integer> inventory = new HashMap<>();
 
 
