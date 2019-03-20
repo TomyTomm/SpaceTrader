@@ -6,10 +6,13 @@ public class Ship implements Serializable {
     private ShipType shipType;
     private int holdSize;
     private Coordinate location;    // Do we need to have a coordinate location for our ships? I don't think so
+    private double fuel;
+    private static final double STARTING_FUEL = 100000000;   //random number, should change
 
     public Ship(ShipType shipType) {
-        shipType = shipType;
+        this.shipType = shipType;
         holdSize = shipType.getCargoCapacity();
+        fuel = STARTING_FUEL;
     }
 
     public int getHoldSize() {
@@ -22,5 +25,13 @@ public class Ship implements Serializable {
 
     public Coordinate getLocation() {
         return location;
+    }
+
+    public double getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(double fuel) {
+        this.fuel = fuel;
     }
 }
