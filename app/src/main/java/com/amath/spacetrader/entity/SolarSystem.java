@@ -111,4 +111,7 @@ public class SolarSystem extends SpaceBody implements Serializable {
         return str.toString();
     }
 
+    public Sun getSun() {
+        return sun;
+    }
 }
