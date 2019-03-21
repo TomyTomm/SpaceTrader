@@ -17,7 +17,7 @@
         android:text="Planet Name"
         android:textColor="@color/textColor"
         android:textSize="30dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:text="Status:"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_planet" />
 
@@ -45,7 +45,7 @@
         android:text="Planet event"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toEndOf="@+id/status_header_planet"
@@ -60,7 +60,7 @@
         android:text="Tech Level:"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintEnd_toEndOf="@+id/status_header_planet"
         app:layout_constraintTop_toBottomOf="@+id/status_header_planet" />
 
@@ -73,7 +73,7 @@
         android:text="TechLevel"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintStart_toStartOf="@+id/status_planet"
         app:layout_constraintTop_toBottomOf="@+id/status_planet" />
 
@@ -86,7 +86,7 @@
         android:text="Resource Level:"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintEnd_toEndOf="@+id/techlevel_header_planet"
         app:layout_constraintTop_toBottomOf="@+id/techlevel_header_planet" />
 
@@ -99,7 +99,7 @@
         android:text="ResourceLevel"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="monospace"
+        android:typeface="@string/fontMain"
         app:layout_constraintStart_toStartOf="@+id/techlevel_planet"
         app:layout_constraintTop_toBottomOf="@+id/techlevel_planet" />
 
