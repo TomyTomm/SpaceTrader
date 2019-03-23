@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundColor">
+
+
+    <TextView
+        android:id="@+id/name_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Planet Name"
+        android:textColor="@color/textColor"
+        android:textSize="30dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/status_header_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50pt"
+        android:layout_marginTop="16dp"
+        android:text="Status:"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_planet" />
+
+    <TextView
+        android:id="@+id/status_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Planet event"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toEndOf="@+id/status_header_planet"
+        app:layout_constraintTop_toBottomOf="@+id/name_planet" />
+
+    <TextView
+        android:id="@+id/techlevel_header_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="0dp"
+        android:text="Tech Level:"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintEnd_toEndOf="@+id/status_header_planet"
+        app:layout_constraintTop_toBottomOf="@+id/status_header_planet" />
+
+    <TextView
+        android:id="@+id/techlevel_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginStart="0dp"
+        android:text="TechLevel"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintStart_toStartOf="@+id/status_planet"
+        app:layout_constraintTop_toBottomOf="@+id/status_planet" />
+
+    <TextView
+        android:id="@+id/resourcelevel_header_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
+        android:text="Resource Level:"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintEnd_toEndOf="@+id/techlevel_header_planet"
+        app:layout_constraintTop_toBottomOf="@+id/techlevel_header_planet" />
+
+    <TextView
+        android:id="@+id/resourcelevel_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="0dp"
+        android:text="ResourceLevel"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        android:typeface="@string/fontMain"
+        app:layout_constraintStart_toStartOf="@+id/techlevel_planet"
+        app:layout_constraintTop_toBottomOf="@+id/techlevel_planet" />
+
+
+    <Button
+        android:id="@+id/back_button_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onBackPressed"
+        android:text="Back"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fly_button_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onFlyPressed"
+        android:text="Fly"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

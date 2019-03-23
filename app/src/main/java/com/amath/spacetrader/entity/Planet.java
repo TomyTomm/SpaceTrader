@@ -20,8 +20,8 @@ public class Planet extends SpaceBody implements Serializable {
     boolean marketAvailable;
     private double radius;
     private Event status;
+    private Coordinate location;
     private Map<Good, Integer> inventory = new HashMap<>();
-
 
     private SolarSystem solarSystem;
 
@@ -185,6 +185,11 @@ public class Planet extends SpaceBody implements Serializable {
         else {
             throw new IllegalArgumentException("Cannot set the solar system of a planet if it already exists in one");
         }
+    }
+
+    public double getDistanceFromSun() {
+        return Math.sqrt(Math.pow(location.getX() - solarSystem.getSun().getLocation().getX(), 2)
+            + Math.pow(location.getY() - solarSystem.getSun().getLocation().getY(), 2));
     }
 
     public Event getStatus() {

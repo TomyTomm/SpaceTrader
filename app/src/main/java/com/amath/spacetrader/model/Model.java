@@ -95,6 +95,8 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Game", new ConfigurationInteractor(myRepository));
         interactorMap.put("Universe", new UniverseInteractor(myRepository));
+        interactorMap.put("SolarSystem", new SolarSystemInteractor(myRepository));
+        interactorMap.put("Planet", new PlanetInteractor(myRepository));
         interactorMap.put("Market", new MarketInteractor(myRepository));
         interactorMap.put("Main", new MainInteractor(myRepository));
         interactorMap.put("Flight", new FlightInteractor(myRepository));
@@ -110,6 +112,14 @@ public class Model {
 
     public MarketInteractor getMarketInteractor() {
         return (MarketInteractor) interactorMap.get("Market");
+    }
+
+    public SolarSystemInteractor getSolarSystemInteractor() {
+        return (SolarSystemInteractor) interactorMap.get("SolarSystem");
+    }
+
+    public PlanetInteractor getPlanetInteractor() {
+        return (PlanetInteractor) interactorMap.get("Planet");
     }
 
     public FlightInteractor getFlightInteractor() {
