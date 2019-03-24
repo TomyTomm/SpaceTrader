@@ -8,6 +8,7 @@
     android:background="@color/backgroundColor">
 
     <TableLayout
+        android:id="@+id/planets_table"
         android:layout_width="395dp"
         android:layout_height="617dp"
         android:layout_marginStart="8dp"

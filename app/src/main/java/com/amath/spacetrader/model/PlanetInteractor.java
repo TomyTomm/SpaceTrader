@@ -5,6 +5,7 @@ public class PlanetInteractor extends Interactor {
         super(repo);
     }
 
+    // Probably use this to generate planetary events
     //Access the Model singleton access with:
     //Model model = Model.getInstance();
 

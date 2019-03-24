@@ -85,4 +85,6 @@ public class Player implements Serializable {
     public int getGoodAmount(Good good) {
         return inventory.get(good);
     }
+
+    public Ship getShip() { return this.ship; }
 }

@@ -29,15 +29,15 @@
         android:typeface="monospace"/>
 
     <Button
-        android:id="@+id/view_system"
-        android:layout_width="45dp"
-        android:layout_height="35dp"
+        android:id="@+id/fly_button"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
         android:layout_gravity="center|center_horizontal"
         android:layout_marginStart="10dp"
         android:layout_weight="1"
         android:background="@color/colorPrimary"
         android:onClick="onInfoPressed"
-        android:text="View System"
+        android:text="Fly There"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent" />
 </TableRow>
