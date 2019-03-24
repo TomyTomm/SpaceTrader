@@ -6,6 +6,7 @@ import android.util.Log;
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Player;
+import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.entity.Universe;
 
 import java.io.File;
@@ -80,6 +81,8 @@ public class Repository {
     }
 
     public Universe getUniverse() { return this.game.getUniverse(); }
+
+    public SolarSystem getSolarSystem() {return this.game.getSolarSystem(); }
 
     public Player getPlayer() {
         return game.getPlayer();

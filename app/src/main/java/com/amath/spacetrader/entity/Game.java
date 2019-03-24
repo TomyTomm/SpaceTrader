@@ -6,15 +6,17 @@ public class Game implements Serializable {
     private GameDifficulty gameDifficulty;
     private Player player;
     private Universe universe;
+    private SolarSystem solarSystem;
 
     public Game() {
-        this(null, GameDifficulty.EASY, new Universe());
+        this(null, GameDifficulty.EASY, new Universe(), new SolarSystem());
     }
 
-    public Game(Player player, GameDifficulty gameDifficulty, Universe universe) {
+    public Game(Player player, GameDifficulty gameDifficulty, Universe universe, SolarSystem solarSystem) {
         this.player = player;
         this.gameDifficulty = gameDifficulty;
         this.universe = universe;
+        this.solarSystem = solarSystem;
     }
 
     /**
@@ -61,6 +63,10 @@ public class Game implements Serializable {
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public SolarSystem getSolarSystem() {
+        return solarSystem;
     }
 
     public Planet getCurrentPlanet() {

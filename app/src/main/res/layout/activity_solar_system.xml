@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <TextView
+        android:id="@+id/solarSystem_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solar System:"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/solarSystem_header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Solar System"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/solarSystem_header"
+        app:layout_constraintTop_toTopOf="@+id/solarSystem_header" />
+
+    <TextView
+        android:id="@+id/planet_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Planet Name:"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/planet_header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Planet"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/planet_header"
+        app:layout_constraintTop_toTopOf="@+id/planet_header" />
+
+    <TextView
+        android:id="@+id/dist_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distance:"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/planet_header_name"
+        app:layout_constraintTop_toTopOf="@+id/planet_header" />
+
+    <TextView
+        android:id="@+id/dist_header_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Dist"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/dist_header"
+        app:layout_constraintTop_toTopOf="@+id/planet_header" />
+
+    <TextView
+        android:id="@+id/fuel_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fuel Needed:"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/textColor"
+        app:layout_constraintStart_toEndOf="@+id/dist_header_value"
+        app:layout_constraintTop_toTopOf="@+id/planet_header" />
+
+    <TextView
+        android:id="@+id/fuel_header_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Fuel"
+        android:textColor="@color/textColor"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/fuel_header"
+        app:layout_constraintTop_toTopOf="@+id/planet_header" />
+
+    <TableLayout
+        android:id="@+id/planet_table"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dist_header">
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/universe_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onBackPressed"
+        android:text="Universe"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

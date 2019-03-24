@@ -107,6 +107,10 @@ public class Model {
         return (UniverseInteractor) interactorMap.get("Universe");
     }
 
+    public SolarSystemInteractor getSolarSystemInteractor() {
+        return (SolarSystemInteractor) interactorMap.get("Solar System");
+    }
+
     public MarketInteractor getMarketInteractor() {
         return (MarketInteractor) interactorMap.get("Market");
     }
