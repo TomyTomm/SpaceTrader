@@ -1,12 +1,16 @@
 package com.amath.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
@@ -15,9 +19,13 @@ import com.amath.spacetrader.entity.Universe;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 import com.amath.spacetrader.viewmodel.UniverseViewModel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UniverseActivity extends AppCompatActivity {
     //reference to the view model
     private UniverseViewModel viewModel;
+    private TableLayout systemsTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +34,29 @@ public class UniverseActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         printNames();
+        systemsTable = findViewById(R.id.system_table);
+
+        Map<SolarSystem, String> systemNames = new HashMap<>();
+        Map<SolarSystem, Double> systemDistances = new HashMap<>();
+        Map<SolarSystem, Button> infoButtonViews = new HashMap<>();
 
         Button marketButton = findViewById(R.id.market_button);
+
+        Universe universe = viewModel.getUniverse();
+        Log.d("universe", String.valueOf(universe.getSolarSystems().size()));
+        int i = 0;
+        for (SolarSystem system: universe.getSolarSystems()) {
+
+            View row = getRow();
+            systemsTable.addView(row);
+            TextView name = row.findViewById(R.id.good_name);
+            name.setId(name.getId() + i++);
+            name.setTag(system);
+            name.setText(system.getName());
+
+            //Set text for distance
+            TextView distance = row.findViewById(R.id.system_distance);
+        }
     }
 
     public void printNames() {
@@ -49,5 +78,22 @@ public class UniverseActivity extends AppCompatActivity {
     public void onMarketPressed(View view) {
         Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * Button handler for planet info
+     * @param view the planet that was pressed
+     */
+    public void onPlanetPressed(View view) {
+        SolarSystem system = (SolarSystem) view.getTag();
+
+        Intent intent = new Intent(this, PlanetActivity.class);
+        intent.putExtra("System", system);
+        startActivity(intent);
+    }
+    public View getRow() {
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.system_row, null);
+        return view;
     }
 }
