@@ -13,10 +13,10 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.amath.spacetrader.R;
-import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.entity.Universe;
-import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
+import com.amath.spacetrader.model.Model;
+import com.amath.spacetrader.model.UniverseInteractor;
 import com.amath.spacetrader.viewmodel.UniverseViewModel;
 
 import java.util.HashMap;
@@ -26,6 +26,7 @@ public class UniverseActivity extends AppCompatActivity {
     //reference to the view model
     private UniverseViewModel viewModel;
     private TableLayout systemsTable;
+    private UniverseInteractor interactor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +35,10 @@ public class UniverseActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
         printNames();
+        interactor = Model.getInstance().getUniverseInteractor();
         systemsTable = findViewById(R.id.system_table);
 
-        Map<SolarSystem, String> systemNames = new HashMap<>();
         Map<SolarSystem, Double> systemDistances = new HashMap<>();
-        Map<SolarSystem, Button> infoButtonViews = new HashMap<>();
 
         Button marketButton = findViewById(R.id.market_button);
 
@@ -49,14 +49,32 @@ public class UniverseActivity extends AppCompatActivity {
 
             View row = getRow();
             systemsTable.addView(row);
-            TextView name = row.findViewById(R.id.good_name);
+            TextView name = row.findViewById(R.id.system_name);
             name.setId(name.getId() + i++);
             name.setTag(system);
             name.setText(system.getName());
 
             //Set text for distance
             TextView distance = row.findViewById(R.id.system_distance);
+            distance.setId(distance.getId() + i++);
+            distance.setTag(system);
+            SolarSystem currentSolarSystem;
+            currentSolarSystem = Model.getInstance().getGame().getCurrentPlanet().getSolarSystem();
+            double distanceCalc = interactor.calculateDistanceBetweenSolarSystems(currentSolarSystem, system);
+            String text = String.format("%7f units", distanceCalc);
+            distance.setText(text);
+
+            Button button = findViewById(R.id.fly_button);
+            button.setTag(system);
         }
+    }
+
+    public void onFlyPress(View view) {
+        // Flight
+        SolarSystem system = (SolarSystem) view.getTag();
+        Intent intent = new Intent(this, SolarSystemActivity.class);
+        intent.putExtra("System", system);
+        startActivity(intent);
     }
 
     public void printNames() {
@@ -87,7 +105,7 @@ public class UniverseActivity extends AppCompatActivity {
     public void onPlanetPressed(View view) {
         SolarSystem system = (SolarSystem) view.getTag();
 
-        Intent intent = new Intent(this, PlanetActivity.class);
+        Intent intent = new Intent(this, SolarSystemActivity.class);
         intent.putExtra("System", system);
         startActivity(intent);
     }

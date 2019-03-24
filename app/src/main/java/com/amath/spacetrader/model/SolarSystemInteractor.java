@@ -32,7 +32,20 @@ public class SolarSystemInteractor extends Interactor {
         return planets;
     }
 
-    private double calculateDistanceBetweenPlanets(Planet currentPlanet, Planet otherPlanet) {
+    public Map<Planet, Double> loadPlanets(SolarSystem system) {
+        Model model = Model.getInstance();
+        Map<Planet, Double> planets = new HashMap<>();
+
+        Planet currentPlanet = model.getGame().getCurrentPlanet();
+        Set<SolarSystem> solarSystems = model.getGame().getSolarSystems();
+        for (Planet planet: system.getPlanets()) {
+            double distanceFromCurrentPlanet = calculateDistanceBetweenPlanets(currentPlanet, planet);
+            planets.put(planet, distanceFromCurrentPlanet);
+        }
+        return planets;
+    }
+
+    public double calculateDistanceBetweenPlanets(Planet currentPlanet, Planet otherPlanet) {
         Model model = Model.getInstance();
         SolarSystem currentSolarSystem = currentPlanet.getSolarSystem();
         SolarSystem otherSolarSystem = otherPlanet.getSolarSystem();
@@ -50,5 +63,10 @@ public class SolarSystemInteractor extends Interactor {
                     + Math.pow(otherPlanet.getLocation().getY() - currentPlanet.getLocation().getY(), 2));
         }
         return distance;
+    }
+
+    public String getCurrentSystemName() {
+        Model model = Model.getInstance();
+        return model.getGame().getCurrentPlanet().getSolarSystem().getName();
     }
 }
