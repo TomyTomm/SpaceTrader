@@ -5,19 +5,21 @@ import android.util.Log;
 import com.amath.spacetrader.model.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 
 public class Universe implements Serializable {
 
-    private Set<SolarSystem> solarSystems;
+    private List<SolarSystem> solarSystems;
 
     public static final Coordinate BOUNDS = new Coordinate(150, 100);
     private Planet currentPlanet;
 
     public Universe() {
-        solarSystems = new HashSet<>();
+        solarSystems = new ArrayList<>();
 
         // Create standard SolarSystem
         // Begin by making a set of planets
@@ -63,7 +65,7 @@ public class Universe implements Serializable {
         this.currentPlanet = currentPlanet;
     }
 
-    public Set<SolarSystem> getSolarSystems() {
+    public List<SolarSystem> getSolarSystems() {
         return solarSystems;
     }
 

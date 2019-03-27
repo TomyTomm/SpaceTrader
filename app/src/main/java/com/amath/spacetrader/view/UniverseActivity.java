@@ -13,68 +13,57 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.amath.spacetrader.R;
+import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.entity.Universe;
-import com.amath.spacetrader.model.Model;
-import com.amath.spacetrader.model.UniverseInteractor;
+import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 import com.amath.spacetrader.viewmodel.UniverseViewModel;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class UniverseActivity extends AppCompatActivity {
     //reference to the view model
     private UniverseViewModel viewModel;
-    private TableLayout systemsTable;
-    private UniverseInteractor interactor;
+
+    //tableView
+    private TableLayout solarSystemTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe);
-
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
+
+        this.solarSystemTable = findViewById(R.id.table);
         printNames();
-        interactor = Model.getInstance().getUniverseInteractor();
-        systemsTable = findViewById(R.id.system_table);
+        populateSolarSystemTable();
 
-        Map<SolarSystem, Double> systemDistances = new HashMap<>();
 
-        Button marketButton = findViewById(R.id.market_button);
 
-        Universe universe = viewModel.getUniverse();
-        Log.d("universe", String.valueOf(universe.getSolarSystems().size()));
-        int i = 0;
-        for (SolarSystem system: universe.getSolarSystems()) {
-
-            View row = getRow();
-            systemsTable.addView(row);
-            TextView name = row.findViewById(R.id.system_name);
-            name.setId(name.getId() + i++);
-            name.setTag(system);
-            name.setText(system.getName());
-
-            //Set text for distance
-            TextView distance = row.findViewById(R.id.system_distance);
-            distance.setId(distance.getId() + i++);
-            distance.setTag(system);
-            SolarSystem currentSolarSystem;
-            currentSolarSystem = Model.getInstance().getGame().getCurrentPlanet().getSolarSystem();
-            double distanceCalc = interactor.calculateDistanceBetweenSolarSystems(currentSolarSystem, system);
-            String text = String.format("%7f units", distanceCalc);
-            distance.setText(text);
-
-            Button button = findViewById(R.id.fly_button);
-            button.setTag(system);
-        }
     }
 
-    public void onFlyPress(View view) {
-        // Flight
-        SolarSystem system = (SolarSystem) view.getTag();
-        Intent intent = new Intent(this, SolarSystemActivity.class);
-        intent.putExtra("System", system);
-        startActivity(intent);
+    public void populateSolarSystemTable() {
+        Log.i("universeActivity", "Populating Solar System Table");
+        int rowIndex = 0;
+        for (SolarSystem system: viewModel.getUniverse().getSolarSystems()) {
+
+            // Get row
+            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row = inflater.inflate(R.layout.universe_row, null);
+
+            solarSystemTable.addView(row);
+
+            // Populate row subviews
+            TextView SystemName = row.findViewById(R.id.system_name);
+            SystemName.setId(SystemName.getId() + rowIndex);
+            SystemName.setText(system.getName());
+
+            Log.d("universeActivity", "Name:" + system.getName());
+
+            Button travelButton = row.findViewById(R.id.travel);
+            travelButton.setId(travelButton.getId() + rowIndex);
+            travelButton.setTag(system);
+
+            rowIndex++;
+        }
     }
 
     public void printNames() {
@@ -88,6 +77,19 @@ public class UniverseActivity extends AppCompatActivity {
         }
     }
 
+    // Handlers
+
+    /**
+     * Button handler for travel to solar system
+     * @param view button that was pressed
+     */
+    public void onTravelButtonPressed(View view) {
+        Log.i("universeActivity", "Travelling to solar system");
+        Intent intent = new Intent(this, SolarSystemActivity.class);
+        intent.putExtra("system", (SolarSystem)view.getTag());
+        startActivity(intent);
+    }
+
     /**
      * Button handler for the market button
      *
@@ -96,22 +98,5 @@ public class UniverseActivity extends AppCompatActivity {
     public void onMarketPressed(View view) {
         Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
-    }
-
-    /**
-     * Button handler for planet info
-     * @param view the planet that was pressed
-     */
-    public void onPlanetPressed(View view) {
-        SolarSystem system = (SolarSystem) view.getTag();
-
-        Intent intent = new Intent(this, SolarSystemActivity.class);
-        intent.putExtra("System", system);
-        startActivity(intent);
-    }
-    public View getRow() {
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.system_row, null);
-        return view;
     }
 }

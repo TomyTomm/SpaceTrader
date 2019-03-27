@@ -7,5 +7,10 @@ public enum Event {
     WAR,
     BOREDOM,
     PLAGUE,
-    LACKOFWORKERS
+    LACKOFWORKERS;
+
+    @Override
+    public String toString() {
+        return this.name().toLowerCase();
+    }
 }

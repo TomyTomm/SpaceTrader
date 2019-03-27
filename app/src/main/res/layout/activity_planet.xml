@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/name_planet"
+        android:id="@+id/planet_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -17,7 +17,7 @@
         android:text="Planet Name"
         android:textColor="@color/textColor"
         android:textSize="30dp"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,12 +31,12 @@
         android:text="Status:"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_planet" />
+        app:layout_constraintTop_toBottomOf="@+id/planet_name" />
 
     <TextView
-        android:id="@+id/status_planet"
+        android:id="@+id/planet_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -45,11 +45,11 @@
         android:text="Planet event"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toEndOf="@+id/status_header_planet"
-        app:layout_constraintTop_toBottomOf="@+id/name_planet" />
+        app:layout_constraintTop_toBottomOf="@+id/planet_name" />
 
     <TextView
         android:id="@+id/techlevel_header_planet"
@@ -60,12 +60,12 @@
         android:text="Tech Level:"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintEnd_toEndOf="@+id/status_header_planet"
         app:layout_constraintTop_toBottomOf="@+id/status_header_planet" />
 
     <TextView
-        android:id="@+id/techlevel_planet"
+        android:id="@+id/planet_techlevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -73,9 +73,9 @@
         android:text="TechLevel"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="@string/fontMain"
-        app:layout_constraintStart_toStartOf="@+id/status_planet"
-        app:layout_constraintTop_toBottomOf="@+id/status_planet" />
+
+        app:layout_constraintStart_toStartOf="@+id/planet_status"
+        app:layout_constraintTop_toBottomOf="@+id/planet_status" />
 
     <TextView
         android:id="@+id/resourcelevel_header_planet"
@@ -86,12 +86,12 @@
         android:text="Resource Level:"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintEnd_toEndOf="@+id/techlevel_header_planet"
         app:layout_constraintTop_toBottomOf="@+id/techlevel_header_planet" />
 
     <TextView
-        android:id="@+id/resourcelevel_planet"
+        android:id="@+id/planet_resourcelevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -99,9 +99,9 @@
         android:text="ResourceLevel"
         android:textColor="@color/textColor"
         android:textSize="15dp"
-        android:typeface="@string/fontMain"
-        app:layout_constraintStart_toStartOf="@+id/techlevel_planet"
-        app:layout_constraintTop_toBottomOf="@+id/techlevel_planet" />
+
+        app:layout_constraintStart_toStartOf="@+id/planet_techlevel"
+        app:layout_constraintTop_toBottomOf="@+id/planet_techlevel" />
 
 
     <Button

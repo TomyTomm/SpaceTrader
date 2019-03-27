@@ -25,6 +25,12 @@
         <activity
             android:name=".view.UniverseActivity"
             android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.SolarSystemActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.PlanetActivity"
+            android:parentActivityName=".view.MainActivity" />
     </application>
 
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />

@@ -1,12 +1,6 @@
 package com.amath.spacetrader.model;
 
-import com.amath.spacetrader.entity.Good;
-import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class SolarSystemInteractor extends Interactor {
 
@@ -16,57 +10,4 @@ public class SolarSystemInteractor extends Interactor {
 
     //Access the Model singleton access with:
     //Model model = Model.getInstance();
-
-    public Map<Planet, Double> loadPlanets() {
-        Model model = Model.getInstance();
-        Map<Planet, Double> planets = new HashMap<>();
-
-        Planet currentPlanet = model.getGame().getCurrentPlanet();
-        Set<SolarSystem> solarSystems = model.getGame().getSolarSystems();
-        for (SolarSystem currentSolarSystem: solarSystems) {
-            for (Planet planet: currentSolarSystem.getPlanets()) {
-                double distanceFromCurrentPlanet = calculateDistanceBetweenPlanets(currentPlanet, planet);
-                planets.put(planet, distanceFromCurrentPlanet);
-            }
-        }
-        return planets;
-    }
-
-    public Map<Planet, Double> loadPlanets(SolarSystem system) {
-        Model model = Model.getInstance();
-        Map<Planet, Double> planets = new HashMap<>();
-
-        Planet currentPlanet = model.getGame().getCurrentPlanet();
-        Set<SolarSystem> solarSystems = model.getGame().getSolarSystems();
-        for (Planet planet: system.getPlanets()) {
-            double distanceFromCurrentPlanet = calculateDistanceBetweenPlanets(currentPlanet, planet);
-            planets.put(planet, distanceFromCurrentPlanet);
-        }
-        return planets;
-    }
-
-    public double calculateDistanceBetweenPlanets(Planet currentPlanet, Planet otherPlanet) {
-        Model model = Model.getInstance();
-        SolarSystem currentSolarSystem = currentPlanet.getSolarSystem();
-        SolarSystem otherSolarSystem = otherPlanet.getSolarSystem();
-        double distance = 0;
-
-        //To calculate the distance between planets in separate solar systems, calculate the distance between
-        //the solar systems and then add that number to the distance from each sun in each solar system.
-        if (currentSolarSystem != otherSolarSystem) {
-            distance += model.getUniverseInteractor()
-                        .calculateDistanceBetweenSolarSystems(currentSolarSystem, otherSolarSystem);
-            distance += currentPlanet.getDistanceFromSun();
-            distance += otherPlanet.getDistanceFromSun();
-        } else {
-            distance += Math.sqrt(Math.pow(otherPlanet.getLocation().getX() - currentPlanet.getLocation().getX(), 2)
-                    + Math.pow(otherPlanet.getLocation().getY() - currentPlanet.getLocation().getY(), 2));
-        }
-        return distance;
-    }
-
-    public String getCurrentSystemName() {
-        Model model = Model.getInstance();
-        return model.getGame().getCurrentPlanet().getSolarSystem().getName();
-    }
 }

@@ -15,64 +15,73 @@ import android.widget.TextView;
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
-import com.amath.spacetrader.entity.Universe;
-import com.amath.spacetrader.model.Model;
-import com.amath.spacetrader.model.SolarSystemInteractor;
 import com.amath.spacetrader.viewmodel.SolarSystemViewModel;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.amath.spacetrader.viewmodel.UniverseViewModel;
 
 public class SolarSystemActivity extends AppCompatActivity {
 
-    private SolarSystemInteractor interactor;
-    private TableLayout planetTable;
     private SolarSystemViewModel viewModel;
-    private SolarSystem viewedSystem;
 
-    public void onCreate(Bundle savedInstanceState) {
+    private TableLayout planetTable;
+    private SolarSystem currentSystem;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extra = getIntent().getExtras();
+        setContentView(R.layout.activity_solarsystem);
         viewModel = ViewModelProviders.of(this).get(SolarSystemViewModel.class);
-        viewedSystem = (SolarSystem) extra.get("System");
-        planetTable = findViewById(R.id.planets_table);
-        interactor = Model.getInstance().getSolarSystemInteractor();
-        Map<Planet, Double> planets;
-        Button marketButton = findViewById(R.id.market_button);
-        planets = viewModel.loadPlanets(viewedSystem);
-        int i = 0;
-        for (Planet planet: viewedSystem.getPlanets()) {
-            View row = getRow();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            currentSystem = (SolarSystem)extras.get("system");
+            //The key argument here must match that used in the other activity
+        } else {
+            Log.e("solarSystemActivity", "Unable to fetch current solar system");
+        }
+
+        TextView currentSystemName = findViewById(R.id.currentSolarSystem);
+        currentSystemName.setText(currentSystem.getName());
+        planetTable = findViewById(R.id.table);
+
+        populatePlanetTable();
+    }
+
+    private void populatePlanetTable() {
+        int rowIndex = 0;
+        for (Planet planet: currentSystem.getPlanets()) {
+            // Get row
+            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row = inflater.inflate(R.layout.solarsystem_row, null);
+
             planetTable.addView(row);
-            TextView name = row.findViewById(R.id.planet_name);
-            name.setId(name.getId() + i++);
-            name.setTag(planet);
-            name.setText(planet.getName());
 
-            //Set text for distance
-            TextView distance = row.findViewById(R.id.planet_distance);
-            distance.setId(distance.getId() + i++);
-            distance.setTag(planet);
-            Planet currentPlanet;
-            currentPlanet = Model.getInstance().getGame().getCurrentPlanet();
-            String text = String.format("%7f units", planets.get(planet));
-            distance.setText(text);
+            // Populate row subviews
+            TextView SystemName = row.findViewById(R.id.planet_name);
+            SystemName.setId(SystemName.getId() + rowIndex);
+            SystemName.setText(planet.getName());
 
-            Button button = findViewById(R.id.fly_button);
-            button.setTag(planet);
+            Button travelButton = row.findViewById(R.id.travel);
+            travelButton.setId(travelButton.getId() + rowIndex);
+            travelButton.setTag(planet);
+
+            rowIndex++;
         }
     }
-    public void onPlanetPressed(View view) {
-        Planet planet = (Planet) view.getTag();
 
+    // handlers
+
+    /**
+     * Button handler for travel to planet
+     * @param view button that was pressed
+     */
+    public void onTravelButtonPressed(View view) {
+        Log.i("solarSystemActivity", "Travelling to planet");
         Intent intent = new Intent(this, PlanetActivity.class);
-        intent.putExtra("Planet", planet);
+        intent.putExtra("planet", (Planet)view.getTag());
         startActivity(intent);
     }
 
-    public View getRow() {
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.planet_row, null);
-        return view;
+    public void onBackPressed(View view) {
+        finish();
     }
 }

@@ -6,33 +6,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.UniverseActivity"
     android:background="@color/backgroundColor">
-
     <TableLayout
-        android:id="@+id/system_table"
+        android:id="@+id/table"
         android:layout_width="395dp"
-        android:layout_height="wrap_content"
+        android:layout_height="617dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/market_button">
+        app:layout_constraintTop_toBottomOf="@+id/currentSolarHeaderUniverse">
+
 
     </TableLayout>
 
-    <Button
-        android:id="@+id/market_button"
+    <TextView
+        android:id="@+id/currentSolarHeaderUniverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="onMarketPressed"
-        android:text="Market"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Current Solar System:"
+        android:textColor="@color/textColor"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currentSolarUniverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="System name here"
+        android:textColor="@color/textColor"
+
+        app:layout_constraintStart_toEndOf="@+id/currentSolarHeaderUniverse"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/capacitySolar"
+        android:layout_width="60dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="000/000"
+        android:textColor="@color/textColor"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <!--<Button-->
+        <!--android:id="@+id/market_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="172dp"-->
+        <!--android:layout_marginTop="300dp"-->
+        <!--android:onClick="onMarketPressed"-->
+        <!--android:text="Market"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
 </android.support.constraint.ConstraintLayout>
