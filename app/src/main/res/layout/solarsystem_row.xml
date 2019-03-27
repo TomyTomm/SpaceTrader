@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="start|center_vertical"
         android:text="Planet Name"
-        android:layout_marginEnd="240dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginStart="5dp"
         android:textAlignment="center"
         android:textColor="@color/textColor"
@@ -20,12 +20,16 @@
 
     <Button
         android:id="@+id/travel"
-        android:layout_width="55dp"
-        android:layout_height="35dp"
-        android:layout_gravity="start|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="50dp"
+        android:layout_gravity="center|center_horizontal"
         android:layout_marginEnd="5dp"
         android:background="@color/colorPrimary"
-        android:onClick="onTravelledPressed"
+        android:onClick="onTravelButtonPressed"
         android:text="Travel"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </TableRow>

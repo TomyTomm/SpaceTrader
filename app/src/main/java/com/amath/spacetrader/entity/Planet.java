@@ -2,6 +2,8 @@ package com.amath.spacetrader.entity;
 
 import android.util.Log;
 
+import org.w3c.dom.Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,10 +77,9 @@ public class Planet extends SpaceBody implements Serializable {
             }
         }
 
-
-        techLevel = TechLevel.values()[(int) Math.random() * 12];
-
-        resourceLevel = ResourceLevel.values()[(int) (Math.random() * 12)];
+        status = Event.values()[(int) (Math.random() * 7)];
+        techLevel = TechLevel.values()[(int) (Math.random() * 8)];
+        resourceLevel = ResourceLevel.values()[(int) (Math.random() * 13)];
         initializeInventory();
 
 

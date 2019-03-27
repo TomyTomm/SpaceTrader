@@ -3,7 +3,9 @@ package com.amath.spacetrader.entity;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -27,7 +29,7 @@ public class SolarSystem extends SpaceBody implements Serializable {
 
     }
 
-    public SolarSystem(String name, Set<SolarSystem> systems) {
+    public SolarSystem(String name, List<SolarSystem> systems) {
         this.name = name;
         this.planets = instantiatePlanets(systems);
         this.location = setLocation(systems);
@@ -35,7 +37,7 @@ public class SolarSystem extends SpaceBody implements Serializable {
     }
 
     public SolarSystem() {
-        this("", new HashSet<SolarSystem>());
+        this("", new ArrayList<SolarSystem>());
     }
 
     public String getName() {
@@ -64,7 +66,7 @@ public class SolarSystem extends SpaceBody implements Serializable {
 
     public double getRadius() { return this.radius; }
 
-    private Set<Planet> instantiatePlanets(Set<SolarSystem> systems) {
+    private Set<Planet> instantiatePlanets(List<SolarSystem> systems) {
         Set<Planet> planets = new HashSet<>();
         Log.d("initialization", String.format("making planets:\t%d", planets.size()));
         for (int i = 0; i < (int)(Math.random() * 5 + 5); i++) {
@@ -75,7 +77,7 @@ public class SolarSystem extends SpaceBody implements Serializable {
         //add some planets to the set
     }
 
-    private Coordinate setLocation(Set<SolarSystem> systems) {
+    private Coordinate setLocation(List<SolarSystem> systems) {
         radius = Math.random() * 8 + 2;
         Coordinate location = null;
         while (location == null) {

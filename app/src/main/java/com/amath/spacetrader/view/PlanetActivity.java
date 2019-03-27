@@ -4,22 +4,60 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.amath.spacetrader.R;
+import com.amath.spacetrader.entity.Planet;
+import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.viewmodel.PlanetViewModel;
 
 public class PlanetActivity extends AppCompatActivity {
 
     PlanetViewModel viewModel;
 
+    Planet currentPlanet;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_solarsystem);
+        setContentView(R.layout.activity_planet);
 
         viewModel = ViewModelProviders.of(this).get(PlanetViewModel.class);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            currentPlanet = (Planet) extras.get("planet");
+            //The key argument here must match that used in the other activity
+        } else {
+            Log.e("planetActivity", "Unable to fetch current planet");
+        }
+
+        // Populate activity
+        TextView name = findViewById(R.id.planet_name);
+        name.setText(currentPlanet.getName());
+
+
+        TextView status = findViewById(R.id.planet_status);
+
+        try {
+            status.setText(currentPlanet.getStatus().toString());
+
+        } catch (NullPointerException e) {
+            status.setText("None");
+        }
+
+        TextView techLevel = findViewById(R.id.planet_techlevel);
+        techLevel.setText(String.valueOf(currentPlanet.getTechLevel().getLevel()));
+
+        TextView resourceLevel = findViewById(R.id.planet_resourcelevel);
+        resourceLevel.setText(String.valueOf(currentPlanet.getResourceLevel().getLevel()));
+
+
+
     }
+
+    // Handlers
 
     /**
      * Button handler for the fly button
@@ -32,5 +70,10 @@ public class PlanetActivity extends AppCompatActivity {
     public void onFlyPressed(View view) {
 
 //        startActivity(intent);
+        Log.i("planetActivity", "Fly Button Pressed");
+    }
+
+    public void onBackPressed(View view) {
+        finish();
     }
 }
