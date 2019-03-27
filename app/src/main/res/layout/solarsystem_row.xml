@@ -3,6 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/row"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginTop="16dp">
+    android:layout_height="70dp"
+    android:layout_marginTop="16dp"
+    >
+
+    <TextView
+        android:id="@+id/planet_name"
+        android:layout_width="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:text="Planet Name"
+        android:layout_marginEnd="240dp"
+        android:layout_marginStart="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
+        />
+
+    <Button
+        android:id="@+id/travel"
+        android:layout_width="55dp"
+        android:layout_height="35dp"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginEnd="5dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onTravelledPressed"
+        android:text="Travel"
+        android:textColor="@color/colorPrimaryDark" />
 </TableRow>
