@@ -30,7 +30,7 @@
         android:layout_marginTop="8dp"
         android:text="Current Planet:"
         android:textColor="@color/textColor"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +42,7 @@
         android:layout_marginTop="8dp"
         android:text="Planet Name Here"
         android:textColor="@color/textColor"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintStart_toEndOf="@+id/currentPlanetHeaderSolar"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +54,7 @@
         android:layout_marginEnd="8dp"
         android:text="000/000"
         android:textColor="@color/textColor"
-        android:typeface="@string/fontMain"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
