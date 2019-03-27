@@ -1,6 +1,7 @@
 package com.amath.spacetrader.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class Game implements Serializable {
@@ -64,7 +65,7 @@ public class Game implements Serializable {
         return universe;
     }
 
-    public Set<SolarSystem> getSolarSystems() {
+    public List<SolarSystem> getSolarSystems() {
         return universe.getSolarSystems();
     }
 

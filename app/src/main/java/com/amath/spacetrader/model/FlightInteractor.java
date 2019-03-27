@@ -12,8 +12,9 @@ public class FlightInteractor extends Interactor {
 
     protected FlightInteractor(Repository repo) {
         super(repo);
-        game = Model.getInstance().getGame();
-        playerShip = game.getPlayer().getShip();
+        // You can't access the model instance from the constructor of a flight interactor.
+//        game = Model.getInstance().getGame();
+//        playerShip = game.getPlayer().getShip();
     }
 
     public void fly(Planet planet) {

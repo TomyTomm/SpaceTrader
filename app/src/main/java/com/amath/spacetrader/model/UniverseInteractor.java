@@ -5,6 +5,7 @@ import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.entity.Universe;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class UniverseInteractor extends Interactor {
         Model model = Model.getInstance();
         Map<SolarSystem, Double> solarSystemsMap = new HashMap<>();
         SolarSystem currentSolarSystem = model.getGame().getCurrentPlanet().getSolarSystem();
-        Set<SolarSystem> solarSystems = model.getGame().getSolarSystems();
+        List<SolarSystem> solarSystems = model.getGame().getSolarSystems();
 
         for (SolarSystem solarSystem: solarSystems) {
             solarSystemsMap.put(solarSystem,

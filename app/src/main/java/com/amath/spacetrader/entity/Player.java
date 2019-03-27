@@ -25,7 +25,7 @@ public class Player implements Serializable {
 
     private Map<Good, Integer> inventory = new HashMap<>();
     private int inventorySize = 0;
-//    private int inventoryCapacitzy = 0;
+//    private int inventoryCapacity = 0;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
         this.name = name;

@@ -48,10 +48,10 @@ public class PlanetActivity extends AppCompatActivity {
         }
 
         TextView techLevel = findViewById(R.id.planet_techlevel);
-        techLevel.setText(String.valueOf(currentPlanet.getTechLevel().getLevel()));
+        techLevel.setText(String.format("%d (%s)", currentPlanet.getTechLevel().getLevel(), currentPlanet.getTechLevel().toString()));
 
         TextView resourceLevel = findViewById(R.id.planet_resourcelevel);
-        resourceLevel.setText(String.valueOf(currentPlanet.getResourceLevel().getLevel()));
+        resourceLevel.setText(String.format("%d (%s)", currentPlanet.getResourceLevel().getLevel(), currentPlanet.getResourceLevel().toString()));
 
 
 
