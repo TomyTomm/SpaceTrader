@@ -113,7 +113,7 @@ public class SolarSystemActivity extends AppCompatActivity {
         private Planet planet;
         private Double distance;
 
-        public PlanetAndDistance(Planet planet, Double distance) {
+        private PlanetAndDistance(Planet planet, Double distance) {
             this.planet = planet;
             this.distance = distance;
         }

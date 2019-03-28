@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
@@ -21,6 +22,7 @@ public class PlanetActivity extends AppCompatActivity {
     PlanetViewModel viewModel;
 
     Planet currentPlanet;
+    Double distance;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class PlanetActivity extends AppCompatActivity {
         String viewData;
         if (extras != null) {
             currentPlanet = (Planet) extras.get("planet");
-            Double distance = (Double) extras.get("distance");
+            distance = (Double) extras.get("distance");
             Log.e("planetActivity", "Bundle delivered! " + currentPlanet.getName());
             Log.e("planetActivity", "Bundle delivered! distance: " + distance);
             viewData = String.format("%.2f ly", distance);
@@ -80,9 +82,16 @@ public class PlanetActivity extends AppCompatActivity {
     public void onFlyPressed(View view) {
 //        startActivity(intent);
         Log.i("planetActivity", "Fly Button Pressed");
-        Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_OK, returnIntent);
-        finish();
+
+        try {
+            viewModel.fly(currentPlanet, distance);
+            Intent returnIntent = new Intent();
+            setResult(Activity.RESULT_OK, returnIntent);
+            finish();
+        } catch (PlanetViewModel.IllegalFlyException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void onBackPressed(View view) {

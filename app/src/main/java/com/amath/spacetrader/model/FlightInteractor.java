@@ -2,6 +2,7 @@ package com.amath.spacetrader.model;
 
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.Planet;
+import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.entity.Ship;
 import com.amath.spacetrader.entity.Universe;
 
@@ -9,6 +10,7 @@ public class FlightInteractor extends Interactor {
 
     private Game game;
     private Ship playerShip;
+    private Player player;
 
     protected FlightInteractor(Repository repo) {
         super(repo);
@@ -17,7 +19,19 @@ public class FlightInteractor extends Interactor {
 //        playerShip = game.getPlayer().getShip();
     }
 
-    public void fly(Planet planet) {
+    public double getRemainingFuel() {
+        Model model = Model.getInstance();
+        return model.getPlayer().getShip().getFuel();
+    }
+
+    public void flyTo(Planet planet, double distance) {
+        Model model = Model.getInstance();
+        game = model.getGame();
+        player = game.getPlayer();
+        playerShip = player.getShip();
+
+        playerShip.setFuel(playerShip.getFuel() - distance);
+        game.setCurrentPlanet(planet);
     }
 
 }
