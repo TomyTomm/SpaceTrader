@@ -21,21 +21,27 @@ public class PlanetActivity extends AppCompatActivity {
 
     Planet currentPlanet;
 
-    SolarSystemInteractor interactor;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planet);
 
         viewModel = ViewModelProviders.of(this).get(PlanetViewModel.class);
-        Double distance;
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             currentPlanet = (Planet) extras.get("planet");
-            distance = (Double) extras.get("distance");
+            Log.e("planetActivity", currentPlanet.toString());
+            Double distance = (Double) extras.get("distance");
+            Log.e("planetActivity", distance.toString());
+            TextView distanceView = findViewById(R.id.distance2);
+            String viewData = String.format("%.2f ly", distance);
+            distanceView.setText(viewData);
             //The key argument here must match that used in the other activity
         } else {
+            Double distance = 0.0;
+            TextView distanceView = findViewById(R.id.distance2);
+            String viewData = String.format("%.2f ly", distance);
+            distanceView.setText(viewData);
             Log.e("planetActivity", "Unable to fetch current planet");
         }
 
@@ -58,11 +64,6 @@ public class PlanetActivity extends AppCompatActivity {
 
         TextView resourceLevel = findViewById(R.id.planet_resourcelevel);
         resourceLevel.setText(String.format("%d (%s)", currentPlanet.getResourceLevel().getLevel(), currentPlanet.getResourceLevel().toString()));
-
-        TextView distanceView = findViewById(R.id.distance2);
-        distanceView.setText(String.format("%.2f units", distance));
-
-
     }
 
     // Handlers
@@ -76,7 +77,6 @@ public class PlanetActivity extends AppCompatActivity {
      * @param view the button that was pressed
      */
     public void onFlyPressed(View view) {
-
 //        startActivity(intent);
         Log.i("planetActivity", "Fly Button Pressed");
     }
