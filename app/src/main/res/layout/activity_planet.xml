@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/planet_name"
+        android:id="@+id/planet_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
         android:textSize="15dp"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/planet_name" />
+        app:layout_constraintTop_toBottomOf="@+id/planet_distance" />
 
     <TextView
         android:id="@+id/planet_status"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toEndOf="@+id/status_header_planet"
-        app:layout_constraintTop_toBottomOf="@+id/planet_name" />
+        app:layout_constraintTop_toBottomOf="@+id/planet_distance" />
 
     <TextView
         android:id="@+id/techlevel_header_planet"

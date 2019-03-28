@@ -10,20 +10,33 @@
     <TextView
         android:id="@+id/planet_name"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical"
-        android:text="Planet Name"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Planet Name"
         android:textAlignment="center"
         android:textColor="@color/textColor"
-        />
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/planet_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Planet Distance"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/travel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|center_horizontal"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="2dp"

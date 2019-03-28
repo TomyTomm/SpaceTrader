@@ -16,7 +16,8 @@ import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.viewmodel.SolarSystemViewModel;
-import com.amath.spacetrader.viewmodel.UniverseViewModel;
+
+import java.util.Map;
 
 public class SolarSystemActivity extends AppCompatActivity {
 
@@ -48,6 +49,7 @@ public class SolarSystemActivity extends AppCompatActivity {
 
     private void populatePlanetTable() {
         int rowIndex = 0;
+        Map<Planet, Double> planetDistances = viewModel.getPlanetDistances(currentSystem);
         for (Planet planet: currentSystem.getPlanets()) {
             // Get row
             LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,6 +61,11 @@ public class SolarSystemActivity extends AppCompatActivity {
             TextView SystemName = row.findViewById(R.id.planet_name);
             SystemName.setId(SystemName.getId() + rowIndex);
             SystemName.setText(planet.getName());
+
+            // Populate planet distances
+            TextView planetDistance = row.findViewById(R.id.planet_distance);
+            planetDistance.setId(planetDistance.getId() + rowIndex);
+            planetDistance.setText(String.format("%.2f ly", planetDistances.get(planet)));
 
             Button travelButton = row.findViewById(R.id.travel);
             travelButton.setId(travelButton.getId() + rowIndex);

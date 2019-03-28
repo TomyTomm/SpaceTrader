@@ -1,7 +1,6 @@
 package com.amath.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
-import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.viewmodel.PlanetViewModel;
 
 public class PlanetActivity extends AppCompatActivity {
@@ -34,7 +32,7 @@ public class PlanetActivity extends AppCompatActivity {
         }
 
         // Populate activity
-        TextView name = findViewById(R.id.planet_name);
+        TextView name = findViewById(R.id.planet_distance);
         name.setText(currentPlanet.getName());
 
 
