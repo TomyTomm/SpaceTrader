@@ -92,7 +92,7 @@ public class UniverseActivity extends AppCompatActivity {
     }
 
     public void onBackPressed(View view) {
-        onBackPressed(view);
+        onBackPressed();
     }
 
     /**
