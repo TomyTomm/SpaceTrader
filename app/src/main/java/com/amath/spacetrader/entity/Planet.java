@@ -196,4 +196,5 @@ public class Planet extends SpaceBody implements Serializable {
     public Event getStatus() {
         return status;
     }
+
 }

@@ -1,5 +1,7 @@
 package com.amath.spacetrader.model;
 
+import android.util.Log;
+
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
 
@@ -37,13 +39,13 @@ public class SolarSystemInteractor extends Interactor {
 
         //To calculate the distance between planets in separate solar systems, calculate the distance between
         //the solar systems and then add that number to the distance from each sun in each solar system.
-        if (currentSolarSystem != otherSolarSystem) {
+        if (!currentSolarSystem.equals(otherSolarSystem)) {
             distance += model.getUniverseInteractor()
                     .calculateDistanceBetweenSolarSystems(currentSolarSystem, otherSolarSystem);
             distance += currentPlanet.getDistanceFromSun();
             distance += otherPlanet.getDistanceFromSun();
         } else {
-            distance += Math.sqrt(Math.pow(otherPlanet.getLocation().getX() - currentPlanet.getLocation().getX(), 2)
+            distance = Math.sqrt(Math.pow(otherPlanet.getLocation().getX() - currentPlanet.getLocation().getX(), 2)
                     + Math.pow(otherPlanet.getLocation().getY() - currentPlanet.getLocation().getY(), 2));
         }
         return distance;

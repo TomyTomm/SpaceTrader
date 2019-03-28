@@ -116,4 +116,8 @@ public class SolarSystem extends SpaceBody implements Serializable {
     public Sun getSun() {
         return sun;
     }
+
+    public boolean equals(SolarSystem other) {
+        return this.getName().equals(other.getName());
+    }
 }
