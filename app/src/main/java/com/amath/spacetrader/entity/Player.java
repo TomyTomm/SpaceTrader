@@ -70,6 +70,10 @@ public class Player implements Serializable {
         inventorySize -= amount;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public int getCredits() {
         return credits;
     }

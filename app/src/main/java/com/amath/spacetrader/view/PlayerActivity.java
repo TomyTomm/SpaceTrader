@@ -25,6 +25,9 @@ public class PlayerActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
+        TextView playerName = findViewById(R.id.player_name);
+        playerName.setText(viewModel.getPlayerName());
+
         TextView currentPlanet = findViewById(R.id.current_planet);
         currentPlanet.setText(viewModel.getCurrentPlanetName());
 

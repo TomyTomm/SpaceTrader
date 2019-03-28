@@ -7,6 +7,11 @@ public class PlayerInteractor extends Interactor {
         super(repo);
     }
 
+    public String getPlayerName() {
+        Model model = Model.getInstance();
+        return model.getPlayer().getName();
+    }
+
     public String getCurrentPlanetName() {
         Model model = Model.getInstance();
         return model.getGame().getCurrentPlanet().getName();

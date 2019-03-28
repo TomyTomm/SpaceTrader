@@ -18,6 +18,10 @@ public class PlayerViewModel extends AndroidViewModel {
         interactor = Model.getInstance().getPlayerInteractor();
     }
 
+    public String getPlayerName() {
+        return interactor.getPlayerName();
+    }
+
     public String getCurrentPlanetName() {
         return interactor.getCurrentPlanetName();
     }
