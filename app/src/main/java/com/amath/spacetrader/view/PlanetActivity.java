@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
+import com.amath.spacetrader.model.PlanetInteractor;
+import com.amath.spacetrader.model.SolarSystemInteractor;
 import com.amath.spacetrader.viewmodel.PlanetViewModel;
 
 public class PlanetActivity extends AppCompatActivity {
@@ -19,15 +21,19 @@ public class PlanetActivity extends AppCompatActivity {
 
     Planet currentPlanet;
 
+    SolarSystemInteractor interactor;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planet);
 
         viewModel = ViewModelProviders.of(this).get(PlanetViewModel.class);
+        Double distance;
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             currentPlanet = (Planet) extras.get("planet");
+            distance = (Double) extras.get("distance");
             //The key argument here must match that used in the other activity
         } else {
             Log.e("planetActivity", "Unable to fetch current planet");
@@ -53,6 +59,8 @@ public class PlanetActivity extends AppCompatActivity {
         TextView resourceLevel = findViewById(R.id.planet_resourcelevel);
         resourceLevel.setText(String.format("%d (%s)", currentPlanet.getResourceLevel().getLevel(), currentPlanet.getResourceLevel().toString()));
 
+        TextView distanceView = findViewById(R.id.distance2);
+        distanceView.setText(String.format("%.2f units", distance));
 
 
     }
