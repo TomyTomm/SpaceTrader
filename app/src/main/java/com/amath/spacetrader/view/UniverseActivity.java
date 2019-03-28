@@ -90,6 +90,10 @@ public class UniverseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onBackPressed(View view) {
+        onBackPressed(view);
+    }
+
     /**
      * Button handler for the market button
      *

@@ -94,6 +94,8 @@
         android:layout_marginBottom="8dp"
         android:onClick="onMarketPressed"
         android:text="Market"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -105,6 +107,8 @@
         android:layout_marginBottom="8dp"
         android:onClick="onViewUniverse"
         android:text="View Universe"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
