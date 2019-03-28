@@ -1,5 +1,6 @@
 package com.amath.spacetrader.view;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -80,6 +81,18 @@ public class UniverseActivity extends AppCompatActivity {
 
     // Handlers
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+            }
+        }
+    }//onActivityResult
+
     /**
      * Button handler for travel to solar system
      * @param view button that was pressed
@@ -88,11 +101,13 @@ public class UniverseActivity extends AppCompatActivity {
         Log.i("universeActivity", "Travelling to solar system");
         Intent intent = new Intent(this, SolarSystemActivity.class);
         intent.putExtra("system", (SolarSystem)view.getTag());
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void onBackPressed(View view) {
-        onBackPressed(view);
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
     }
 
     /**

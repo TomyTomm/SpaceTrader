@@ -1,5 +1,6 @@
 package com.amath.spacetrader.view;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,9 +80,14 @@ public class PlanetActivity extends AppCompatActivity {
     public void onFlyPressed(View view) {
 //        startActivity(intent);
         Log.i("planetActivity", "Fly Button Pressed");
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
     }
 
     public void onBackPressed(View view) {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
         finish();
     }
 }

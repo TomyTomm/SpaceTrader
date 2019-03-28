@@ -1,5 +1,6 @@
 package com.amath.spacetrader.view;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,15 @@ public class PlayerActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
+        setInformationViews();
+    }
+
+    /**
+     * Sets TextViews containing player name, current planet,
+     * current solar system, and fuel remaining to current values
+     * as set by game.
+     */
+    public void setInformationViews() {
         TextView playerName = findViewById(R.id.player_name);
         playerName.setText(viewModel.getPlayerName());
 
@@ -38,6 +48,16 @@ public class PlayerActivity extends AppCompatActivity {
         fuelRemaining.setText(String.valueOf(viewModel.getFuelRemaining()));
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                setInformationViews();
+            }
+        }
+    }//onActivityResult
+
     public void onMarketPressed(View view) {
         Log.i("playerActivity", "Going to market");
         Intent intent = new Intent(this, MarketActivity.class);
@@ -47,6 +67,6 @@ public class PlayerActivity extends AppCompatActivity {
     public void onViewUniverse(View view) {
         Log.i("playerActivity", "Going to view the universe");
         Intent intent = new Intent(this, UniverseActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 }

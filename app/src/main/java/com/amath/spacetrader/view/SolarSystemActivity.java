@@ -1,5 +1,6 @@
 package com.amath.spacetrader.view;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -77,6 +78,18 @@ public class SolarSystemActivity extends AppCompatActivity {
 
     // handlers
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+            }
+        }
+    }//onActivityResult
+
     /**
      * Button handler to view a planet
      * @param view button that was pressed
@@ -87,16 +100,19 @@ public class SolarSystemActivity extends AppCompatActivity {
         PlanetAndDistance planetAndDistance = (PlanetAndDistance) view.getTag();
         intent.putExtra("planet", planetAndDistance.planet);
         intent.putExtra("distance", planetAndDistance.distance);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void onBackPressed(View view) {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
         finish();
     }
 
     private class PlanetAndDistance {
         private Planet planet;
         private Double distance;
+
         public PlanetAndDistance(Planet planet, Double distance) {
             this.planet = planet;
             this.distance = distance;
