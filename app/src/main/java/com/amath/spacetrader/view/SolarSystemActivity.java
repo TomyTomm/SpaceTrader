@@ -71,10 +71,10 @@ public class SolarSystemActivity extends AppCompatActivity {
     // handlers
 
     /**
-     * Button handler for travel to planet
+     * Button handler to view a planet
      * @param view button that was pressed
      */
-    public void onTravelButtonPressed(View view) {
+    public void onViewButtonPressed(View view) {
         Log.i("solarSystemActivity", "Travelling to planet");
         Intent intent = new Intent(this, PlanetActivity.class);
         intent.putExtra("planet", (Planet)view.getTag());
