@@ -1,6 +1,7 @@
 package com.amath.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Planet;
+import com.amath.spacetrader.entity.SolarSystem;
+import com.amath.spacetrader.model.PlanetInteractor;
+import com.amath.spacetrader.model.SolarSystemInteractor;
 import com.amath.spacetrader.viewmodel.PlanetViewModel;
 
 public class PlanetActivity extends AppCompatActivity {
@@ -24,17 +28,23 @@ public class PlanetActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(PlanetViewModel.class);
 
         Bundle extras = getIntent().getExtras();
+        String viewData;
         if (extras != null) {
             currentPlanet = (Planet) extras.get("planet");
+            Double distance = (Double) extras.get("distance");
+            Log.e("planetActivity", "Bundle delivered! " + currentPlanet.getName());
+            Log.e("planetActivity", "Bundle delivered! distance: " + distance);
+            viewData = String.format("%.2f ly", distance);
             //The key argument here must match that used in the other activity
         } else {
+            Double distance = 0.0;
+            viewData = String.format("%.2f ly", distance);
             Log.e("planetActivity", "Unable to fetch current planet");
         }
 
         // Populate activity
-        TextView name = findViewById(R.id.planet_distance);
+        TextView name = findViewById(R.id.planet_name);
         name.setText(currentPlanet.getName());
-
 
         TextView status = findViewById(R.id.planet_status);
 
@@ -51,7 +61,8 @@ public class PlanetActivity extends AppCompatActivity {
         TextView resourceLevel = findViewById(R.id.planet_resourcelevel);
         resourceLevel.setText(String.format("%d (%s)", currentPlanet.getResourceLevel().getLevel(), currentPlanet.getResourceLevel().toString()));
 
-
+        TextView distanceView = findViewById(R.id.distance2);
+        distanceView.setText(viewData);
 
     }
 
@@ -66,7 +77,6 @@ public class PlanetActivity extends AppCompatActivity {
      * @param view the button that was pressed
      */
     public void onFlyPressed(View view) {
-
 //        startActivity(intent);
         Log.i("planetActivity", "Fly Button Pressed");
     }

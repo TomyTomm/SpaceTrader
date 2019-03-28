@@ -34,7 +34,7 @@ public class SolarSystemActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            currentSystem = (SolarSystem)extras.get("system");
+            currentSystem = (SolarSystem) extras.get("system");
             //The key argument here must match that used in the other activity
         } else {
             Log.e("solarSystemActivity", "Unable to fetch current solar system");
