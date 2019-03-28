@@ -69,7 +69,7 @@ public class SolarSystemActivity extends AppCompatActivity {
 
             Button travelButton = row.findViewById(R.id.travel);
             travelButton.setId(travelButton.getId() + rowIndex);
-            travelButton.setTag(planet);
+            travelButton.setTag(new PlanetAndDistance(planet, planetDistances.get(planet)));
 
             rowIndex++;
         }
@@ -84,11 +84,22 @@ public class SolarSystemActivity extends AppCompatActivity {
     public void onViewButtonPressed(View view) {
         Log.i("solarSystemActivity", "Travelling to planet");
         Intent intent = new Intent(this, PlanetActivity.class);
-        intent.putExtra("planet", (Planet)view.getTag());
+        PlanetAndDistance planetAndDistance = (PlanetAndDistance) view.getTag();
+        intent.putExtra("planet", planetAndDistance.planet);
+        intent.putExtra("distance", planetAndDistance.distance);
         startActivity(intent);
     }
 
     public void onBackPressed(View view) {
         finish();
+    }
+
+    private class PlanetAndDistance {
+        private Planet planet;
+        private Double distance;
+        public PlanetAndDistance(Planet planet, Double distance) {
+            this.planet = planet;
+            this.distance = distance;
+        }
     }
 }
