@@ -1,0 +1,49 @@
+package com.amath.spacetrader.view;
+
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+import com.amath.spacetrader.R;
+import com.amath.spacetrader.entity.SolarSystem;
+import com.amath.spacetrader.viewmodel.PlayerViewModel;
+
+import org.w3c.dom.Text;
+
+public class PlayerActivity extends AppCompatActivity {
+
+    private PlayerViewModel viewModel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_player);
+
+        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+
+        TextView currentPlanet = findViewById(R.id.current_planet);
+        currentPlanet.setText(viewModel.getCurrentPlanetName());
+
+        TextView currentSolarSystem = findViewById(R.id.current_solarsystem);
+        currentSolarSystem.setText(viewModel.getCurrentSolarSystemName());
+
+        TextView fuelRemaining = findViewById(R.id.fuel_remaining);
+        fuelRemaining.setText(String.valueOf(viewModel.getFuelRemaining()));
+    }
+
+    public void onMarketPressed(View view) {
+        Log.i("playerActivity", "Going to market");
+        Intent intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
+    }
+
+    public void onViewUniverse(View view) {
+        Log.i("playerActivity", "Going to view the universe");
+        Intent intent = new Intent(this, UniverseActivity.class);
+        startActivity(intent);
+    }
+}

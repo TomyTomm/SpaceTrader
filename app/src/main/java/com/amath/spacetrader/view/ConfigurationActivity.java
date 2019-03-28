@@ -168,7 +168,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         viewModel.loadDifficulty(selectedGameDifficulty);
         String result = null;
         try {
-            result =viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
+            result = viewModel.loadPlayer(name, pilotPts, traderPts, engineerPts, fighterPts);
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -178,7 +178,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 Toast.makeText(this, "Saved game locally!", Toast.LENGTH_SHORT).show();
             }
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, UniverseActivity.class);
+            Intent intent = new Intent(this, PlayerActivity.class);
             startActivity(intent);
         }
     }

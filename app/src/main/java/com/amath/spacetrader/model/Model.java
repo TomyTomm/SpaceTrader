@@ -97,6 +97,7 @@ public class Model {
         interactorMap.put("Universe", new UniverseInteractor(myRepository));
         interactorMap.put("SolarSystem", new SolarSystemInteractor(myRepository));
         interactorMap.put("Planet", new PlanetInteractor(myRepository));
+        interactorMap.put("Player", new PlayerInteractor(myRepository));
         interactorMap.put("Market", new MarketInteractor(myRepository));
         interactorMap.put("Main", new MainInteractor(myRepository));
         interactorMap.put("Flight", new FlightInteractor(myRepository));
@@ -120,6 +121,10 @@ public class Model {
 
     public PlanetInteractor getPlanetInteractor() {
         return (PlanetInteractor) interactorMap.get("Planet");
+    }
+
+    public PlayerInteractor getPlayerInteractor() {
+        return (PlayerInteractor) interactorMap.get("Player");
     }
 
     public FlightInteractor getFlightInteractor() {

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedGame) {
             Log.d("savedgame", "REALLY? NO WAY I HONESTLY DON'T BELIEVE YOU");
             Log.d("savedgame", Model.getInstance().getPlayer().toString());
-            Intent intent = new Intent(this, UniverseActivity.class);
+            Intent intent = new Intent(this, PlayerActivity.class);
             startActivity(intent);
         } else {
             config();
