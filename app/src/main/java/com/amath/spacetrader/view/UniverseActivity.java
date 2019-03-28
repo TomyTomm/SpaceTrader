@@ -32,12 +32,13 @@ public class UniverseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_universe);
         viewModel = ViewModelProviders.of(this).get(UniverseViewModel.class);
 
+        // Set the current solar system
+        TextView currentSolarSystem = findViewById(R.id.current_solarsystem);
+        currentSolarSystem.setText(viewModel.getCurrentSolarSystemName());
+
         this.solarSystemTable = findViewById(R.id.table);
         printNames();
         populateSolarSystemTable();
-
-
-
     }
 
     public void populateSolarSystemTable() {

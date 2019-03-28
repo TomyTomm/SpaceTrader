@@ -16,6 +16,11 @@ public class UniverseInteractor extends Interactor {
 
     public Universe getUniverse() { return getRepository().getUniverse(); }
 
+    public String getCurrentSolarSystemName() {
+        Model model = Model.getInstance();
+        return model.getGame().getCurrentPlanet().getSolarSystem().getName();
+    }
+
     public Map<SolarSystem, Double> loadSolarSystems() {
         Model model = Model.getInstance();
         Map<SolarSystem, Double> solarSystemsMap = new HashMap<>();

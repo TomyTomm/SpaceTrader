@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentSolarUniverse"
+        app:layout_constraintTop_toBottomOf="@+id/current_solarsystem"
         app:layout_constraintVertical_bias="0.478">
 
         <TableLayout
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/currentSolarUniverse"
+        android:id="@+id/current_solarsystem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -76,7 +76,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="onBackPressed"
+        android:background="@color/colorPrimary"
         android:text="back"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

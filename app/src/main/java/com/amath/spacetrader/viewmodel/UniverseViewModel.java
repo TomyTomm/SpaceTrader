@@ -23,4 +23,8 @@ public class UniverseViewModel extends AndroidViewModel {
     public Universe getUniverse() {
         return interactor.getUniverse();
     }
+
+    public String getCurrentSolarSystemName() {
+        return interactor.getCurrentSolarSystemName();
+    }
 }
