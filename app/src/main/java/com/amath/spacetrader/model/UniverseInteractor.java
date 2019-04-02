@@ -36,7 +36,7 @@ public class UniverseInteractor extends Interactor {
 
     public double calculateDistanceBetweenSolarSystems(SolarSystem curr, SolarSystem other) {
         double distance;
-        final double RATIO = 100000;  //random ratio between the 2 different coordinate systems;
+        final double RATIO = 100;  //random ratio between the 2 different coordinate systems;
 
         distance = RATIO * Math.sqrt(Math.pow(other.getLocation().getX() - curr.getLocation().getX(), 2)
                 + Math.pow(other.getLocation().getY() - curr.getLocation().getY(), 2));
