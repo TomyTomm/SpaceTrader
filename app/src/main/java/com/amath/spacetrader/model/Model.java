@@ -101,6 +101,7 @@ public class Model {
         interactorMap.put("Market", new MarketInteractor(myRepository));
         interactorMap.put("Main", new MainInteractor(myRepository));
         interactorMap.put("Flight", new FlightInteractor(myRepository));
+        interactorMap.put("Event", new EventInteractor(myRepository));
     }
 
     public ConfigurationInteractor getConfigurationInteractor() {
@@ -133,6 +134,10 @@ public class Model {
 
     public MainInteractor getMainInteractor() {
         return (MainInteractor) interactorMap.get("Main");
+    }
+
+    public EventInteractor getEventInteractor() {
+        return (EventInteractor) interactorMap.get("Event");
     }
 
 //    public boolean save_locally(File file) {
