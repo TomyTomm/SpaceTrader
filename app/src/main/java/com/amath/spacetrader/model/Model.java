@@ -8,15 +8,10 @@ import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.entity.Universe;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Set;
 
 public class Model {
 /*
@@ -101,7 +96,7 @@ public class Model {
         interactorMap.put("Market", new MarketInteractor(myRepository));
         interactorMap.put("Main", new MainInteractor(myRepository));
         interactorMap.put("Flight", new FlightInteractor(myRepository));
-        interactorMap.put("Event", new EventInteractor(myRepository));
+        interactorMap.put("RandomEvent", new RandomEventInteractor(myRepository));
     }
 
     public ConfigurationInteractor getConfigurationInteractor() {
@@ -136,8 +131,8 @@ public class Model {
         return (MainInteractor) interactorMap.get("Main");
     }
 
-    public EventInteractor getEventInteractor() {
-        return (EventInteractor) interactorMap.get("Event");
+    public RandomEventInteractor getRandomEventInteractor() {
+        return (RandomEventInteractor) interactorMap.get("RandomEvent");
     }
 
 //    public boolean save_locally(File file) {
