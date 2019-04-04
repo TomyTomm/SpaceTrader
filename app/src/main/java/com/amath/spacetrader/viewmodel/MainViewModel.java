@@ -20,9 +20,7 @@ public class MainViewModel extends AndroidViewModel {
         interactor = Model.getInstance().getMainInteractor();
     }
 
-    public void loadLocalGame(File file) throws Exception {
-        ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-        Game game = (Game) in.readObject();
-        interactor.loadGame(game);
+    public boolean loadLocalGame(File file) {
+        return interactor.loadGame(file);
     }
 }

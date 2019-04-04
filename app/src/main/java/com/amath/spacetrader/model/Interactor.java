@@ -14,7 +14,7 @@ public abstract class Interactor {
     }
 
     public boolean saveLocalGame(File file) {
-        return myRepository.serialize(file);
+        return myRepository.saveGame(file);
     }
 
 }

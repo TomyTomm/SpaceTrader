@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amath.spacetrader.R;
+import com.amath.spacetrader.entity.Constants;
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Player;
@@ -173,7 +174,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         if (result != null) {
-            File file = new File(this.getFilesDir(), "game.txt");
+            File file = new File(this.getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE);
             if (viewModel.saveGameLocally(file)) {
                 Toast.makeText(this, "Saved game locally!", Toast.LENGTH_SHORT).show();
             }

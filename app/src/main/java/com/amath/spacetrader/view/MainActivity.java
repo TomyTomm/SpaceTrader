@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.amath.spacetrader.R;
+import com.amath.spacetrader.entity.Constants;
 import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Universe;
@@ -39,79 +40,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
-        boolean savedGame = true;
-        File file = new File(this.getFilesDir(), "game.txt");
-        try {
-            viewModel.loadLocalGame(file);
-//        } catch (FileNotFoundException e) {
-//            savedGame = false;
-//
-        } catch (Exception e) {
-            Log.d("filemissingerror", e.getMessage());
-            savedGame = false;
-            try {
-                mAuth = FirebaseAuth.getInstance();
-                FirebaseUser currentUser = mAuth.getCurrentUser();
+        File file = new File(this.getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE);
 
-
-                //Look to FireBase Authentication first, if no information, try
-                // pulling information from local repo
-                if (currentUser != null) { //There is currently a user signed in
-                    Log.d("user", currentUser.toString());
-                } else {
-                    Log.d("user", "No user information available from FireBase");
-                    savedGame = false;
-
-                }
-            } catch (Exception ef) {
-                savedGame = false;
-                Log.d("FIREBASE ERROR", String.valueOf(ef.getStackTrace()));
-
-            }
-        }
-
-        if (savedGame) {
-            Log.d("savedgame", "REALLY? NO WAY I HONESTLY DON'T BELIEVE YOU");
-            Log.d("savedgame", Model.getInstance().getPlayer().toString());
+        if (viewModel.loadLocalGame(file)) {
+            Log.i("mainActivity", "Game loaded successfully. ");
             Intent intent = new Intent(this, PlayerActivity.class);
             startActivity(intent);
         } else {
-            config();
+            Log.d("mainActivity", "Load unsuccessful. Starting new game.");
+            Intent intent = new Intent(this, ConfigurationActivity.class);
+            startActivity(intent);
         }
 
-//        Game testObject = new Game();
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("Player");
-//
-//
-////        testObject.changeDifficulty(GameDifficulty.DIFFICULT);
-//        myRef.setValue(testObject.getPlayer());
-//
-//        myRef = database.getReference("test");
-//
-//        myRef.setValue("YAY");
 
-
-
-        //Example code for how to set data value
-
-
-        //Example code for listening to a value. (Not completely used in this game)
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                Log.d("test", "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("test", "Failed to read value.", error.toException());
-//            }
-//        });
     }
 
     /**
@@ -121,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button that was pressed
      */
     public void onOkayPressed(View view) {
-        config();
-    }
-
-    private void config() {
-        Intent intent = new Intent(this, ConfigurationActivity.class);
-        startActivity(intent);
+        Log.i("mainActivity", "Ok was pressed");
     }
 }

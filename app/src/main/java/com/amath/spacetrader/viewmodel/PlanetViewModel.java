@@ -9,6 +9,8 @@ import com.amath.spacetrader.model.FlightInteractor;
 import com.amath.spacetrader.model.Model;
 import com.amath.spacetrader.model.PlanetInteractor;
 
+import java.io.File;
+
 public class PlanetViewModel extends AndroidViewModel {
 
     PlanetInteractor planetInteractor;
@@ -25,11 +27,12 @@ public class PlanetViewModel extends AndroidViewModel {
         return distance < flightInteractor.getRemainingFuel();
     }
 
-    public void fly(Planet planet, double distance) throws IllegalFlyException {
+    public void fly(Planet planet, double distance, File file) throws IllegalFlyException {
         if (!verifyFly(planet, distance)) {
             throw new IllegalFlyException("Not enough fuel to fly. ");
         }
-        flightInteractor.flyTo(planet, distance);
+        flightInteractor.flyTo(planet, distance, file);
+
     }
 
     private double getCurrentFuel() {

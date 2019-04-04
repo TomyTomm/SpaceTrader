@@ -19,21 +19,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class Model {
-/*
-    private Repository repo;
-
-    private static Model instance = new Model();
-
-    public static Model getInstance() { return instance; }
-
-    private Model() {
-        this.repo = new Repository();
-    }
-    */
 
     /** the data repository */
     private Repository myRepository;
-
     private Map<String, Object> interactorMap;
 
     /** Singleton Pattern Code
@@ -56,7 +44,6 @@ public class Model {
 
         myRepository = new Repository();
         interactorMap = new HashMap<>();
-        myRepository.getGame();
         registerInteractors();
         Log.d("initialization", String.valueOf(myRepository));
     }

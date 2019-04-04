@@ -11,11 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amath.spacetrader.R;
+import com.amath.spacetrader.entity.Constants;
 import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.model.PlanetInteractor;
 import com.amath.spacetrader.model.SolarSystemInteractor;
 import com.amath.spacetrader.viewmodel.PlanetViewModel;
+
+import java.io.File;
 
 public class PlanetActivity extends AppCompatActivity {
 
@@ -84,13 +87,16 @@ public class PlanetActivity extends AppCompatActivity {
         Log.i("planetActivity", "Fly Button Pressed");
 
         try {
-            viewModel.fly(currentPlanet, distance);
+            viewModel.fly(currentPlanet, distance, new File(getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE));
             Intent returnIntent = new Intent();
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
         } catch (PlanetViewModel.IllegalFlyException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
+
+
+
 
     }
 
