@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Constants;
 import com.amath.spacetrader.entity.Planet;
+import com.amath.spacetrader.entity.RandomEvent;
 import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.model.PlanetInteractor;
 import com.amath.spacetrader.model.SolarSystemInteractor;
@@ -88,6 +89,27 @@ public class PlanetActivity extends AppCompatActivity {
 
         try {
             viewModel.fly(currentPlanet, distance, new File(getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE));
+
+
+            int randomEventProb = (int) (Math.random() * 100);
+            Intent intent = new Intent(this, RandomEventActivity.class);
+            if (randomEventProb < 51) {
+                    //black hole has probability of 1%
+                if (randomEventProb < 1) {
+                    intent.putExtra("randomEvent", RandomEvent.BLACK_HOLE);
+                    //crew mutiny has probability of 15%
+                } else if (randomEventProb < 16) {
+                    intent.putExtra("randomEvent", RandomEvent.CREW_MUTINY);
+                    //ship malfunction has probability of 20%
+                } else if (randomEventProb < 36) {
+                    intent.putExtra("randomEvent", RandomEvent.SHIP_MALFUNCTION);
+                    //robbery has probability of 15%
+                } else {
+                    intent.putExtra("randomEvent", RandomEvent.ROBBERY);
+                }
+                startActivityForResult(intent, 1);
+            }
+
             Intent returnIntent = new Intent();
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
@@ -105,4 +127,16 @@ public class PlanetActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED, returnIntent);
         finish();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+            }
+        }
+    }//onActivityResult
 }
