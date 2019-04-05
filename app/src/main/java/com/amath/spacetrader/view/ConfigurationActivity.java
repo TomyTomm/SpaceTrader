@@ -41,18 +41,19 @@ public class ConfigurationActivity extends AppCompatActivity {
     private CompoundButton hardButton;
     private CompoundButton insaneButton;
     private GameDifficulty selectedGameDifficulty;
+    private TextView pointsRemaining;
 
     //data for player being configured
-    private Player player;
+//    private Player player;
 
     //data for game being configured
-    private Game game;
+//    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
-        TextView pointsRemaining;
+
 
         /*
          * Grab the dialog widgets so we can get info for later
@@ -66,9 +67,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         normalButton = findViewById(R.id.normal_button);
         hardButton = findViewById(R.id.hard_button);
         insaneButton = findViewById(R.id.insane_button);
-        Button okayButton = findViewById(R.id.okay_button);
-        Button cancelButton = findViewById(R.id.cancel_button);
         pointsRemaining = findViewById(R.id.points_remaining);
+
         /* Default value setters */
         selectedGameDifficulty = GameDifficulty.NORMAL;
         normalButton.setChecked(true);
@@ -131,6 +131,10 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     public void onOkayPressed(View view) {
         Log.d("Config", "Okay button pressed");
+        if (nameField == null) {
+            Toast.makeText(this, "Error with game. Not handled",
+                    Toast.LENGTH_SHORT).show();
+        }
         String name = nameField.getText().toString();
 
         int pilotPts;
@@ -164,14 +168,23 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         if (result != null) {
-            File file = new File(this.getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE);
-            if (viewModel.saveGameLocally(file)) {
-                Toast.makeText(this, "Saved game locally!", Toast.LENGTH_SHORT).show();
-            }
+            saveConfig();
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, PlayerActivity.class);
-            startActivity(intent);
         }
+    }
+
+    /**
+     * saves game locally
+     */
+    private void saveConfig() {
+        //File to save config to
+        File file = new File(this.getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE);
+        if (viewModel.saveGameLocally(file)) {
+            Toast.makeText(this, "Saved game locally!", Toast.LENGTH_SHORT).show();
+        }
+        //Intent sets the next activity to go
+        Intent intent = new Intent(this, PlayerActivity.class);
+        startActivity(intent);
     }
 
     /**
