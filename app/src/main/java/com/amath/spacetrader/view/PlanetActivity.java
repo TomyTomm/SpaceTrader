@@ -56,14 +56,11 @@ public class PlanetActivity extends AppCompatActivity {
         name.setText(currentPlanet.getName());
 
         TextView status = findViewById(R.id.planet_status);
-
-        try {
-            status.setText(currentPlanet.getStatus().toString());
-
-        } catch (NullPointerException e) {
-            status.setText(String.format(Locale.US, "None"));
+        if (currentPlanet.hasStatus()) {
+            status.setText(currentPlanet.getStatus().name());
+        } else {
+            status.setText(String.format(Locale.US, "none"));
         }
-
         TextView techLevel = findViewById(R.id.planet_techlevel);
         techLevel.setText(String.format(Locale.US, "%d (%s)",
                 currentPlanet.getTechLevel().getLevel(),

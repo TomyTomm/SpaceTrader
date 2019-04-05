@@ -148,8 +148,4 @@ public class MarketViewModel extends AndroidViewModel {
         return interactor.getCapacity();
     }
 
-    public Map<Good, Integer> getMarket() {
-        return market;
-    }
-
 }

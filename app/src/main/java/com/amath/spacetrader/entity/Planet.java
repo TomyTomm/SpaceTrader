@@ -216,4 +216,8 @@ public class Planet extends SpaceBody {
         return status;
     }
 
+    public boolean hasStatus() {
+        return status != null;
+    }
+
 }
