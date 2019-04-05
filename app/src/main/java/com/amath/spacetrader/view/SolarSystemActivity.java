@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.amath.spacetrader.entity.Planet;
 import com.amath.spacetrader.entity.SolarSystem;
 import com.amath.spacetrader.viewmodel.SolarSystemViewModel;
 
+import java.util.Locale;
 import java.util.Map;
 
 public class SolarSystemActivity extends AppCompatActivity {
@@ -53,8 +55,9 @@ public class SolarSystemActivity extends AppCompatActivity {
         Map<Planet, Double> planetDistances = viewModel.getPlanetDistances(currentSystem);
         for (Planet planet: currentSystem.getPlanets()) {
             // Get row
-            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = inflater.inflate(R.layout.solarsystem_row, null);
+            LayoutInflater inflater = (LayoutInflater)getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
+            View row = inflater.inflate(R.layout.solarsystem_row, (ViewGroup) null);
 
             planetTable.addView(row);
 
@@ -66,7 +69,8 @@ public class SolarSystemActivity extends AppCompatActivity {
             // Populate planet distances
             TextView planetDistance = row.findViewById(R.id.planet_distance);
             planetDistance.setId(planetDistance.getId() + rowIndex);
-            planetDistance.setText(String.format("%.2f ly", planetDistances.get(planet)));
+            planetDistance.setText(String.format(Locale.US, "%.2f ly",
+                    planetDistances.get(planet)));
 
             Button travelButton = row.findViewById(R.id.travel);
             travelButton.setId(travelButton.getId() + rowIndex);
@@ -109,9 +113,9 @@ public class SolarSystemActivity extends AppCompatActivity {
         finish();
     }
 
-    private class PlanetAndDistance {
-        private Planet planet;
-        private Double distance;
+    private final class PlanetAndDistance {
+        private final Planet planet;
+        private final Double distance;
 
         private PlanetAndDistance(Planet planet, Double distance) {
             this.planet = planet;

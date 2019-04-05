@@ -16,7 +16,8 @@ import java.io.File;
 
 public class ConfigurationViewModel extends AndroidViewModel {
 
-    private ConfigurationInteractor interactor;
+    private final ConfigurationInteractor interactor;
+    private final int MAX_NAME_LENGTH = 32;
 
     private class IllegalPlayerInformationException extends Exception {
         public IllegalPlayerInformationException(String message) {
@@ -29,18 +30,26 @@ public class ConfigurationViewModel extends AndroidViewModel {
         interactor = Model.getInstance().getConfigurationInteractor();
     }
 
-    public String loadPlayer(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) throws IllegalPlayerInformationException {
-        if (name.length() == 0 || name.length() > 32) {
-            throw new IllegalPlayerInformationException("Couldn't create character: name must be between 0 and 32 characters"); // 1 means name not valid
+    public String loadPlayer(String name, int pilotPts, int traderPts, int engineerPts,
+                             int fighterPts) throws IllegalPlayerInformationException {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalPlayerInformationException
+                    ("Couldn't create character: name must be between 0 and 32 characters");
+                    // 1 means name not valid
         } else if (pilotPts < 0 || pilotPts > Constants.TOTAL_SKILL_POINTS) {
-            throw new IllegalPlayerInformationException("Pilot points must be greater than 0 and less than 16");
+            throw new IllegalPlayerInformationException
+                    ("Pilot points must be greater than 0 and less than 16");
         } else if (traderPts < 0 || traderPts > Constants.TOTAL_SKILL_POINTS) {
-            throw new IllegalPlayerInformationException("Trader points must be greater than 0 and less than 16");
+            throw new IllegalPlayerInformationException
+                    ("Trader points must be greater than 0 and less than 16");
         } else if (engineerPts < 0 || engineerPts > Constants.TOTAL_SKILL_POINTS) {
-            throw new IllegalPlayerInformationException("Engineer points must be greater than 0 and less than 16");
+            throw new IllegalPlayerInformationException
+                    ("Engineer points must be greater than 0 and less than 16");
         } else if (fighterPts < 0 || fighterPts > Constants.TOTAL_SKILL_POINTS) {
-            throw new IllegalPlayerInformationException("Fighter points must be greater than 0 and less than 16");
-        } else if (pilotPts + traderPts + engineerPts + fighterPts != Constants.TOTAL_SKILL_POINTS) {
+            throw new IllegalPlayerInformationException
+                    ("Fighter points must be greater than 0 and less than 16");
+        } else if (pilotPts + traderPts + engineerPts + fighterPts
+                != Constants.TOTAL_SKILL_POINTS) {
             throw new IllegalPlayerInformationException("Points must total to 16");
         }
 //        return "";//interactor.getGame().toString();

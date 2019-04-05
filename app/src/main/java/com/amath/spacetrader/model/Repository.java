@@ -27,10 +27,6 @@ public class Repository {
 //    private Player player;
 //    private GameDifficulty difficulty;
 
-    public Repository() {
-
-    }
-
     public Game getGame() {
         return this.game;
     }
@@ -44,7 +40,7 @@ public class Repository {
      */
     public boolean saveGame(File file) {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(game);
             out.close();
             return true;

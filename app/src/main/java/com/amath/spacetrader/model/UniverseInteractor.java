@@ -29,7 +29,7 @@ public class UniverseInteractor extends Interactor {
 
         for (SolarSystem solarSystem: solarSystems) {
             solarSystemsMap.put(solarSystem,
-                                calculateDistanceBetweenSolarSystems(currentSolarSystem, solarSystem));
+                    calculateDistanceBetweenSolarSystems(currentSolarSystem, solarSystem));
         }
         return solarSystemsMap;
     }
@@ -38,7 +38,8 @@ public class UniverseInteractor extends Interactor {
         double distance;
         final double RATIO = 100;  //random ratio between the 2 different coordinate systems;
 
-        distance = RATIO * Math.sqrt(Math.pow(other.getLocation().getX() - curr.getLocation().getX(), 2)
+        distance = RATIO * Math.sqrt(Math.pow(other.getLocation().getX()
+                - curr.getLocation().getX(), 2)
                 + Math.pow(other.getLocation().getY() - curr.getLocation().getY(), 2));
         return distance;
     }

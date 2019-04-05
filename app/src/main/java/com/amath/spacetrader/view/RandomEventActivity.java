@@ -49,5 +49,6 @@ public class RandomEventActivity extends AppCompatActivity {
 
     protected void onBackPressed(View view) {
         onBackPressed();
+        viewModel.toString();
     }
 }

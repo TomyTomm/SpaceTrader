@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android
+    ="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:layout_marginTop="144dp"
         android:layout_marginEnd="8dp"
         android:onClick="onOkayPressed"
-        android:text="Start"
+        android:text="@string/start"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/textColor"
 

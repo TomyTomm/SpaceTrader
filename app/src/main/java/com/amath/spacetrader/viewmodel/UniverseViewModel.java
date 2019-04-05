@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UniverseViewModel extends AndroidViewModel {
 
-    private UniverseInteractor interactor;
+    private final UniverseInteractor interactor;
 
     public UniverseViewModel(@NonNull Application application) {
         super(application);

@@ -14,12 +14,13 @@ import com.amath.spacetrader.model.Model;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class MarketViewModel extends AndroidViewModel {
 
-    private MarketInteractor interactor;
-    private Map<Good, Integer> market;
+    private final MarketInteractor interactor;
+    private final Map<Good, Integer> market;
 
 
     /**
@@ -27,7 +28,7 @@ public class MarketViewModel extends AndroidViewModel {
      * as an example
      *
      */
-    public class IllegalTradeException extends Exception {
+    public final class IllegalTradeException extends Exception {
         private IllegalTradeException(String message) {
             super(message);
         }
@@ -84,16 +85,23 @@ public class MarketViewModel extends AndroidViewModel {
      * @param amount
      * @return A string error message, null if there is no error
      */
-    public boolean verifyBuy(Good good, int amount, int price, Map<Good, Integer> market) throws IllegalTradeException {
+    public boolean verifyBuy(Good good, int amount, int price, Map<Good, Integer> market)
+            throws IllegalTradeException {
         Player player = Model.getInstance().getPlayer();
         int credits = player.getCredits();
 
         if (amount > market.get(good)) {
-            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), planet does not have enough goods", amount, good.toString()));
+            throw new IllegalTradeException(String.format(Locale.US,
+                    "You cannot purchase %d %s(s), planet does not have enough goods",
+                    amount, good.toString()));
         } else if (amount + player.getInventorySize() > player.getInventoryCapacity()) {
-            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough capacity", amount, good.toString()));
+            throw new IllegalTradeException(String.format(Locale.US,
+                    "You cannot purchase %d %s(s), you do not have enough capacity",
+                    amount, good.toString()));
         } else if (amount * price > credits) {
-            throw new IllegalTradeException(String.format("You cannot purchase %d %s(s), you do not have enough credits", amount, good.toString()));
+            throw new IllegalTradeException(String.format(Locale.US,
+                    "You cannot purchase %d %s(s), you do not have enough credits",
+                    amount, good.toString()));
         }
         interactor.buyGood(good, amount, price, market);
         return true;
@@ -111,12 +119,15 @@ public class MarketViewModel extends AndroidViewModel {
      * @param amount
      * @return A string error message, null if there is no error
      */
-    public boolean verifySell(Good good, int amount, int price, Map<Good, Integer> market) throws IllegalTradeException {
+    public boolean verifySell(Good good, int amount, int price, Map<Good, Integer> market)
+            throws IllegalTradeException {
 
         int playerAmount = getGoodAmount(good);
 
         if (amount > playerAmount) {
-            throw new IllegalTradeException(String.format("You cannot sell %d %s(s), you do not have enough goods", amount, good.toString()));
+            throw new IllegalTradeException(String.format(Locale.US,
+                    "You cannot sell %d %s(s), you do not have enough goods",
+                    amount, good.toString()));
         }
         interactor.sellGood(good, amount, price, market);
         return true;
@@ -137,6 +148,8 @@ public class MarketViewModel extends AndroidViewModel {
         return interactor.getCapacity();
     }
 
-
+    public Map<Good, Integer> getMarket() {
+        return market;
+    }
 
 }

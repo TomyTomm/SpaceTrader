@@ -6,7 +6,7 @@ public enum RandomEvent {
     CREW_MUTINY("Your crew has started a riot!"),
     BLACK_HOLE("You've been sucked into a black hole!");
 
-    private String description;
+    private final String description;
 
     RandomEvent(String description) {
         this.description = description;

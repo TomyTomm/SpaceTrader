@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class RandomEventViewModel extends AndroidViewModel {
 
-    private RandomEventInteractor interactor;
+    private final RandomEventInteractor interactor;
 
     public RandomEventViewModel(@NonNull Application application) {
         super(application);

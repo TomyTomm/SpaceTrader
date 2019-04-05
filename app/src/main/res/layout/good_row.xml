@@ -13,8 +13,8 @@
         android:id="@+id/good_name"
         android:layout_width="80dp"
         android:layout_gravity="center|center_horizontal"
-        android:text="Good name"
-        android:layout_marginLeft="5dp"
+        android:text="@string/good_name"
+        android:layout_marginStart="5dp"
         android:textAlignment="center"
         android:textColor="@color/textColor"
          />
@@ -22,7 +22,7 @@
         android:id="@+id/amount"
         android:layout_width="35dp"
         android:layout_gravity="center|center_horizontal"
-        android:text="0000"
+        android:text="@string/four_zeros"
         android:textAlignment="center"
         android:textColor="@color/textColor"
          />
@@ -30,11 +30,11 @@
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|right"
-        android:text="$100000"
+        android:layout_gravity="center_vertical|end"
+        android:text="@string/one_thousand_dollars"
         android:textAlignment="center"
         android:textColor="@color/textColor"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
          />
 
     <Button
@@ -45,7 +45,7 @@
         android:layout_marginStart="10dp"
         android:background="@color/colorPrimary"
         android:onClick="onBuyPressed"
-        android:text="Buy"
+        android:text="@string/buy"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -53,11 +53,11 @@
         android:id="@+id/inventory"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|right"
-        android:text="0000"
+        android:layout_gravity="center_vertical|end"
+        android:text="@string/four_zeros"
         android:textAlignment="center"
         android:textColor="@color/textColor"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
          />
 
     <Button
@@ -69,7 +69,7 @@
         android:layout_marginEnd="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onSellPressed"
-        android:text="Sell"
+        android:text="@string/sell"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent" />
 </TableRow>

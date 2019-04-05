@@ -3,18 +3,17 @@ package com.amath.spacetrader.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Player implements Serializable {
-    private String name;
+    private final String name;
 
-    private int pilotPts;
-    private int traderPts;
-    private int engineerPts;
-    private int fighterPts;
-
-    private final int STARTING_CREDITS = 1000;
-    private int credits = STARTING_CREDITS;
+    private final int pilotPts;
+    private final int traderPts;
+    private final int engineerPts;
+    private final int fighterPts;
+    private int credits;
 
     // I don't know if the player needs a location, can't we just use the location of the planet
     // it's on?
@@ -23,11 +22,11 @@ public class Player implements Serializable {
 
     private Ship ship;
 
-    private Map<Good, Integer> inventory = new HashMap<>();
-    private int inventorySize = 0;
-//    private int inventoryCapacity = 0;
+    private final Map<Good, Integer> inventory = new HashMap<>();
+    private int inventorySize;
 
     public Player(String name, int pilotPts, int traderPts, int engineerPts, int fighterPts) {
+        final int STARTING_CREDITS = 1000;
         this.name = name;
         this.pilotPts = pilotPts;
         this.traderPts = traderPts;
@@ -37,19 +36,21 @@ public class Player implements Serializable {
             inventory.put(good, 0);
         }
         acquireShip(ShipType.GNAT);
+        this.credits = STARTING_CREDITS;
     }
 
     public void acquireShip(ShipType newShip) {
         if (inventorySize > newShip.getCargoCapacity()) {
-            throw new IllegalArgumentException("Cannot move to this ship, it has too small of an inventory");
+            throw new IllegalArgumentException
+                    ("Cannot move to this ship, it has too small of an inventory");
         }
         this.ship = new Ship(newShip);
     }
 
     public String toString() {
-        return String.format("Name: %s. Pilot points: %d. Trader points: %d. Engineer Points: %d." +
-                        " Fighter points: %d. Credits: %d", name,
-                pilotPts, traderPts, engineerPts, fighterPts, credits);
+        return String.format(Locale.US, "Name: %s. Pilot points: %d. Trader points: %d. " +
+                "Engineer Points: %d. Fighter points: %d. Credits: %d", name, pilotPts, traderPts,
+                engineerPts, fighterPts, credits);
     }
 
     public int getInventorySize() {

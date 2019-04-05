@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android
+    ="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,9 +14,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="Planet Name"
+        android:text="@string/planet_name"
         android:textColor="@color/textColor"
-        android:textSize="30dp"
+        android:textSize="30sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,29 +27,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50pt"
-        android:layout_marginTop="16dp"
-        android:text="Status:"
+        android:layout_marginTop="8dp"
+        android:text="@string/status"
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/planet_distance" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/planet_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Planet event"
+        android:text="@string/planet_event"
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toEndOf="@+id/status_header_planet"
-        app:layout_constraintTop_toBottomOf="@+id/planet_distance" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/techlevel_header_planet"
@@ -57,10 +57,10 @@
         android:layout_height="20dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="68dp"
-        android:text="Tech Level:"
+        android:text="@string/tech_level"
 
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_header_planet" />
 
@@ -69,9 +69,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="TechLevel"
+        android:text="@string/techlevel"
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
 
         app:layout_constraintStart_toStartOf="@+id/planet_status"
         app:layout_constraintTop_toBottomOf="@+id/planet_status" />
@@ -81,9 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:text="Resource Level:"
+        android:text="@string/resource_level"
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
 
         app:layout_constraintEnd_toEndOf="@+id/techlevel_header_planet"
         app:layout_constraintTop_toBottomOf="@+id/techlevel_header_planet" />
@@ -93,10 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:text="Distance:"
+        android:text="@string/distance"
 
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/techlevel_header_planet"
         app:layout_constraintTop_toBottomOf="@+id/resourcelevel_header_planet" />
 
@@ -106,9 +106,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="0dp"
-        android:text="ResourceLevel"
+        android:text="@string/resourcelevel"
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="15sp"
 
         app:layout_constraintStart_toStartOf="@+id/planet_techlevel"
         app:layout_constraintTop_toBottomOf="@+id/planet_techlevel" />
@@ -119,10 +119,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Distance"
+        android:text="@string/distance"
         android:textColor="@color/textColor"
 
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/planet_techlevel"
         app:layout_constraintTop_toBottomOf="@+id/planet_resourcelevel" />
 
@@ -134,7 +134,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onBackPressed"
-        android:text="Back"
+        android:text="@string/back"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -147,7 +147,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:onClick="onFlyPressed"
-        android:text="Fly"
+        android:text="@string/fly"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

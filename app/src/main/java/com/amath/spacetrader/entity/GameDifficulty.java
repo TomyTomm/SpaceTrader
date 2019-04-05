@@ -6,6 +6,4 @@ public enum GameDifficulty {
     DIFFICULT,
     IMPOSSIBLE;
 
-    GameDifficulty() {
-    }
 }

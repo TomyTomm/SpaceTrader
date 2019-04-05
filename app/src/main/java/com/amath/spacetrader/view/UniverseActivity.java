@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -48,8 +49,9 @@ public class UniverseActivity extends AppCompatActivity {
         for (SolarSystem system: viewModel.getUniverse().getSolarSystems()) {
 
             // Get row
-            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = inflater.inflate(R.layout.universe_row, null);
+            LayoutInflater inflater = (LayoutInflater)getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
+            View row = inflater.inflate(R.layout.universe_row, (ViewGroup) null);
 
             solarSystemTable.addView(row);
 

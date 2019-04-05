@@ -20,6 +20,7 @@ import com.amath.spacetrader.model.SolarSystemInteractor;
 import com.amath.spacetrader.viewmodel.PlanetViewModel;
 
 import java.io.File;
+import java.util.Locale;
 
 public class PlanetActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class PlanetActivity extends AppCompatActivity {
     Planet currentPlanet;
     Double distance;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planet);
@@ -41,11 +43,11 @@ public class PlanetActivity extends AppCompatActivity {
             distance = (Double) extras.get("distance");
             Log.e("planetActivity", "Bundle delivered! " + currentPlanet.getName());
             Log.e("planetActivity", "Bundle delivered! distance: " + distance);
-            viewData = String.format("%.2f ly", distance);
+            viewData = String.format(Locale.US, "%.2f ly", distance);
             //The key argument here must match that used in the other activity
         } else {
             Double distance = 0.0;
-            viewData = String.format("%.2f ly", distance);
+            viewData = String.format(Locale.US, "%.2f ly", distance);
             Log.e("planetActivity", "Unable to fetch current planet");
         }
 
@@ -59,14 +61,18 @@ public class PlanetActivity extends AppCompatActivity {
             status.setText(currentPlanet.getStatus().toString());
 
         } catch (NullPointerException e) {
-            status.setText("None");
+            status.setText(String.format(Locale.US, "None"));
         }
 
         TextView techLevel = findViewById(R.id.planet_techlevel);
-        techLevel.setText(String.format("%d (%s)", currentPlanet.getTechLevel().getLevel(), currentPlanet.getTechLevel().toString()));
+        techLevel.setText(String.format(Locale.US, "%d (%s)",
+                currentPlanet.getTechLevel().getLevel(),
+                currentPlanet.getTechLevel().toString()));
 
         TextView resourceLevel = findViewById(R.id.planet_resourcelevel);
-        resourceLevel.setText(String.format("%d (%s)", currentPlanet.getResourceLevel().getLevel(), currentPlanet.getResourceLevel().toString()));
+        resourceLevel.setText(String.format(Locale.US, "%d (%s)",
+                currentPlanet.getResourceLevel().getLevel(),
+                currentPlanet.getResourceLevel().toString()));
 
         TextView distanceView = findViewById(R.id.distance2);
         distanceView.setText(viewData);
@@ -88,20 +94,26 @@ public class PlanetActivity extends AppCompatActivity {
         Log.i("planetActivity", "Fly Button Pressed");
 
         try {
-            viewModel.fly(currentPlanet, distance, new File(getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE));
+            viewModel.fly(currentPlanet, distance, new File(getFilesDir(),
+                    Constants.LOCAL_GAME_SERIALIZATION_FILE));
 
 
             int randomEventProb = (int) (Math.random() * 100);
             Intent intent = new Intent(this, RandomEventActivity.class);
-            if (randomEventProb < 51) {
+            final int probBlackHole = 1;
+            final int probCrewMutiny = 15;
+            final int probShipMalfunction = 20;
+            final int probRobbery = 15;
+            int minProb = probBlackHole + probCrewMutiny + probShipMalfunction + probRobbery;
+            if (randomEventProb < minProb) {
                     //black hole has probability of 1%
-                if (randomEventProb < 1) {
+                if (randomEventProb < probBlackHole) {
                     intent.putExtra("randomEvent", RandomEvent.BLACK_HOLE);
                     //crew mutiny has probability of 15%
-                } else if (randomEventProb < 16) {
+                } else if (randomEventProb < probBlackHole + probCrewMutiny) {
                     intent.putExtra("randomEvent", RandomEvent.CREW_MUTINY);
                     //ship malfunction has probability of 20%
-                } else if (randomEventProb < 36) {
+                } else if (randomEventProb < probBlackHole + probCrewMutiny + probShipMalfunction) {
                     intent.putExtra("randomEvent", RandomEvent.SHIP_MALFUNCTION);
                     //robbery has probability of 15%
                 } else {

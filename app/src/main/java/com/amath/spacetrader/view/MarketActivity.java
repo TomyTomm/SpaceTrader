@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.amath.spacetrader.viewmodel.MarketViewModel;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class MarketActivity extends AppCompatActivity {
@@ -47,6 +49,8 @@ public class MarketActivity extends AppCompatActivity {
 
     TextView capacity;
 
+    final int MINIMUM_HEIGHT = 120;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +59,11 @@ public class MarketActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
 
         credits = findViewById(R.id.player_credits_amount);
-        credits.setText("$" + viewModel.getPlayerCredits());
+        credits.setText(String.format(Locale.US, "$%d", viewModel.getPlayerCredits()));
 
         capacity = findViewById(R.id.capacity);
-        capacity.setText(String.format("%d/%d", viewModel.getInventorySize(), viewModel.getCapacity()));
+        capacity.setText(String.format(Locale.US, "%d/%d", viewModel.getInventorySize(),
+                viewModel.getCapacity()));
 
         planetName = findViewById(R.id.market_header_planet);
         planetName.setText(viewModel.getPlanetName());
@@ -78,22 +83,24 @@ public class MarketActivity extends AppCompatActivity {
             table.addView(row);
             TextView name = row.findViewById(R.id.good_name);
 //            Log.d("testtesttest", tv.getText().toString());
-            name.setId(name.getId() + i++);
+            name.setId(name.getId() + i);
+            i++;
             name.setTag(good);
             name.setText(good.toString());
 
             //Set text for price
             TextView price = row.findViewById(R.id.price);
-            price.setText(String.format("$%d", prices.get(good)));
+            price.setText(String.format(Locale.US, "$%d", prices.get(good)));
 
             //Set text for amount
             TextView amount = row.findViewById(R.id.amount);
-            amount.setText(String.format("%d", PlanetInventory.get(good)));
+            amount.setText(String.format(Locale.US, "%d", PlanetInventory.get(good)));
             planetInventoryView.put(good, amount);
 
             // Set text for player inventory
             TextView playerInventory = row.findViewById(R.id.inventory);
-            playerInventory.setText(String.format("%d", viewModel.getGoodAmount(good)));
+            playerInventory.setText(String.format(Locale.US, "%d",
+                    viewModel.getGoodAmount(good)));
             playerInventoryView.put(good, playerInventory);
 
             //Set tags for buy and sell buttons
@@ -113,7 +120,8 @@ public class MarketActivity extends AppCompatActivity {
 
             buyButtonViews.put(good, buyButton);
             sellButtonViews.put(good, sellButton);
-            row.setMinimumHeight(120);
+            int minimumHeight = MINIMUM_HEIGHT;
+            row.setMinimumHeight(minimumHeight);
 
         }
     }
@@ -128,7 +136,9 @@ public class MarketActivity extends AppCompatActivity {
         Good good = (Good) view.getTag();
         try {
             if (viewModel.verifyBuy(good, 1, prices.get(good), PlanetInventory)) {
-                Toast.makeText(this, String.format("Successfully bought %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, String.format(Locale.US,
+                        "Successfully bought %d %s", 1, good.toString()),
+                        Toast.LENGTH_LONG).show();
                 update(good);
                 File file = new File(this.getFilesDir(), "game.txt");
                 viewModel.saveGameLocally(file);
@@ -152,7 +162,9 @@ public class MarketActivity extends AppCompatActivity {
         Good good = (Good) view.getTag();
         try {
             if (viewModel.verifySell(good, 1, prices.get(good), PlanetInventory)) {
-                Toast.makeText(this, String.format("Successfully sold %d %s", 1, good.toString()), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, String.format(Locale.US,
+                        "Successfully sold %d %s", 1, good.toString()),
+                        Toast.LENGTH_LONG).show();
                 update(good);
             }
         } catch (MarketViewModel.IllegalTradeException e) {
@@ -171,9 +183,11 @@ public class MarketActivity extends AppCompatActivity {
 
 
     private void update(Good good) {
-        credits.setText("$" + viewModel.getPlayerCredits());
-        planetInventoryView.get(good).setText(String.format("%d", PlanetInventory.get(good)));
-        playerInventoryView.get(good).setText(String.format("%d", viewModel.getGoodAmount(good)));
+        credits.setText(String.format(Locale.US, "$%d", viewModel.getPlayerCredits()));
+        planetInventoryView.get(good).setText(String.format(Locale.US, "%d",
+                PlanetInventory.get(good)));
+        playerInventoryView.get(good).setText(String.format(Locale.US, "%d",
+                viewModel.getGoodAmount(good)));
 
         for (Good good1: Good.values()) {
             Button buyButton = buyButtonViews.get(good1);
@@ -198,7 +212,8 @@ public class MarketActivity extends AppCompatActivity {
             }
         }
 
-        capacity.setText(String.format("%d/%d", viewModel.getInventorySize(), viewModel.getCapacity()));
+        capacity.setText(String.format(Locale.US, "%d/%d", viewModel.getInventorySize(),
+                viewModel.getCapacity()));
 
         File file = new File(this.getFilesDir(), "game.txt");
         viewModel.saveGameLocally(file);
@@ -206,7 +221,7 @@ public class MarketActivity extends AppCompatActivity {
 
     public View getRow() {
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.good_row, null);
+        View view = inflater.inflate(R.layout.good_row, (ViewGroup) null);
         return view;
     }
 
