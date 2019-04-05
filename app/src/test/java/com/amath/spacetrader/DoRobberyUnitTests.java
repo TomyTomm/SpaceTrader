@@ -28,7 +28,9 @@ public class DoRobberyUnitTests {
         player = new Player("playerName", 4, 4, 4, 4);
         model.getMyRepository().newGame(new Game());
         model.loadPlayer(player);
+        repo = model.getMyRepository();
         randomEventInteractor = new RandomEventInteractor(repo);
+
     }
 
     @Test
