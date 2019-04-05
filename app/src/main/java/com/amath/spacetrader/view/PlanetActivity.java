@@ -100,10 +100,10 @@ public class PlanetActivity extends AppCompatActivity {
 
             int randomEventProb = (int) (Math.random() * 100);
             Intent intent = new Intent(this, RandomEventActivity.class);
-            int probBlackHole = 1;
-            int probCrewMutiny = 15;
-            int probShipMalfunction = 20;
-            int probRobbery = 15;
+            final int probBlackHole = 1;
+            final int probCrewMutiny = 15;
+            final int probShipMalfunction = 20;
+            final int probRobbery = 15;
             int minProb = probBlackHole + probCrewMutiny + probShipMalfunction + probRobbery;
             if (randomEventProb < minProb) {
                     //black hole has probability of 1%

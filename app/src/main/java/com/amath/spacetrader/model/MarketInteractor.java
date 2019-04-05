@@ -33,6 +33,10 @@ public class MarketInteractor extends Interactor {
         return market;
     }
 
+    private final double TECH_LEVEL_MULTIPLIER  = 2.4;
+    private final double STATUS_MULTIPLIER = 0.6;
+    private final double HALF = 0.5;
+
     public Map<Good, Integer> loadPlanetInventory() {
         Model model = Model.getInstance();
         Map<Good, Integer> inventory = new HashMap<>();
@@ -45,16 +49,13 @@ public class MarketInteractor extends Interactor {
                 inventory.put(good, 0);
             } else {
                 if (good.getTtp() == currentPlanet.getTechLevel().ordinal()) {
-                    multiplier = 2.4;
-                    ttpMultiplier *= multiplier;
+                    ttpMultiplier *= TECH_LEVEL_MULTIPLIER;
                 }
                 if (good.getIe() == currentPlanet.getStatus()) {
-                    multiplier = 0.6;
-                    ttpMultiplier *= multiplier;
+                    ttpMultiplier *= STATUS_MULTIPLIER;
                 }
                 int resourceLevel = (currentPlanet.getResourceLevel().ordinal() + 1) * 10;
-                double half = 0.5;
-                inventory.put(good, (int)(resourceLevel * (Math.random()/3 + half)
+                inventory.put(good, (int)(resourceLevel * (Math.random()/3 + HALF)
                         *(ttpMultiplier)));
             }
         }

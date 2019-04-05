@@ -17,6 +17,7 @@ import java.io.File;
 public class ConfigurationViewModel extends AndroidViewModel {
 
     private final ConfigurationInteractor interactor;
+    private final int MAX_NAME_LENGTH = 32;
 
     private class IllegalPlayerInformationException extends Exception {
         public IllegalPlayerInformationException(String message) {
@@ -31,8 +32,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
 
     public String loadPlayer(String name, int pilotPts, int traderPts, int engineerPts,
                              int fighterPts) throws IllegalPlayerInformationException {
-        int maxNameLength = 32;
-        if (name.length() == 0 || name.length() > maxNameLength) {
+        if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalPlayerInformationException
                     ("Couldn't create character: name must be between 0 and 32 characters");
                     // 1 means name not valid

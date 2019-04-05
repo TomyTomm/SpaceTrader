@@ -28,6 +28,7 @@ public class Planet extends SpaceBody {
     private final Map<Good, Integer> inventory = new HashMap<>();
 
     private SolarSystem solarSystem;
+    private final double HALF = 0.5;
 
     private static LinkedList<String> AVAILABLE_PLANET_NAMES;
     private static final Collection<String> USED_PLANET_NAMES = new HashSet<>();
@@ -81,8 +82,8 @@ public class Planet extends SpaceBody {
             }
             if (!overlapping) this.location = temp;
             else if (radius > 1) {
-                double radiusRatio = 0.9;
-                radius *= radiusRatio;  //decrease size of radius to decrease future chance of overlapping.
+                radius *= HALF;  //decrease size of radius to decrease future chance of
+                                        // overlapping.
             }
         }
 

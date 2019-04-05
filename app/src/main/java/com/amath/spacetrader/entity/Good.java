@@ -30,6 +30,7 @@ public enum Good {
     private final ResourceLevel expensiveCond;
     private final int mtl;
     private final int mth;
+    private static final double RATIO = 0.01;
 
     Good(int mtlp, int mtlu, int ttp, int basePrice, int ipl, int variance, Event ie,
              ResourceLevel cheapCond, ResourceLevel expensiveCond, int mtl, int mth) {
@@ -97,10 +98,9 @@ public enum Good {
         int ipl = this.getIpl();
         int variance = this.getVariance();
         int planetTechLevel = tech.ordinal();
-        double ratio = 0.01;
 
         int price = basePrice + ipl * (planetTechLevel - minT);
-        int priceVar = (int)(basePrice * ratio * variance * (random() - random()));
+        int priceVar = (int)(basePrice * RATIO * variance * (random() - random()));
 
         return price + priceVar;
     }

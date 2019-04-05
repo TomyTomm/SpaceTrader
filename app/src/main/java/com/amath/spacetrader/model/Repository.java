@@ -27,10 +27,6 @@ public class Repository {
 //    private Player player;
 //    private GameDifficulty difficulty;
 
-    public Repository() {
-
-    }
-
     public Game getGame() {
         return this.game;
     }

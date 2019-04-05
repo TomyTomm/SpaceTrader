@@ -34,7 +34,7 @@ public class RandomEventInteractor extends Interactor {
         Model model = Model.getInstance();
         Player player = model.getPlayer();
         Ship ship = player.getShip();
-        int fuelToLose = 500;
+        final int fuelToLose = 500;
 
         double fuelLost = 0;
         if (ship.getFuel() > 0) {
@@ -54,7 +54,7 @@ public class RandomEventInteractor extends Interactor {
         Model model = Model.getInstance();
         Player player = model.getPlayer();
 
-        int creditsToLose = 50;
+        final int creditsToLose = 50;
         int creditsLost = 0;
         if (player.getCredits() > 0) {
             if (player.getCredits() < creditsToLose) {

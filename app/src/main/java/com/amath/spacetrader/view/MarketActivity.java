@@ -49,6 +49,8 @@ public class MarketActivity extends AppCompatActivity {
 
     TextView capacity;
 
+    final int MINIMUM_HEIGHT = 120;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +120,7 @@ public class MarketActivity extends AppCompatActivity {
 
             buyButtonViews.put(good, buyButton);
             sellButtonViews.put(good, sellButton);
-            int minimumHeight = 120;
+            int minimumHeight = MINIMUM_HEIGHT;
             row.setMinimumHeight(minimumHeight);
 
         }

@@ -25,11 +25,11 @@ public class Universe implements Serializable {
         // Create standard SolarSystem
         // Begin by making a set of planets
         Set<Planet> planets = new HashSet<>();
-        int eighty = 80;
-        int twelve = 12;
-        int twenty = 20;
-        int fifty = 50;
-        int seventy = 70;
+        final int eighty = 80;
+        final int twelve = 12;
+        final int twenty = 20;
+        final int fifty = 50;
+        final int seventy = 70;
         Planet genesis = new Planet("Genesis", new Coordinate(eighty, twelve),
                 4, 5, 10);
         Planet hera = new Planet("Hera", new Coordinate(twenty, twenty),
@@ -44,9 +44,9 @@ public class Universe implements Serializable {
         planets.add(athena);
         planets.add(ares);
 
-        double seventyFive = 75.0;
-        double fifty0 = 50.0;
-        int fifteen = 15;
+        final double seventyFive = 75.0;
+        final double fifty0 = 50.0;
+        final int fifteen = 15;
 
         SolarSystem beginning = new SolarSystem("Humble Beginnings", planets,
                 new Coordinate(seventyFive, fifty0), fifteen);

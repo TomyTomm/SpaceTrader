@@ -99,8 +99,9 @@ public class SolarSystem extends SpaceBody {
             }
             if (!overlapping) location = temp;
             else if (radius > 1) {
-                double radiusRatio = 0.9;
-                radius *= radiusRatio;  //decrease size of radius to decrease future chance of overlapping.
+                final double radiusRatio = 0.9;
+                radius *= radiusRatio;  //decrease size of radius to decrease future
+                                        //chance of overlapping.
             }
         }
         return location;
