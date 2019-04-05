@@ -10,10 +10,13 @@ public abstract class SpaceBody implements Serializable {
     protected double radius;
     protected Coordinate location;
 
-    public abstract Coordinate getLocation();
+    public Coordinate getLocation() { return this.location; }
+    public double getRadius() { return this.radius; }
 
-    public abstract double getRadius();
-
+    public SpaceBody(Coordinate location, double radius) {
+        this.location = location;
+        this.radius = radius;
+    }
     protected boolean overlap(Coordinate tempLocation, SpaceBody body) {
         //get coordinate of system
         Coordinate solarCoor = body.getLocation();

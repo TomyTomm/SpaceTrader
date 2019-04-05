@@ -37,7 +37,7 @@ public class Planet extends SpaceBody {
         this(sunSize, planets, null);
     }
     public Planet(int sunSize, Iterable<Planet> planets, SolarSystem solarSystem) {
-
+        super(null, 0);
         // Get name from the list of available planet names. This was randomized on start up,
         // so everything should be ok.Removes a name from the list to ensure that
         // AVAILABLE_PLANET_NAMES will never have anything from USED_PLANET_NAMES.
@@ -112,6 +112,7 @@ public class Planet extends SpaceBody {
     public Planet(String name, Coordinate location, TechLevel techLevel,
                   ResourceLevel resourceLevel, double radius, SolarSystem solarSystem) {
 
+        super(null, 0);
         USED_PLANET_NAMES.add(name);
 
         this.name = name;

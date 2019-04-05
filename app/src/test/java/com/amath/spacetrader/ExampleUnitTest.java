@@ -1,5 +1,8 @@
 package com.amath.spacetrader;
 
+import com.amath.spacetrader.entity.Coordinate;
+import com.amath.spacetrader.entity.SpaceBody;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

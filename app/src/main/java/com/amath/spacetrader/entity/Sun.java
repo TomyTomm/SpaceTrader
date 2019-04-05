@@ -11,6 +11,7 @@ public class Sun extends SpaceBody {
         this((int) (10 + Math.random() * MAX_SIZE));
     }
     public Sun(int size) {
+        super(location, size);
         this.radius = size;
     }
 

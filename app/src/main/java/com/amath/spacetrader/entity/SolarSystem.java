@@ -23,6 +23,7 @@ public class SolarSystem extends SpaceBody {
     private double radius;
 
     public SolarSystem(String name, Set<Planet> planets, Coordinate location, double radius) {
+        super(location, radius);
         this.name = name;
         this.planets = planets;
         this.location = location;
@@ -31,6 +32,7 @@ public class SolarSystem extends SpaceBody {
     }
 
     public SolarSystem(String name, List<SolarSystem> systems) {
+        super(null, 10);
         this.name = name;
         this.planets = instantiatePlanets(systems);
         this.location = setLocation(systems);
