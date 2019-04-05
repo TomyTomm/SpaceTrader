@@ -1,26 +1,20 @@
 package com.amath.spacetrader.view;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Constants;
-import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
-import com.amath.spacetrader.entity.Player;
-import com.amath.spacetrader.entity.SolarSystem;
-import com.amath.spacetrader.model.Model;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
 
 import java.io.File;
@@ -41,7 +35,6 @@ public class ConfigurationActivity extends AppCompatActivity {
     private CompoundButton hardButton;
     private CompoundButton insaneButton;
     private GameDifficulty selectedGameDifficulty;
-    private TextView pointsRemaining;
 
     //data for player being configured
 //    private Player player;
@@ -53,6 +46,8 @@ public class ConfigurationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
+
+        TextView pointsRemaining;
 
 
         /*
@@ -121,7 +116,8 @@ public class ConfigurationActivity extends AppCompatActivity {
                 }
             }
         });
-        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        ViewModelProvider vmp = ViewModelProviders.of(this);
+        viewModel = vmp.get(ConfigurationViewModel.class);
     }
 
     /**
