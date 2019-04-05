@@ -3,9 +3,10 @@ package com.amath.spacetrader.entity;
 import java.io.Serializable;
 
 public class Ship implements Serializable {
-    private ShipType shipType;
-    private int holdSize;
-    private Coordinate location;    // Do we need to have a coordinate location for our ships? I don't think so
+    private final ShipType shipType;
+    private final int holdSize;
+    private Coordinate location;    // Do we need to have a coordinate location for our ships?
+                                    // I don't think so
     private double fuel;
     private static final double STARTING_FUEL = 10000;   //random number, should change
 

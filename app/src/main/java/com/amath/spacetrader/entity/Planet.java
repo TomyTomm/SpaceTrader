@@ -7,42 +7,46 @@ import org.w3c.dom.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class Planet extends SpaceBody implements Serializable {
+public class Planet extends SpaceBody {
 
-    private TechLevel techLevel;
-    private ResourceLevel resourceLevel;
+    private final TechLevel techLevel;
+    private final ResourceLevel resourceLevel;
     boolean marketAvailable;
     private double radius;
     private Event status;
     private Coordinate location;
-    private Map<Good, Integer> inventory = new HashMap<>();
+    private final Map<Good, Integer> inventory = new HashMap<>();
 
     private SolarSystem solarSystem;
 
     private static LinkedList<String> AVAILABLE_PLANET_NAMES;
-    private static Set<String> USED_PLANET_NAMES = new HashSet<>();
+    private static final Collection<String> USED_PLANET_NAMES = new HashSet<>();
 
-    public Planet(int sunSize, Set<Planet> planets) {
+    public Planet(int sunSize, Iterable<Planet> planets) {
         this(sunSize, planets, null);
     }
-    public Planet(int sunSize, Set<Planet> planets, SolarSystem solarSystem) {
+    public Planet(int sunSize, Iterable<Planet> planets, SolarSystem solarSystem) {
 
-        // Get name from the list of available planet names. This was randomized on start up, so everything should be ok.
-        // Removes a name from the list to ensure that AVAILABLE_PLANET_NAMES will never have anything from USED_PLANET_NAMES.
+        // Get name from the list of available planet names. This was randomized on start up,
+        // so everything should be ok.Removes a name from the list to ensure that
+        // AVAILABLE_PLANET_NAMES will never have anything from USED_PLANET_NAMES.
         this.solarSystem = solarSystem;
-        name = null;
+        String name = null;
         while (name == null) {
             Log.d("pnames", String.valueOf(AVAILABLE_PLANET_NAMES.size()));
             if (AVAILABLE_PLANET_NAMES.isEmpty()) {
-                throw new RuntimeException("App does not handle when AVAILABLE_PLANET_NAMES becomes empty");
+                throw new RuntimeException
+                        ("App does not handle when AVAILABLE_PLANET_NAMES becomes empty");
             }
             Log.d("initialization", "making planets: inside Planet()");
             String temp = AVAILABLE_PLANET_NAMES.pop();
@@ -59,8 +63,12 @@ public class Planet extends SpaceBody implements Serializable {
         Random rand = new Random();
         radius = Math.random() * 8;
         while (location == null) {
-            double x = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getX() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getX() / 2;
-            double y = ((rand.nextBoolean() ? -1 : 1) * (Math.random() * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2) + SolarSystem.BOUNDS.getY() / 2;
+            double x = ((rand.nextBoolean() ? -1 : 1) * (Math.random()
+                    * (SolarSystem.BOUNDS.getX() / 2 - sunSize / 2)) + sunSize/2)
+                    + SolarSystem.BOUNDS.getX() / 2;
+            double y = ((rand.nextBoolean() ? -1 : 1) * (Math.random()
+                    * (SolarSystem.BOUNDS.getY() / 2 - sunSize / 2)) + sunSize/2)
+                    + SolarSystem.BOUNDS.getY() / 2;
 //            location = new Coordinate(x, y);
 
             Coordinate temp = new Coordinate(x, y);
@@ -73,7 +81,8 @@ public class Planet extends SpaceBody implements Serializable {
             }
             if (!overlapping) this.location = temp;
             else if (radius > 1) {
-                radius *= 0.9;      //decrease size of radius to decrease future chance of overlapping.
+                double radiusRatio = 0.9;
+                radius *= radiusRatio;  //decrease size of radius to decrease future chance of overlapping.
             }
         }
 
@@ -85,16 +94,22 @@ public class Planet extends SpaceBody implements Serializable {
 
         Log.d("initialization", "making planets: inside Planet()");
     }
-    public Planet(String name, Coordinate location, int techLevel, int resourceLevel, double radius) {
-        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel], radius);
+    public Planet(String name, Coordinate location, int techLevel, int resourceLevel,
+                  double radius) {
+        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel],
+                radius);
     }
-    public Planet(String name, Coordinate location, int techLevel, int resourceLevel, double radius, SolarSystem solarSystem) {
-        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel], radius, solarSystem);
+    public Planet(String name, Coordinate location, int techLevel, int resourceLevel,
+                  double radius, SolarSystem solarSystem) {
+        this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel],
+                radius, solarSystem);
     }
-    public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel, double radius) {
+    public Planet(String name, Coordinate location, TechLevel techLevel,
+                  ResourceLevel resourceLevel, double radius) {
         this(name, location, techLevel, resourceLevel, radius, null);
     }
-    public Planet(String name, Coordinate location, TechLevel techLevel, ResourceLevel resourceLevel, double radius, SolarSystem solarSystem) {
+    public Planet(String name, Coordinate location, TechLevel techLevel,
+                  ResourceLevel resourceLevel, double radius, SolarSystem solarSystem) {
 
         USED_PLANET_NAMES.add(name);
 
@@ -112,6 +127,7 @@ public class Planet extends SpaceBody implements Serializable {
         return name;
     }
 
+    @Override
     public Coordinate getLocation() {
         return location;
     }
@@ -124,6 +140,7 @@ public class Planet extends SpaceBody implements Serializable {
         return resourceLevel;
     }
 
+    @Override
     public double getRadius() { return this.radius; }
 
     /**
@@ -152,7 +169,7 @@ public class Planet extends SpaceBody implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Planet %s:\n" +
+        return String.format(Locale.US, "Planet %s:\n" +
                         "Location with respect to sun: (%f, %f)\n" +
                         "Radius:\t\t%f%n" +
                         "Technology level:%s\n" +
@@ -184,7 +201,8 @@ public class Planet extends SpaceBody implements Serializable {
     public void setSolarSystem(SolarSystem solarSystem) {
         if (this.solarSystem == null) this.solarSystem = solarSystem;
         else {
-            throw new IllegalArgumentException("Cannot set the solar system of a planet if it already exists in one");
+            throw new IllegalArgumentException
+                    ("Cannot set the solar system of a planet if it already exists in one");
         }
     }
 

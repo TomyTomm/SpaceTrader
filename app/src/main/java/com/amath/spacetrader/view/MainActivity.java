@@ -63,5 +63,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onOkayPressed(View view) {
         Log.i("mainActivity", "Ok was pressed");
+        viewModel.toString();
     }
 }

@@ -18,66 +18,63 @@ public class DoRobberyUnitTests {
 
     private static Game game;
     private static Player player;
-    private static Repository repo;
     private static RandomEventInteractor randomEventInteractor;
-    private static Model model;
 
     @BeforeClass
     public static void setUp() {
-        model = Model.TEST_CreateInstance();
+        Model model = Model.TEST_CreateInstance();
         player = new Player("playerName", 4, 4, 4, 4);
         model.getMyRepository().newGame(new Game());
         model.loadPlayer(player);
-        repo = model.getMyRepository();
+        Repository repo = model.getMyRepository();
         randomEventInteractor = new RandomEventInteractor(repo);
-
     }
 
     @Test
     public void testRobbery0Credits() {
-        player.setCredits(0);
-        assertEquals("player does not have correct credits", 0,
+        int credits = 0;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
                 player.getCredits());
         assertEquals("You've lost 0 credits due to the robbery",
                 randomEventInteractor.doRobbery());
-        assertEquals("player does not have correct credits after doRobbery()", 0,
-                player.getCredits());
+        assertEquals("player does not have correct credits after doRobbery()",
+                0, player.getCredits());
     }
 
     @Test
     public void testRobbery30Credits() {
-        try {
-            player.setCredits(30);
-            assertEquals("player does not have correct credits", 30,
-                    player.getCredits());
-            assertEquals("You've lost 30 credits due to the robbery",
-                    randomEventInteractor.doRobbery());
-            assertEquals("player does not have correct credits after doRobbery()", 0,
-                    player.getCredits());
-        } catch (Exception e) {
-
-        }
+        int credits = 30;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("You've lost 30 credits due to the robbery",
+                randomEventInteractor.doRobbery());
+        assertEquals("player does not have correct credits after doRobbery()",
+                0, player.getCredits());
     }
 
     @Test
     public void testRobbery50Credits() {
-        player.setCredits(50);
-        assertEquals("player does not have correct credits", 50,
+        int credits = 50;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
                 player.getCredits());
         assertEquals("You've lost 50 credits due to the robbery",
                 randomEventInteractor.doRobbery());
-        assertEquals("player does not have correct credits after doRobbery()", 0,
-                player.getCredits());
+        assertEquals("player does not have correct credits after doRobbery()",
+                0, player.getCredits());
     }
 
     @Test
     public void testRobberyWith1000Credits() {
-        player.setCredits(1000);
-        assertEquals("player does not have correct credits", 1000,
+        int credits = 1000;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
                 player.getCredits());
         assertEquals("You've lost 50 credits due to the robbery",
                 randomEventInteractor.doRobbery());
-        assertEquals("player does not have correct credits after doRobbery()", 950,
-                player.getCredits());
+        assertEquals("player does not have correct credits after doRobbery()",
+                credits - 50, player.getCredits());
     }
 }

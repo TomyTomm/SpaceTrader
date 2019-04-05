@@ -13,7 +13,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class MainViewModel extends AndroidViewModel {
-    private MainInteractor interactor;
+    private final MainInteractor interactor;
 
     public MainViewModel(@NonNull Application application) {
         super(application);

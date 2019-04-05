@@ -36,7 +36,6 @@ public class ConfigurationActivity extends AppCompatActivity {
     private EditText traderPoints;
     private EditText engineerPoints;
     private EditText fighterPoints;
-    private TextView pointsRemaining;
     private CompoundButton easyButton;
     private CompoundButton normalButton;
     private CompoundButton hardButton;
@@ -53,6 +52,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
+        TextView pointsRemaining;
 
         /*
          * Grab the dialog widgets so we can get info for later
@@ -121,17 +121,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-        /*
-          Set up the adapter to display the allowable majors in the spinner
-         */
-        /*
-        ArrayAdapter<GameDifficulty> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, GameDifficulty.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gameDifficultySpinner.setAdapter(adapter);
-        */
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
     }
 
@@ -160,7 +149,8 @@ public class ConfigurationActivity extends AppCompatActivity {
             engineerPts = Integer.parseInt(engineerPoints.getText().toString());
             fighterPts = Integer.parseInt(fighterPoints.getText().toString());
         } catch (Exception e) {
-            Toast.makeText(this, "Please enter a value for each point type", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter a value for each point type",
+                    Toast.LENGTH_LONG).show();
             return;
         }
 

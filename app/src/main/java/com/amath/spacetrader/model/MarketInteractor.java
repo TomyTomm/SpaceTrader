@@ -39,18 +39,23 @@ public class MarketInteractor extends Interactor {
 
         Planet currentPlanet = model.getGame().getCurrentPlanet();
         double ttpMultiplier = 1.0;
+        double multiplier;
         for (Good good: Good.values()) {
             if (good.getMtlp() > currentPlanet.getTechLevel().ordinal()) {
                 inventory.put(good, 0);
             } else {
                 if (good.getTtp() == currentPlanet.getTechLevel().ordinal()) {
-                    ttpMultiplier *= 2.4;
+                    multiplier = 2.4;
+                    ttpMultiplier *= multiplier;
                 }
                 if (good.getIe() == currentPlanet.getStatus()) {
-                    ttpMultiplier *= 0.6;
+                    multiplier = 0.6;
+                    ttpMultiplier *= multiplier;
                 }
                 int resourceLevel = (currentPlanet.getResourceLevel().ordinal() + 1) * 10;
-                inventory.put(good, (int)(resourceLevel * (Math.random()/3 + 0.5)*(ttpMultiplier)));
+                double half = 0.5;
+                inventory.put(good, (int)(resourceLevel * (Math.random()/3 + half)
+                        *(ttpMultiplier)));
             }
         }
         return inventory;

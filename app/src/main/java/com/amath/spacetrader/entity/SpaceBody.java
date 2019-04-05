@@ -3,6 +3,7 @@ package com.amath.spacetrader.entity;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 public abstract class SpaceBody implements Serializable {
     protected String name;
@@ -29,10 +30,13 @@ public abstract class SpaceBody implements Serializable {
 
 
         //If distance between centers is less than the sum of the two radii, then they overlap
-//        Log.d("oopsie!", String.format("(%f, %f), R:%f \n(%f, %f), R:%f%n", solarX, solarY, solarRad, x, y, radius));
+        //Log.d("oopsie!", String.format(Locale.US, "(%f, %f), R:%f \n(%f, %f), R:%f%n", solarX,
+        //solarY, solarRad, x, y, radius));
         if (distance < solarRad + radius) {
             Log.d("oopsie!", "overlapped haha");
-            Log.d("oopsie!", String.format("(%f, %f), R:%f \n(%f, %f), R:%f%n", solarX, solarY, solarRad, x, y, radius));
+            Log.d("oopsie!", String.format(Locale.US,
+                    "(%f, %f), R:%f \n(%f, %f), R:%f%n", solarX, solarY, solarRad,
+                    x, y, radius));
             return true;
         }
         return false;

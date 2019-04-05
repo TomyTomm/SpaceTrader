@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class Model {
+public final class Model {
 
     /** the data repository */
-    private Repository myRepository;
-    private Map<String, Object> interactorMap;
+    private final Repository myRepository;
+    private final Map<String, Object> interactorMap;
 
     /** Singleton Pattern Code
      *  this allows us to get access to this class
@@ -40,7 +40,7 @@ public class Model {
         Log.d("initialization", "Create model");
         synchronized (this) {
             initializeAvailablePlanetNames();
-        };
+        }
 
         myRepository = new Repository();
         interactorMap = new HashMap<>();
@@ -259,9 +259,9 @@ public class Model {
                 "Zuul"			// From the first Ghostbusters movie
         };
 
-        List<String> namesAsList = new LinkedList<>();
+        LinkedList<String> namesAsList = new LinkedList<>();
         for (String name: names) {
-            ((LinkedList<String>) namesAsList).addLast(name);
+            namesAsList.addLast(name);
         }
         java.util.Collections.shuffle(namesAsList);
         Planet.setAvailablePlanetNames(namesAsList);

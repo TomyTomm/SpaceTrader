@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class SolarSystemViewModel extends AndroidViewModel {
 
-    private SolarSystemInteractor interactor;
+    private final SolarSystemInteractor interactor;
 
     public SolarSystemViewModel(@NonNull Application application) {
         super(application);

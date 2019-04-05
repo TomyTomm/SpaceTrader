@@ -44,7 +44,7 @@ public class PlanetViewModel extends AndroidViewModel {
      * as an example
      *
      */
-    public class IllegalFlyException extends Exception {
+    public final class IllegalFlyException extends Exception {
         private IllegalFlyException(String message) {
             super(message);
         }

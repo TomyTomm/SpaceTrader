@@ -2,10 +2,11 @@ package com.amath.spacetrader.entity;
 
 import java.io.Serializable;
 
-public class Sun extends SpaceBody implements Serializable {
-    private double radius;
+public class Sun extends SpaceBody {
+    private final double radius;
     private static final int MAX_SIZE = 15;
-    private static Coordinate location = new Coordinate(SolarSystem.BOUNDS.getX()/2, SolarSystem.BOUNDS.getY()/2);
+    private static final Coordinate location = new Coordinate(SolarSystem.BOUNDS.getX()/2,
+            SolarSystem.BOUNDS.getY()/2);
     public Sun() {
         this((int) (10 + Math.random() * MAX_SIZE));
     }
@@ -17,8 +18,10 @@ public class Sun extends SpaceBody implements Serializable {
         return (int) radius;
     }
 
-    public double getRadius() { return (double) radius; }
+    @Override
+    public double getRadius() { return radius; }
 
+    @Override
     public Coordinate getLocation() {
         return location;
     }
