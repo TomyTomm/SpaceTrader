@@ -36,6 +36,9 @@ public class RandomEventActivity extends AppCompatActivity {
 
         TextView randomEventResult = findViewById(R.id.random_event_result);
         randomEventResult.setText(viewModel.executeEvent(randomEvent));
+
+        TextView randomEventRemainingInventory = findViewById(R.id.random_event_updated_inventory);
+        randomEventRemainingInventory.setText(viewModel.executeResultEvent(randomEvent));
     }
 
     public void onDonePressed(View view) {

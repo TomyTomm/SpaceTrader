@@ -62,4 +62,25 @@ public class RandomEventInteractor extends Interactor {
         return String.format("You've lost %d credits due to the robbery", creditsLost);
     }
 
+    public String displayCrewMutiny() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+
+        return String.format("You have %d units of food left.", player.getGoodAmount(Good.FOOD));
+    }
+
+    public String displayMalfunction() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+        Ship ship = player.getShip();
+
+        return String.format("You have %d units of fuel left.", ship.getFuel());
+    }
+
+    public String displayRobbery() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+
+        return String.format("You have %d credits left.", player.getCredits());
+    }
 }

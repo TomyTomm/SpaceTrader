@@ -8,6 +8,8 @@ import com.amath.spacetrader.entity.RandomEvent;
 import com.amath.spacetrader.model.RandomEventInteractor;
 import com.amath.spacetrader.model.Model;
 
+import java.util.Random;
+
 public class RandomEventViewModel extends AndroidViewModel {
 
     private RandomEventInteractor interactor;
@@ -29,6 +31,19 @@ public class RandomEventViewModel extends AndroidViewModel {
         }
         if (randomEvent == RandomEvent.ROBBERY) {
             return interactor.doRobbery();
+        }
+        return "could not find the correct event";
+    }
+
+    public String executeResultEvent(RandomEvent randomEvent) {
+        if (randomEvent == RandomEvent.CREW_MUTINY) {
+            return interactor.displayCrewMutiny();
+        }
+        if (randomEvent == RandomEvent.SHIP_MALFUNCTION) {
+            return interactor.displayMalfunction();
+        }
+        if (randomEvent == RandomEvent.ROBBERY) {
+            return interactor.displayRobbery();
         }
         return "could not find the correct event";
     }
