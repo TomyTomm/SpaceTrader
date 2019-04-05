@@ -24,9 +24,14 @@ public class Model {
      *  anywhere, which will allow our View models to access
      *  the "back end"  more easily
      */
-    private static  Model instance = new Model();
+    private static Model instance = new Model();
 
     public static Model getInstance() { return instance; }
+
+    public static Model TEST_CreateInstance() {
+        instance = new Model();
+        return instance;
+    }
 
     /**
      * Make a new Model instance
@@ -52,6 +57,10 @@ public class Model {
     public void loadPlayer(Player player) {
         instance.myRepository.getGame().loadPlayer(player);
         instance.myRepository.update();
+    }
+
+    public Repository getMyRepository() {
+        return myRepository;
     }
 
     public Player getPlayer() {

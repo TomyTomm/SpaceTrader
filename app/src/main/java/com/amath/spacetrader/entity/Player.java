@@ -14,7 +14,7 @@ public class Player implements Serializable {
     private int fighterPts;
 
     private final int STARTING_CREDITS = 1000;
-    private int credits = STARTING_CREDITS;
+    private int credits;
 
     // I don't know if the player needs a location, can't we just use the location of the planet
     // it's on?
@@ -37,6 +37,7 @@ public class Player implements Serializable {
             inventory.put(good, 0);
         }
         acquireShip(ShipType.GNAT);
+        this.credits = STARTING_CREDITS;
     }
 
     public void acquireShip(ShipType newShip) {

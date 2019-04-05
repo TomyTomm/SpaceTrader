@@ -5,7 +5,7 @@ import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.entity.Ship;
 
 public class RandomEventInteractor extends Interactor {
-    protected RandomEventInteractor(Repository repo) {
+    public RandomEventInteractor(Repository repo) {
         super(repo);
     }
 
