@@ -14,11 +14,14 @@ public abstract class SpaceBody implements Serializable {
     public double getRadius() { return this.radius; }
 
     public SpaceBody(Coordinate location, double radius) {
+        if (radius < 0) radius = 0;
         this.location = location;
         this.radius = radius;
     }
+
     protected boolean overlap(Coordinate tempLocation, SpaceBody body) {
         //get coordinate of system
+        if (body == null || tempLocation == null) return false;
         Coordinate solarCoor = body.getLocation();
         double solarX = solarCoor.getX();
         double solarY = solarCoor.getY();

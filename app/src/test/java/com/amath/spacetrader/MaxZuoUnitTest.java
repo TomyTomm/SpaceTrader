@@ -40,7 +40,7 @@ public class MaxZuoUnitTest {
             }
 
             boolean overlap(SpaceBody other) {
-                return super.overlap(this.location, other);
+                return this.overlap(this.location, other);
             }
 
             void init(Coordinate location, double radius) {
@@ -92,6 +92,9 @@ public class MaxZuoUnitTest {
             assertEquals(true, s1.overlap(s8) == s8.overlap(s1));
             s8location.setX(s8location.getX() - 1.1);
         }
+        assertEquals(false, s1.overlap(null));
+        s1.init(null, 10);
+        assertEquals(false, s1.overlap(s1));
 
     }
 }
