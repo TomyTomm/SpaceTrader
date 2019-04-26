@@ -36,6 +36,18 @@ public class DoCrewMutinyUnitTests {
     }
 
     @Test
+    public void boundaryFoodTest() {
+        player.removeGood(Good.FOOD, player.getGoodAmount(Good.FOOD));
+        int food = player.getGoodAmount(Good.FOOD);
+        assertEquals("Food not zero.", 0, food);
+        player.addGood(Good.FOOD, 1);
+        food = player.getGoodAmount(Good.FOOD);
+        randomEventInteractor.doCrewMutiny();
+        int postFood = player.getGoodAmount(Good.FOOD);
+        assertEquals("Boundary case (1 food) failed.", food - 1, postFood);
+    }
+
+    @Test
     public void zeroFoodTest() {
         int food = player.getGoodAmount(Good.FOOD);
         assertEquals("Food not zero.", 0, food);
@@ -53,7 +65,21 @@ public class DoCrewMutinyUnitTests {
         food = player.getGoodAmount(Good.FOOD);
         randomEventInteractor.doCrewMutiny();
         int postFood = player.getGoodAmount(Good.FOOD);
-        assertEquals("Zero case failed.", food - 1, postFood);
+        assertEquals("Positive, non-boundary case (10 food) failed.", food - 1, postFood);
+    }
+
+
+
+    @Test
+    public void justAboveBoundaryFoodTest() {
+        player.removeGood(Good.FOOD, player.getGoodAmount(Good.FOOD));
+        int food = player.getGoodAmount(Good.FOOD);
+        assertEquals("Food not zero.", 0, food);
+        player.addGood(Good.FOOD, 2);
+        food = player.getGoodAmount(Good.FOOD);
+        randomEventInteractor.doCrewMutiny();
+        int postFood = player.getGoodAmount(Good.FOOD);
+        assertEquals("Edge case (2 food) failed.", food - 1, postFood);
     }
 
 }
