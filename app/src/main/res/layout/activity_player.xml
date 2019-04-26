@@ -86,6 +86,98 @@
         app:layout_constraintStart_toEndOf="@+id/fuel_remaining_header"
         app:layout_constraintTop_toBottomOf="@+id/current_solarsystem" />
 
+    <TextView
+        android:id="@+id/weapon_choice_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="8dp"
+        android:text="Current Ship Outfit"
+        android:textColor="@color/textColor"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/cannon_button"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/cannon"
+        android:textColor="@color/toggle_color"
+        android:textOff="@string/cannon"
+        android:textOn="@string/cannon"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weapon_choice_header" />
+
+    <ToggleButton
+        android:id="@+id/missile_button"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/Missile"
+        android:textColor="@color/toggle_color"
+        android:textOff="@string/Missile"
+        android:textOn="@string/Missile"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cannon_button" />
+
+    <ToggleButton
+        android:id="@+id/knife_button"
+        android:layout_width="83dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/Knife"
+        android:textColor="@color/toggle_color"
+        android:textOff="@string/Knife"
+        android:textOn="@string/Knife"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/missile_button" />
+
+    <TextView
+        android:id="@+id/weapon_desc_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="8dp"
+        android:text="No weapon outfitted."
+        android:textColor="@color/textColorHint"
+        android:layout_weight="1"
+        android:ellipsize="none"
+        android:maxLines="100"
+        android:textAlignment="center"
+        android:scrollHorizontally="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constrainedWidth="true"
+        />
+    <TextView
+        android:id="@+id/weapon_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:text="(0 Cost)"
+        android:textColor="@color/textColorHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weapon_desc_header"
+        />
+
     <Button
         android:id="@+id/market_button"
         android:layout_width="wrap_content"

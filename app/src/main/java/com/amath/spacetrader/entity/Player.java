@@ -22,6 +22,8 @@ public class Player implements Serializable {
 
     private Ship ship;
 
+    private Weapon chosenWeapon;
+
     private final Map<Good, Integer> inventory = new HashMap<>();
     private int inventorySize;
 
@@ -37,6 +39,7 @@ public class Player implements Serializable {
         }
         acquireShip(ShipType.GNAT);
         this.credits = STARTING_CREDITS;
+        this.chosenWeapon = Weapon.NONE;
     }
 
     public void acquireShip(ShipType newShip) {
@@ -84,7 +87,7 @@ public class Player implements Serializable {
     }
 
     public int getInventoryCapacity() {
-        return this.ship.getHoldSize();
+        return this.ship.getHoldSize() - this.chosenWeapon.getCost();
     }
 
     public int getGoodAmount(Good good) {
@@ -92,4 +95,11 @@ public class Player implements Serializable {
     }
 
     public Ship getShip() { return this.ship; }
+
+    public Weapon getChosenWeapon() {
+        return chosenWeapon;
+    }
+    public void setChosenWeapon(Weapon weapon) {
+        chosenWeapon = weapon;
+    }
 }

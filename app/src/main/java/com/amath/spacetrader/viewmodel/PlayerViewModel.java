@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
 import com.amath.spacetrader.entity.Planet;
+import com.amath.spacetrader.entity.Weapon;
 import com.amath.spacetrader.model.Model;
 import com.amath.spacetrader.model.PlayerInteractor;
 
@@ -16,6 +17,18 @@ public class PlayerViewModel extends AndroidViewModel {
         super(application);
 
         interactor = Model.getInstance().getPlayerInteractor();
+    }
+
+    public boolean inventoryStatusCheckAndChange(Weapon weapon) {
+        int changeInInventorySize = interactor.getPlayerWeapon().getCost() - weapon.getCost();
+        int proposed = interactor.getInventoryCapacity() + changeInInventorySize;
+        if (proposed < interactor.getInventorySize()) {
+            interactor.setPlayerWeapon(interactor.getPlayerWeapon());
+            return false;
+        } else {
+            interactor.setPlayerWeapon(weapon);
+            return true;
+        }
     }
 
     public String getPlayerName() {
@@ -33,4 +46,9 @@ public class PlayerViewModel extends AndroidViewModel {
     public double getFuelRemaining() {
         return interactor.getFuelRemaining();
     }
+
+    public int getInventorySize() { return interactor.getInventorySize(); }
+
+    public int getInventoryCapacity() { return interactor.getInventoryCapacity(); }
+
 }

@@ -32,6 +32,12 @@ public class RandomEventViewModel extends AndroidViewModel {
         if (randomEvent == RandomEvent.ROBBERY) {
             return interactor.doRobbery();
         }
+        if (randomEvent == RandomEvent.PIRATE_ENCOUNTER) {
+            return interactor.doPirates();
+        }
+        if (randomEvent == RandomEvent.POLICE_ENCOUNTER) {
+            return interactor.doPolice();
+        }
         return "could not find the correct event";
     }
 
@@ -44,6 +50,12 @@ public class RandomEventViewModel extends AndroidViewModel {
         }
         if (randomEvent == RandomEvent.ROBBERY) {
             return interactor.displayRobbery();
+        }
+        if (randomEvent == RandomEvent.PIRATE_ENCOUNTER) {
+            return interactor.displayPirates();
+        }
+        if (randomEvent == RandomEvent.POLICE_ENCOUNTER) {
+            return interactor.displayPolice();
         }
         return "could not find the correct event";
     }

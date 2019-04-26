@@ -77,4 +77,97 @@ public class DoRobberyUnitTests {
         assertEquals("player does not have correct credits after doRobbery()",
                 credits - 50, player.getCredits());
     }
+    /*
+    @Test
+    public void testPirates0Credits() {
+        int credits = 0;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("You've lost 0 credits due to the pirates",
+                randomEventInteractor.doPirates());
+        assertEquals("player does not have correct credits after doPirates()",
+                0, player.getCredits());
+    }
+    @Test
+    public void testPirates30Credits() {
+        int credits = 30;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("Pirates stole 30 credits from you.",
+                randomEventInteractor.doPirates());
+        assertEquals("player does not have correct credits after doPirates()",
+                0, player.getCredits());
+    }
+
+    @Test
+    public void testPirates50Credits() {
+        int credits = 50;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("Pirates stole 50 credits from you.",
+                randomEventInteractor.doPirates());
+        assertEquals("player does not have correct credits after doPirates()",
+                0, player.getCredits());
+    }
+
+    @Test
+    public void testPiratesWith1000Credits() {
+        int credits = 1000;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("Pirates stole 50 credits from you.",
+                randomEventInteractor.doPirates());
+        assertEquals("player does not have correct credits after doPirates()",
+                credits - 50, player.getCredits());
+    }
+    @Test
+    public void testPolice0Credits() {
+        int credits = 0;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("You've lost 0 credits due to the police",
+                randomEventInteractor.doPolice());
+        assertEquals("player does not have correct credits after doPolice()",
+                0, player.getCredits());
+    }
+    @Test
+    public void testPolice30Credits() {
+        int credits = 30;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("Police fined you 30 credits. Corruption at its worst!",
+                randomEventInteractor.doPolice());
+        assertEquals("player does not have correct credits after doPolice()",
+                0, player.getCredits());
+    }
+    @Test
+    public void testPolice50Credits() {
+        int credits = 50;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("Police fined you 50 credits. Corruption at its worst!",
+                randomEventInteractor.doPolice());
+        assertEquals("player does not have correct credits after doPolice()",
+                0, player.getCredits());
+    }
+
+    @Test
+    public void testPoliceWith1000Credits() {
+        int credits = 1000;
+        player.setCredits(credits);
+        assertEquals("player does not have correct credits", credits,
+                player.getCredits());
+        assertEquals("Police fined you 50 credits. Corruption at its worst!",
+                randomEventInteractor.doPolice());
+        assertEquals("player does not have correct credits after doPolice()",
+                credits - 50, player.getCredits());
+    }
+    */
 }

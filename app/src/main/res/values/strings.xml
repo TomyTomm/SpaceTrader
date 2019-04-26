@@ -1,4 +1,11 @@
 <resources>
+    <string name="ship_outfit">Current Ship Outfit</string>
+    <string name="cannon">Cannon</string>
+    <string name="cannon_desc">A standard but reliable choice.</string>
+    <string name="missile_desc">Requires more space, but presents more of a threat.</string>
+    <string name="knife_desc">Six inches of folded damascus steel. A wicked edge.</string>
+    <string name="Missile">Missile</string>
+    <string name="Knife">Knife</string>
     <string name="app_name">Space Trader</string>
     <string name="player_name">Player Name</string>
     <string name="name">Name</string>

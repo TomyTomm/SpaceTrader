@@ -69,6 +69,54 @@ public class RandomEventInteractor extends Interactor {
                 "You've lost %d credits due to the robbery", creditsLost);
     }
 
+    public String doPirates() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+
+        double character, pirate;
+        character = Math.random() * 10;
+        pirate = Math.random() * 10;
+        boolean gotAway = character >= pirate;
+
+        final int creditsToLose = 50;
+        int creditsLost = 0;
+        if (player.getCredits() > 0 && !gotAway) {
+            if (player.getCredits() < creditsToLose) {
+                creditsLost = player.getCredits();
+                player.setCredits(0);
+            } else {
+                creditsLost = creditsToLose;
+                player.setCredits(player.getCredits() - creditsToLose);
+            }
+        }
+        return String.format(Locale.US,
+                "Pirates stole %d credits from you.", creditsLost);
+    }
+
+    public String doPolice() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+
+        double character, police;
+        character = Math.random() * 10;
+        police = 5;
+        boolean justiceServed = character < police;
+
+        final int creditsToLose = 50;
+        int creditsLost = 0;
+        if (player.getCredits() > 0 && justiceServed) {
+            if (player.getCredits() < creditsToLose) {
+                creditsLost = player.getCredits();
+                player.setCredits(0);
+            } else {
+                creditsLost = creditsToLose;
+                player.setCredits(player.getCredits() - creditsToLose);
+            }
+        }
+        return String.format(Locale.US,
+                "Police fined you %d credits. Corruption at its worst!", creditsLost);
+    }
+
     public String displayCrewMutiny() {
         Model model = Model.getInstance();
         Player player = model.getPlayer();
@@ -85,6 +133,20 @@ public class RandomEventInteractor extends Interactor {
     }
 
     public String displayRobbery() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+
+        return String.format("You have %d credits left.", player.getCredits());
+    }
+
+    public String displayPirates() {
+        Model model = Model.getInstance();
+        Player player = model.getPlayer();
+
+        return String.format("You have %d credits left.", player.getCredits());
+    }
+
+    public String displayPolice() {
         Model model = Model.getInstance();
         Player player = model.getPlayer();
 
