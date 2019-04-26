@@ -18,15 +18,21 @@ public class UniverseInteractor extends Interactor {
 
     public String getCurrentSolarSystemName() {
         Model model = Model.getInstance();
-        return model.getGame().getCurrentPlanet().getSolarSystem().getName();
+        return model.getGame().getCurrentPlanet().getSolarSystem();
     }
 
     public Map<SolarSystem, Double> loadSolarSystems() {
         Model model = Model.getInstance();
         Map<SolarSystem, Double> solarSystemsMap = new HashMap<>();
-        SolarSystem currentSolarSystem = model.getGame().getCurrentPlanet().getSolarSystem();
+        String currentSolarSystemName = model.getGame().getCurrentPlanet().getSolarSystem();
+        SolarSystem currentSolarSystem = null;
         List<SolarSystem> solarSystems = model.getGame().getSolarSystems();
-
+        for (SolarSystem system: solarSystems) {
+            if (system.getName() == currentSolarSystemName) {
+                currentSolarSystem = system;
+                break;
+            }
+        }
         for (SolarSystem solarSystem: solarSystems) {
             solarSystemsMap.put(solarSystem,
                     calculateDistanceBetweenSolarSystems(currentSolarSystem, solarSystem));

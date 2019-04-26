@@ -50,10 +50,10 @@ public class Universe implements Serializable {
 
         SolarSystem beginning = new SolarSystem("Humble Beginnings", planets,
                 new Coordinate(seventyFive, fifty0), fifteen);
-        genesis.setSolarSystem(beginning);
-        hera.setSolarSystem(beginning);
-        athena.setSolarSystem(beginning);
-        ares.setSolarSystem(beginning);
+        genesis.setSolarSystem(beginning.getName());
+        hera.setSolarSystem(beginning.getName());
+        athena.setSolarSystem(beginning.getName());
+        ares.setSolarSystem(beginning.getName());
 
         solarSystems.add(beginning);
 

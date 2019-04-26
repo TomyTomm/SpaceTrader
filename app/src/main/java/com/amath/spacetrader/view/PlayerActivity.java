@@ -45,7 +45,7 @@ public class PlayerActivity extends AppCompatActivity {
         currentSolarSystem.setText(viewModel.getCurrentSolarSystemName());
 
         TextView fuelRemaining = findViewById(R.id.fuel_remaining);
-        fuelRemaining.setText(String.valueOf(viewModel.getFuelRemaining()));
+        fuelRemaining.setText(String.format("%.4f", viewModel.getFuelRemaining()));
     }
 
     @Override
@@ -66,6 +66,8 @@ public class PlayerActivity extends AppCompatActivity {
 
     public void onViewUniverse(View view) {
         Log.i("playerActivity", "Going to view the universe");
+        Log.d("refactor", "Inside load planets");
+        System.out.println("WTFWTFWTF");
         Intent intent = new Intent(this, UniverseActivity.class);
         startActivityForResult(intent, 1);
     }
