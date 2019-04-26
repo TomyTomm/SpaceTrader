@@ -13,17 +13,18 @@ import java.util.Set;
 public class SolarSystem extends SpaceBody {
 
     private final Set<Planet> planets;
-    private final Sun sun = new Sun();
+    private Sun sun;
 
     public static final Coordinate BOUNDS = new Coordinate(100, 100);
 
     private static final int allPlanetsNum = 0;
-    private final String name;
-    private final Coordinate location;
-    private double radius;
+//    private final String name;
+//    private final Coordinate location;
+//    private double radius;
 
     public SolarSystem(String name, Set<Planet> planets, Coordinate location, double radius) {
         super(location, radius);
+        this.sun = new Sun();
         this.name = name;
         this.planets = planets;
         this.location = location;
@@ -33,6 +34,7 @@ public class SolarSystem extends SpaceBody {
 
     public SolarSystem(String name, List<SolarSystem> systems) {
         super(null, 10);
+        this.sun = new Sun();
         this.name = name;
         this.planets = instantiatePlanets(systems);
         this.location = setLocation(systems);
@@ -57,13 +59,13 @@ public class SolarSystem extends SpaceBody {
     }
 
     private void addPlanet() {
-        planets.add(new Planet(sun.getSize(), this.planets, this));
+        planets.add(new Planet(sun.getSize(), this.planets, this.sun, this.getName()));
     }
 
     private void addPlanet(Set<Planet> planets) {
         Log.d("initialization", String.format(Locale.US,
                 "making planets (inside addPlanet()):\t%d", planets.size()));
-        planets.add(new Planet(sun.getSize(), planets, this));
+        planets.add(new Planet(sun.getSize(), planets, this.sun, this.getName()));
     }
 
     public int getSunSize() { return sun.getSize(); }

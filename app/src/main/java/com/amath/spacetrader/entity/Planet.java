@@ -22,26 +22,28 @@ public class Planet extends SpaceBody {
     private final TechLevel techLevel;
     private final ResourceLevel resourceLevel;
     boolean marketAvailable;
-    private double radius;
+//    private double radius;
     private Event status;
-    private Coordinate location;
+//    private Coordinate location;
     private final Map<Good, Integer> inventory = new HashMap<>();
 
-    private SolarSystem solarSystem;
+    private Sun sun;
+    private String solarSystem;
     private final double HALF = 0.5;
 
     private static LinkedList<String> AVAILABLE_PLANET_NAMES;
     private static final Collection<String> USED_PLANET_NAMES = new HashSet<>();
 
     public Planet(int sunSize, Iterable<Planet> planets) {
-        this(sunSize, planets, null);
+        this(sunSize, planets, null, null);
     }
-    public Planet(int sunSize, Iterable<Planet> planets, SolarSystem solarSystem) {
+    public Planet(int sunSize, Iterable<Planet> planets, Sun sun, String solarSystem) {
         super(null, 0);
+        this.solarSystem = solarSystem;
         // Get name from the list of available planet names. This was randomized on start up,
         // so everything should be ok.Removes a name from the list to ensure that
         // AVAILABLE_PLANET_NAMES will never have anything from USED_PLANET_NAMES.
-        this.solarSystem = solarSystem;
+        this.sun = sun;
         String name = null;
         while (name == null) {
             Log.d("pnames", String.valueOf(AVAILABLE_PLANET_NAMES.size()));
@@ -101,26 +103,27 @@ public class Planet extends SpaceBody {
                 radius);
     }
     public Planet(String name, Coordinate location, int techLevel, int resourceLevel,
-                  double radius, SolarSystem solarSystem) {
+                  double radius, Sun sun, String solarSystem) {
         this(name, location, TechLevel.values()[techLevel], ResourceLevel.values()[resourceLevel],
-                radius, solarSystem);
+                radius, sun, solarSystem);
     }
     public Planet(String name, Coordinate location, TechLevel techLevel,
                   ResourceLevel resourceLevel, double radius) {
-        this(name, location, techLevel, resourceLevel, radius, null);
+        this(name, location, techLevel, resourceLevel, radius, null, null);
     }
     public Planet(String name, Coordinate location, TechLevel techLevel,
-                  ResourceLevel resourceLevel, double radius, SolarSystem solarSystem) {
+                  ResourceLevel resourceLevel, double radius, Sun sun, String solarSystem) {
 
         super(null, 0);
         USED_PLANET_NAMES.add(name);
 
+        this.solarSystem = solarSystem;
         this.name = name;
         this.location = location;
         this.techLevel = techLevel;
         this.resourceLevel = resourceLevel;
         this.radius = radius;
-        this.solarSystem = solarSystem;
+        this.sun = sun;
         initializeInventory();
 
     }
@@ -196,11 +199,11 @@ public class Planet extends SpaceBody {
         }
     }
 
-    public SolarSystem getSolarSystem() {
-        return solarSystem;
+    public String getSolarSystem() {
+        return this.solarSystem;
     }
-
-    public void setSolarSystem(SolarSystem solarSystem) {
+//
+    public void setSolarSystem(String solarSystem) {
         if (this.solarSystem == null) this.solarSystem = solarSystem;
         else {
             throw new IllegalArgumentException
@@ -209,8 +212,9 @@ public class Planet extends SpaceBody {
     }
 
     public double getDistanceFromSun() {
-        return Math.sqrt(Math.pow(location.getX() - solarSystem.getSun().getLocation().getX(), 2)
-            + Math.pow(location.getY() - solarSystem.getSun().getLocation().getY(), 2));
+        if (sun == null) return 0;
+        return Math.sqrt(Math.pow(location.getX() - sun.getLocation().getX(), 2)
+            + Math.pow(location.getY() - sun.getLocation().getY(), 2));
     }
 
     public Event getStatus() {

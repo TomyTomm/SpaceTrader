@@ -19,7 +19,7 @@ public class PlayerInteractor extends Interactor {
 
     public String getCurrentSolarSystemName() {
         Model model = Model.getInstance();
-        return model.getGame().getCurrentPlanet().getSolarSystem().getName();
+        return model.getGame().getCurrentPlanet().getSolarSystem();
     }
 
     public double getFuelRemaining() {

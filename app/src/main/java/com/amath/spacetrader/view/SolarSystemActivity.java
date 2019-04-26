@@ -42,7 +42,7 @@ public class SolarSystemActivity extends AppCompatActivity {
         } else {
             Log.e("solarSystemActivity", "Unable to fetch current solar system");
         }
-
+        Log.d("refactor", "Inside load planets");
         TextView currentSystemName = findViewById(R.id.currentSolarSystem);
         currentSystemName.setText(currentSystem.getName());
         planetTable = findViewById(R.id.table);
@@ -52,6 +52,7 @@ public class SolarSystemActivity extends AppCompatActivity {
 
     private void populatePlanetTable() {
         int rowIndex = 0;
+        Log.d("refactor error", String.valueOf(viewModel.getPlanetDistances(currentSystem)));
         Map<Planet, Double> planetDistances = viewModel.getPlanetDistances(currentSystem);
         for (Planet planet: currentSystem.getPlanets()) {
             // Get row

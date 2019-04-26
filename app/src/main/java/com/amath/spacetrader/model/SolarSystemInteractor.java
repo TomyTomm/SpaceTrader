@@ -22,20 +22,34 @@ public class SolarSystemInteractor extends Interactor {
     public Map<Planet, Double> loadPlanets(SolarSystem solarSystem) {
         Model model = Model.getInstance();
         Map<Planet, Double> planets = new HashMap<>();
+        Log.d("refactor", "Inside load planets");
 
         Planet currentPlanet = model.getGame().getCurrentPlanet();
         for (Planet planet: solarSystem.getPlanets()) {
-            double distanceFromCurrentPlanet = calculateDistanceBetweenPlanets(currentPlanet,
-                                                                                planet);
+            double distanceFromCurrentPlanet
+                    = calculateDistanceBetweenPlanets(currentPlanet, planet);
             planets.put(planet, distanceFromCurrentPlanet);
         }
+        Log.d("refactor", String.valueOf(planets.size()));
         return planets;
     }
 
     private double calculateDistanceBetweenPlanets(Planet currentPlanet, Planet otherPlanet) {
         Model model = Model.getInstance();
-        SolarSystem currentSolarSystem = currentPlanet.getSolarSystem();
-        SolarSystem otherSolarSystem = otherPlanet.getSolarSystem();
+        String currentSolarSystemName = currentPlanet.getSolarSystem();
+        String otherSolarSystemName = otherPlanet.getSolarSystem();
+
+        SolarSystem currentSolarSystem = null;
+        SolarSystem otherSolarSystem = null;
+        for (SolarSystem system : Model.getInstance().getGame().getSolarSystems()) {
+            if (system.getName().equals(currentSolarSystemName)) {
+                currentSolarSystem = system;
+            }
+            if (system.getName().equals(otherSolarSystemName)) {
+                otherSolarSystem = system;
+            }
+        }
+
         double distance = 0;
 
         //To calculate the distance between planets in separate solar systems,

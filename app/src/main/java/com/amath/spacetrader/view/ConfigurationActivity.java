@@ -15,7 +15,11 @@ import android.widget.Toast;
 import com.amath.spacetrader.R;
 import com.amath.spacetrader.entity.Constants;
 import com.amath.spacetrader.entity.GameDifficulty;
+import com.amath.spacetrader.model.Model;
 import com.amath.spacetrader.viewmodel.ConfigurationViewModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 import java.io.File;
 
@@ -36,6 +40,9 @@ public class ConfigurationActivity extends AppCompatActivity {
     private CompoundButton insaneButton;
     private GameDifficulty selectedGameDifficulty;
 
+    private FirebaseDatabase database;
+    private DatabaseReference gameRef;
+
     //data for player being configured
 //    private Player player;
 
@@ -48,6 +55,10 @@ public class ConfigurationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_config);
 
         TextView pointsRemaining;
+
+        database = FirebaseDatabase.getInstance();
+        gameRef = database.getReference(String.valueOf(Model.getInstance().getGame().uuid));
+
 
 
         /*
@@ -178,6 +189,10 @@ public class ConfigurationActivity extends AppCompatActivity {
         if (viewModel.saveGameLocally(file)) {
             Toast.makeText(this, "Saved game locally!", Toast.LENGTH_SHORT).show();
         }
+        Gson gson = new Gson();
+        Log.d("gsonError", String.valueOf(Model.getInstance().getGame()));
+        String json = gson.toJson(Model.getInstance().getGame());
+        gameRef.setValue(json);
         //Intent sets the next activity to go
         Intent intent = new Intent(this, PlayerActivity.class);
         startActivity(intent);

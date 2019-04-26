@@ -7,6 +7,9 @@ import com.amath.spacetrader.entity.Game;
 import com.amath.spacetrader.entity.GameDifficulty;
 import com.amath.spacetrader.entity.Player;
 import com.amath.spacetrader.entity.Universe;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,10 +43,20 @@ public class Repository {
      */
     public boolean saveGame(File file) {
         try {
-            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(game);
-            out.close();
-            return true;
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(game);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference gameRef = database.getReference(String.valueOf(game.uuid));
+
+                gameRef.setValue(json);
+                return true;
+            } catch (Exception e) {
+                ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+                out.writeObject(game);
+                out.close();
+                return true;
+            }
         } catch (Exception e) {
             return false;
         }

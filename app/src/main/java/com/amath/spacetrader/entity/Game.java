@@ -6,6 +6,8 @@ import java.util.Set;
 
 public class Game implements Serializable {
     private GameDifficulty gameDifficulty;
+    public int uuid;
+//    public int uuid2;
     private Player player;
     private Universe universe;
 

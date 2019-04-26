@@ -28,6 +28,11 @@ public class MaxZuoUnitTest {
         assertEquals(true, c1.equals(c2));
         assertEquals(false, c1.equals(c3));
         assertEquals(false, c1.equals(c4));
+
+        c1.setY(2);
+        assertEquals(true, c1.equals(c3));
+        c1.setX(2);
+        assertEquals(true, c1.equals(c4));
     }
 
     //Max Zuo

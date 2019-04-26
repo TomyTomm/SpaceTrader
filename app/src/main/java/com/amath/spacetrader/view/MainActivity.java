@@ -33,17 +33,36 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private MainViewModel viewModel;
+    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        database = FirebaseDatabase.getInstance();
+
+        DatabaseReference uuidRef = database.getReference("uuids");
+
+
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         File file = new File(this.getFilesDir(), Constants.LOCAL_GAME_SERIALIZATION_FILE);
 
         if (viewModel.loadLocalGame(file)) {
-            Log.i("mainActivity", "Game loaded successfully. ");
+            Log.i("mainActivity", "Local game loaded successfully. ");
+            if (Model.getInstance().getGame().uuid != -1) {
+                DatabaseReference gameRef = database.getReference(String.valueOf(Model.getInstance().getGame().uuid));
+                gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        long numChildren = dataSnapshot.getChildrenCount();
+                        System.out.println(numChildren);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+            }
             Intent intent = new Intent(this, PlayerActivity.class);
             startActivity(intent);
         } else {
